@@ -1,0 +1,1124 @@
+2020-01-14 15:59:47,183 INFO  [Log] Excel sheet opened 
+2020-01-14 15:59:47,192 INFO  [Log] **************************************************************************************** 
+2020-01-14 15:59:47,192 INFO  [Log] **************************************************************************************** 
+2020-01-14 15:59:47,193 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 15:59:47,193 INFO  [Log] **************************************************************************************** 
+2020-01-14 15:59:47,193 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:06:39,428 INFO  [Log] Excel sheet opened 
+2020-01-14 16:06:39,438 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:06:39,438 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:06:39,438 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:06:39,438 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:06:39,438 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:13:10,544 INFO  [Log] Excel sheet opened 
+2020-01-14 16:13:10,558 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:13:10,558 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:13:10,558 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:13:10,558 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:13:10,558 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:30:44,312 INFO  [Log] Excel sheet opened 
+2020-01-14 16:30:44,326 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:30:44,326 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:30:44,326 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:30:44,326 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:30:44,326 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:36:24,592 INFO  [Log] Excel sheet opened 
+2020-01-14 16:36:24,601 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:36:24,601 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:36:24,601 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:36:24,601 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:36:24,602 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:39:27,968 INFO  [Log] Excel sheet opened 
+2020-01-14 16:39:27,976 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:39:27,976 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:39:27,976 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:39:27,977 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:39:27,977 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:40:57,867 INFO  [Log] Excel sheet opened 
+2020-01-14 16:40:58,005 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:40:58,005 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:40:58,005 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:40:58,006 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:40:58,006 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:52:21,351 INFO  [Log] Excel sheet opened 
+2020-01-14 16:52:21,365 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:52:21,365 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:52:21,366 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:52:21,366 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:52:21,366 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:55:52,278 INFO  [Log] Excel sheet opened 
+2020-01-14 16:55:52,287 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:55:52,287 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:55:52,287 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 16:55:52,287 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:55:52,288 INFO  [Log] **************************************************************************************** 
+2020-01-14 16:57:42,155 ERROR [Log] element click intercepted: Element <a id="MainContent_ctlHeader1_MainMenu_HeaderLinkLevel2_HyperLink_1" class="sub" href="/StratosGateway-ENV5-STAGE/ACO/Reports/frmActivationHistory.aspx" tabindex="-1">...</a> is not clickable at point (179, 271). Other element would receive the click: <div id="mdlChannelPartnerConfirmPopup_backgroundElement" class="modalConfirmBackground" style="position: fixed; left: 0px; top: 0px; z-index: 10000; width: 1904px; height: 1015px;"></div>
+  (Session info: chrome=79.0.3945.88)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.08 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:53023}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir36416_1193295173}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.88, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 99e0fbddb36a8aef0acbe636eb5b7ae4 
+2020-01-14 16:57:42,167 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-14 16:57:42,167 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-14 17:15:18,807 INFO  [Log] Excel sheet opened 
+2020-01-14 17:15:18,816 INFO  [Log] **************************************************************************************** 
+2020-01-14 17:15:18,816 INFO  [Log] **************************************************************************************** 
+2020-01-14 17:15:18,817 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-14 17:15:18,817 INFO  [Log] **************************************************************************************** 
+2020-01-14 17:15:18,817 INFO  [Log] **************************************************************************************** 
+2020-01-14 17:19:21,417 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:53400}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir11356_627537181}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.88, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: c63e6e92ede92c64d645de78a5a0140b 
+2020-01-14 17:19:21,435 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-14 17:19:21,435 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 13:42:40,053 INFO  [Log] Excel sheet opened 
+2020-01-16 13:42:40,063 INFO  [Log] **************************************************************************************** 
+2020-01-16 13:42:40,063 INFO  [Log] **************************************************************************************** 
+2020-01-16 13:42:40,064 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-16 13:42:40,064 INFO  [Log] **************************************************************************************** 
+2020-01-16 13:42:40,064 INFO  [Log] **************************************************************************************** 
+2020-01-16 13:46:42,050 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:56216}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir17956_1282629517}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.117, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: f4821774a7c4bfc314710aba2c8ed281 
+2020-01-16 13:46:42,062 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 13:46:42,063 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 13:57:50,700 INFO  [Log] Excel sheet opened 
+2020-01-16 13:57:50,708 INFO  [Log] **************************************************************************************** 
+2020-01-16 13:57:50,709 INFO  [Log] **************************************************************************************** 
+2020-01-16 13:57:50,709 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-16 13:57:50,709 INFO  [Log] **************************************************************************************** 
+2020-01-16 13:57:50,709 INFO  [Log] **************************************************************************************** 
+2020-01-16 14:02:51,688 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 14:02:51,688 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 15:20:12,350 INFO  [Log] Excel sheet opened 
+2020-01-16 15:20:12,359 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:20:12,359 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:20:12,359 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-16 15:20:12,359 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:20:12,359 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:25:56,962 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:57045}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir20020_1252724811}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.117, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 87655a8ab29aa4fb6f369053ba32206c 
+2020-01-16 15:25:56,975 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 15:25:56,975 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 15:27:56,443 INFO  [Log] Excel sheet opened 
+2020-01-16 15:27:56,451 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:27:56,451 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:27:56,451 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-16 15:27:56,451 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:27:56,451 INFO  [Log] **************************************************************************************** 
+2020-01-16 15:32:12,555 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-16 15:32:12,555 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 12:14:25,438 INFO  [Log] Excel sheet opened 
+2020-01-17 12:14:25,450 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:14:25,450 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:14:25,450 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-17 12:14:25,450 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:14:25,450 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:18:25,197 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 12:18:25,198 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 12:41:42,052 INFO  [Log] Excel sheet opened 
+2020-01-17 12:41:42,062 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:41:42,062 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:41:42,062 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-17 12:41:42,063 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:41:42,063 INFO  [Log] **************************************************************************************** 
+2020-01-17 12:45:25,281 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 12:45:25,282 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 14:48:03,353 INFO  [Log] Excel sheet opened 
+2020-01-17 14:48:03,362 INFO  [Log] **************************************************************************************** 
+2020-01-17 14:48:03,363 INFO  [Log] **************************************************************************************** 
+2020-01-17 14:48:03,363 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-17 14:48:03,363 INFO  [Log] **************************************************************************************** 
+2020-01-17 14:48:03,363 INFO  [Log] **************************************************************************************** 
+2020-01-17 14:51:46,187 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 14:51:46,187 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 15:19:37,702 INFO  [Log] Excel sheet opened 
+2020-01-17 15:19:37,712 INFO  [Log] **************************************************************************************** 
+2020-01-17 15:19:37,712 INFO  [Log] **************************************************************************************** 
+2020-01-17 15:19:37,712 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-17 15:19:37,713 INFO  [Log] **************************************************************************************** 
+2020-01-17 15:19:37,713 INFO  [Log] **************************************************************************************** 
+2020-01-17 15:24:28,800 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-17 15:24:28,800 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-22 13:16:12,809 INFO  [Log] Excel sheet opened 
+2020-01-22 13:16:12,816 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:16:12,816 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:16:12,816 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-22 13:16:12,816 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:16:12,816 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:18:13,879 ERROR [Log] element click intercepted: Element <a id="MainContent_ctlHeader1_MainMenu_HeaderLinkLevel2_HyperLink_1" class="sub" href="/StratosGateway-ENV5-STAGE/ACO/Reports/frmActivationHistory.aspx" tabindex="-1">...</a> is not clickable at point (179, 271). Other element would receive the click: <div id="mdlChannelPartnerConfirmPopup_backgroundElement" class="modalConfirmBackground" style="position: fixed; left: 0px; top: 0px; z-index: 10000; width: 1348px; height: 1015px;"></div>
+  (Session info: chrome=79.0.3945.117)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.07 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:58345}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir44072_793251367}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.117, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 74cd1844685e82426a79d4b737775154 
+2020-01-22 13:18:13,901 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-22 13:18:13,901 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-22 13:19:40,279 INFO  [Log] Excel sheet opened 
+2020-01-22 13:19:40,285 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:19:40,285 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:19:40,286 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-22 13:19:40,286 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:19:40,286 INFO  [Log] **************************************************************************************** 
+2020-01-22 13:23:47,942 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '13.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:58569}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir33960_51613855}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.117, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 3a38c838a0050ccb73660f36cf90d7dc 
+2020-01-22 13:23:47,985 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-22 13:23:47,996 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-24 14:59:40,135 INFO  [Log] Excel sheet opened 
+2020-01-24 14:59:40,145 INFO  [Log] **************************************************************************************** 
+2020-01-24 14:59:40,146 INFO  [Log] **************************************************************************************** 
+2020-01-24 14:59:40,146 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-24 14:59:40,146 INFO  [Log] **************************************************************************************** 
+2020-01-24 14:59:40,146 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:00:23,852 ERROR [Log]  
+2020-01-24 15:00:23,862 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-24 15:00:23,862 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-24 15:17:01,702 INFO  [Log] Excel sheet opened 
+2020-01-24 15:17:01,710 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:17:01,710 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:17:01,710 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-24 15:17:01,710 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:17:01,710 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:38:18,927 INFO  [Log] Excel sheet opened 
+2020-01-24 15:38:18,935 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:38:18,935 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:38:18,935 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-24 15:38:18,936 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:38:18,936 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:43:06,745 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:65075}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir43076_828669188}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 9c0527e465e261f0c6d816a79d41b037 
+2020-01-24 15:43:06,757 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-24 15:43:06,757 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-24 15:44:28,641 INFO  [Log] Excel sheet opened 
+2020-01-24 15:44:28,650 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:44:28,650 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:44:28,651 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-24 15:44:28,651 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:44:28,651 INFO  [Log] **************************************************************************************** 
+2020-01-24 15:48:18,401 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:65280}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir40784_950701812}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: f8b5ab009a1bbdc1ca2b25de7cd50263 
+2020-01-24 15:48:18,413 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-24 15:48:18,413 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-27 13:34:25,519 INFO  [Log] Excel sheet opened 
+2020-01-27 13:34:25,557 INFO  [Log] **************************************************************************************** 
+2020-01-27 13:34:25,558 INFO  [Log] **************************************************************************************** 
+2020-01-27 13:34:25,558 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-27 13:34:25,558 INFO  [Log] **************************************************************************************** 
+2020-01-27 13:34:25,558 INFO  [Log] **************************************************************************************** 
+2020-01-27 13:39:18,340 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:58933}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir26988_345541911}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 6a1f6a997b61e66ccfaadb6c72ed41c2 
+2020-01-27 13:39:18,364 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-27 13:39:18,364 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-27 15:01:51,356 INFO  [Log] Excel sheet opened 
+2020-01-27 15:01:51,371 INFO  [Log] **************************************************************************************** 
+2020-01-27 15:01:51,371 INFO  [Log] **************************************************************************************** 
+2020-01-27 15:01:51,371 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-27 15:01:51,371 INFO  [Log] **************************************************************************************** 
+2020-01-27 15:01:51,371 INFO  [Log] **************************************************************************************** 
+2020-01-27 15:06:02,635 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:63519}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir9000_2062809201}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 7bbe2fc4be8adcc1ff020cbe44a60897 
+2020-01-27 15:06:02,655 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-27 15:06:02,655 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 13:53:22,283 INFO  [Log] Excel sheet opened 
+2020-01-28 13:53:22,293 INFO  [Log] **************************************************************************************** 
+2020-01-28 13:53:22,293 INFO  [Log] **************************************************************************************** 
+2020-01-28 13:53:22,293 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 13:53:22,294 INFO  [Log] **************************************************************************************** 
+2020-01-28 13:53:22,294 INFO  [Log] **************************************************************************************** 
+2020-01-28 13:53:49,963 INFO  [Log] Excel sheet opened 
+2020-01-28 13:53:49,964 INFO  [Log] **************************************************************************************** 
+2020-01-28 13:53:49,964 INFO  [Log] **************************************************************************************** 
+2020-01-28 13:53:49,964 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 13:53:49,964 INFO  [Log] **************************************************************************************** 
+2020-01-28 13:53:49,964 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:04,021 INFO  [Log] Excel sheet opened 
+2020-01-28 14:00:04,036 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:04,036 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:04,036 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:00:04,037 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:04,037 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:28,992 INFO  [Log] Excel sheet opened 
+2020-01-28 14:00:28,993 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:28,993 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:28,993 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:00:28,993 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:00:28,993 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:04,487 INFO  [Log] Excel sheet opened 
+2020-01-28 14:22:04,496 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:04,496 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:04,496 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:22:04,496 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:04,497 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:30,893 INFO  [Log] Excel sheet opened 
+2020-01-28 14:22:30,894 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:30,894 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:30,895 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:22:30,895 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:22:30,895 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:16,257 INFO  [Log] Excel sheet opened 
+2020-01-28 14:26:16,267 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:16,267 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:16,267 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:26:16,267 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:16,267 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:40,035 INFO  [Log] Excel sheet opened 
+2020-01-28 14:26:40,036 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:40,036 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:40,037 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:26:40,037 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:26:40,037 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:37:51,084 INFO  [Log] Excel sheet opened 
+2020-01-28 14:37:51,095 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:37:51,095 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:37:51,095 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:37:51,095 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:37:51,096 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:38:14,876 INFO  [Log] Excel sheet opened 
+2020-01-28 14:38:14,876 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:38:14,876 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:38:14,877 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:38:14,877 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:38:14,877 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:38:41,360 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : Error communicating with the remote browser. It may have died.
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: driver.version: RemoteWebDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:62886}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir11276_144215664}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 8aff2d5a1151af914f71c2c3451b2ad9 
+2020-01-28 14:38:41,374 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:38:41,374 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:38:41,786 ERROR [Log] no such element: Unable to locate element: {"method":"id","selector":"top_menu_item_servicesManagement"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 100 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:62929}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir35968_396512609}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: fcba382d704cc4c61f8438c90c578f66
+*** Element info: {Using=id, value=top_menu_item_servicesManagement} 
+2020-01-28 14:38:41,793 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:38:41,793 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:44:29,921 INFO  [Log] Excel sheet opened 
+2020-01-28 14:44:29,929 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:44:29,929 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:44:29,929 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:44:29,929 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:44:29,929 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:44:53,424 INFO  [Log] Excel sheet opened 
+2020-01-28 14:44:53,424 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:44:53,424 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:44:53,424 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:44:53,424 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:44:53,424 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:45:20,040 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : Error communicating with the remote browser. It may have died.
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: driver.version: RemoteWebDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:63323}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir14704_1035385010}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: c95c0c36294319544a8618ad88173f9b 
+2020-01-28 14:45:20,049 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:45:20,050 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:45:20,385 ERROR [Log] no such element: Unable to locate element: {"method":"id","selector":"top_menu_item_servicesManagement"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 32 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:63369}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir37096_1595079850}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 90e0c4a59f7624b6a1ef41953feb3e70
+*** Element info: {Using=id, value=top_menu_item_servicesManagement} 
+2020-01-28 14:45:20,390 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:45:20,390 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:46:31,995 INFO  [Log] Excel sheet opened 
+2020-01-28 14:46:32,012 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:46:32,012 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:46:32,012 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:46:32,012 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:46:32,012 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:46:55,944 ERROR [Log] no such element: Unable to locate element: {"method":"id","selector":"top_menu_item_servicesManagement"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 21 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:63506}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir26988_232394515}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 2d423be01139286437a003149c89f121
+*** Element info: {Using=id, value=top_menu_item_servicesManagement} 
+2020-01-28 14:46:55,960 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:46:55,960 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:48:17,129 INFO  [Log] Excel sheet opened 
+2020-01-28 14:48:17,139 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:48:17,140 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:48:17,140 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:48:17,140 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:48:17,140 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:50:28,359 ERROR [Log] Cannot locate option with value: Form Status
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: driver.version: unknown 
+2020-01-28 14:50:28,372 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:50:28,372 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:52:14,576 INFO  [Log] Excel sheet opened 
+2020-01-28 14:52:14,587 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:52:14,588 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:52:14,588 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSDeactivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 14:52:14,588 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:52:14,588 INFO  [Log] **************************************************************************************** 
+2020-01-28 14:55:56,962 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="MainContent_MainContent_WFDetailsCommonInfo1_lblPostOfficeId"]"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.05 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:64063}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir23804_331601531}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 8bf5088cf6c9b07165a42b4a0b2550c7
+*** Element info: {Using=xpath, value=//*[@id="MainContent_MainContent_WFDetailsCommonInfo1_lblPostOfficeId"]} 
+2020-01-28 14:55:56,976 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 14:55:56,976 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 18:54:48,606 INFO  [Log] Excel sheet opened 
+2020-01-28 18:54:48,613 INFO  [Log] **************************************************************************************** 
+2020-01-28 18:54:48,613 INFO  [Log] **************************************************************************************** 
+2020-01-28 18:54:48,613 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$AMOSActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-28 18:54:48,613 INFO  [Log] **************************************************************************************** 
+2020-01-28 18:54:48,613 INFO  [Log] **************************************************************************************** 
+2020-01-28 18:59:21,662 ERROR [Log] Timed out after 20 seconds waiting for text ('Completed') to be present in element found by By.xpath: //*[@id="ctl00_ctl00_MainContent_MainContent_ActivationHistoryGrid_DXDataRow0"]/td[9]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:62600}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir23816_1869683808}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1ff73cf448796d040c9fc148988295f8 
+2020-01-28 18:59:21,677 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-28 18:59:21,677 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 11:01:55,698 INFO  [Log] Excel sheet opened 
+2020-01-29 11:01:55,710 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:01:55,710 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:01:55,710 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 11:01:55,710 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:01:55,710 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:28:40,553 INFO  [Log] Excel sheet opened 
+2020-01-29 11:28:40,567 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:28:40,567 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:28:40,567 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 11:28:40,567 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:28:40,568 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:29:29,574 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard alert: You have one or more vessels which do not have all the required mandatory customer details. Please run report "Customer - Vessels Missing Information" to identify vessel(s) requiring this update and ensure your information is entered as soon as possible.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:59119}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir34400_394066522}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 09fea48a21f0b5aa40bbcf800460eeb2 
+2020-01-29 11:29:29,597 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 11:29:29,597 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 11:35:46,314 INFO  [Log] Excel sheet opened 
+2020-01-29 11:35:46,326 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:35:46,326 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:35:46,326 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 11:35:46,327 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:35:46,327 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:36:51,142 ERROR [Log] element click intercepted: Element <div class="rsAction" onclick="rsAction(event, 'customerId', '2')">...</div> is not clickable at point (223, 536). Other element would receive the click: <div id="RSD_selectCustomer.xml" style="text-align: right; position: absolute; left: 41px; top: 395px; width: 973px; height: 316px;" class="rsMask">...</div>
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.12 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:59935}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir6328_1217901987}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 464fac1b49585fba59a740cd0ebb59d5 
+2020-01-29 11:36:51,164 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 11:36:51,164 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 11:55:53,405 INFO  [Log] Excel sheet opened 
+2020-01-29 11:55:53,419 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:55:53,419 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:55:53,419 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 11:55:53,419 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:55:53,419 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:57:02,660 ERROR [Log] stale element reference: element is not attached to the page document
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 947 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:61002}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir34852_483907680}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 14f5421ae88cd75bf4b1b13ad64c4c20 
+2020-01-29 11:57:02,687 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 11:57:02,687 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 11:59:35,654 INFO  [Log] Excel sheet opened 
+2020-01-29 11:59:35,666 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:59:35,666 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:59:35,667 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 11:59:35,667 INFO  [Log] **************************************************************************************** 
+2020-01-29 11:59:35,667 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:00:56,427 ERROR [Log] stale element reference: element is not attached to the page document
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.08 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:61246}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir26752_1683583046}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: cdc0fba045c67b199873777a4eced6a7 
+2020-01-29 12:00:56,447 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 12:00:56,447 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 12:08:40,379 INFO  [Log] Excel sheet opened 
+2020-01-29 12:08:40,391 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:08:40,391 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:08:40,391 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 12:08:40,391 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:08:40,391 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:09:58,673 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 19 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:61473}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir15348_781584207}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 61dd4c72ba907133abdfb44278158a07 
+2020-01-29 12:09:58,704 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 12:09:58,704 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 12:15:40,632 INFO  [Log] Excel sheet opened 
+2020-01-29 12:15:40,647 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:15:40,647 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:15:40,649 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 12:15:40,649 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:15:40,649 INFO  [Log] **************************************************************************************** 
+2020-01-29 12:17:37,550 ERROR [Log] invalid selector: Unable to locate an element with the xpath expression )//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string ')//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3]' is not a valid XPath expression.
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 40 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:61769}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir40788_757424536}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 2b1a92a42426fa0e78a1bd9d759ef7c8
+*** Element info: {Using=xpath, value=)//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3]} 
+2020-01-29 12:17:37,566 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 12:17:37,567 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 13:30:51,817 INFO  [Log] Excel sheet opened 
+2020-01-29 13:30:51,833 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:30:51,834 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:30:51,834 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 13:30:51,840 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:30:51,840 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:33:51,764 ERROR [Log] invalid selector: Unable to locate an element with the xpath expression )//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string ')//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3]' is not a valid XPath expression.
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 33 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:53817}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir13072_133858871}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 7c0baf25e5fed76c5214d144bb61ec6f
+*** Element info: {Using=xpath, value=)//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3]} 
+2020-01-29 13:33:51,823 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 13:33:51,823 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 13:57:09,504 INFO  [Log] Excel sheet opened 
+2020-01-29 13:57:09,516 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:57:09,516 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:57:09,517 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 13:57:09,517 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:57:09,517 INFO  [Log] **************************************************************************************** 
+2020-01-29 13:59:37,141 ERROR [Log] invalid selector: Unable to locate an element with the xpath expression )//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string ')//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3]' is not a valid XPath expression.
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:54378}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir42304_2089404634}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 04937c43e5e534891d75aa588b7b16be
+*** Element info: {Using=xpath, value=)//*[@id='ctl00_ctl00_MainContent_Main_ctl00_ctl00_ctl04']/div/div[2]/table/tbody/tr[1]/td[3]} 
+2020-01-29 13:59:37,181 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 13:59:37,181 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 14:17:41,980 INFO  [Log] Excel sheet opened 
+2020-01-29 14:17:41,995 INFO  [Log] **************************************************************************************** 
+2020-01-29 14:17:41,995 INFO  [Log] **************************************************************************************** 
+2020-01-29 14:17:41,995 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 14:17:41,995 INFO  [Log] **************************************************************************************** 
+2020-01-29 14:17:41,995 INFO  [Log] **************************************************************************************** 
+2020-01-29 14:19:48,359 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 14:19:48,359 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 23:36:17,787 INFO  [Log] Excel sheet opened 
+2020-01-29 23:36:17,811 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-01-29 23:36:17,811 INFO  [Log] **************************************************************************************** 
+2020-01-29 23:36:17,811 INFO  [Log] **************************************************************************************** 
+2020-01-29 23:36:17,811 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-01-29 23:36:17,812 INFO  [Log] **************************************************************************************** 
+2020-01-29 23:36:17,812 INFO  [Log] **************************************************************************************** 
+2020-01-29 23:38:42,749 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:64972}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir21592_582896530}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 5516b95b4d74141ae2d3d9bfadd57794 
+2020-01-29 23:38:42,767 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-01-29 23:38:42,768 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 14:44:08,683 INFO  [Log] Excel sheet opened 
+2020-02-05 14:44:08,733 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 14:44:08,734 INFO  [Log] **************************************************************************************** 
+2020-02-05 14:44:08,734 INFO  [Log] **************************************************************************************** 
+2020-02-05 14:44:08,734 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 14:44:08,734 INFO  [Log] **************************************************************************************** 
+2020-02-05 14:44:08,735 INFO  [Log] **************************************************************************************** 
+2020-02-05 14:45:48,393 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:59267}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir24500_49463187}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 42424e9ec7a60be8f8e23c0c466592c8 
+2020-02-05 14:45:48,409 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 14:45:48,410 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:00:41,924 INFO  [Log] Excel sheet opened 
+2020-02-05 15:00:41,945 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 15:00:41,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:00:41,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:00:41,945 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 15:00:41,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:00:41,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:01:47,034 ERROR [Log] stale element reference: element is not attached to the page document
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 568 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:59650}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir25972_983537462}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 2fe5419051f19ba9ef3aca05102d7735 
+2020-02-05 15:01:47,066 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:01:47,067 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:06:13,923 INFO  [Log] Excel sheet opened 
+2020-02-05 15:06:13,944 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 15:06:13,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:06:13,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:06:13,945 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 15:06:13,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:06:13,945 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:07:19,173 INFO  [Log] Excel sheet opened 
+2020-02-05 15:07:19,197 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 15:07:19,197 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:07:19,197 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:07:19,197 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 15:07:19,198 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:07:19,198 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:09:20,788 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="RST_ibPP"]/table/tbody/tr[3]/td[1]/input"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.01 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:59834}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir34536_1354387241}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 658823290a4bd68a440d6a717b54091b
+*** Element info: {Using=xpath, value=//*[@id="RST_ibPP"]/table/tbody/tr[3]/td[1]/input} 
+2020-02-05 15:09:20,806 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:09:20,806 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:16:48,856 INFO  [Log] Excel sheet opened 
+2020-02-05 15:16:48,870 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 15:16:48,871 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:16:48,871 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:16:48,871 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 15:16:48,871 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:16:48,872 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:18:52,112 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="RST_ibPP"]/table/tbody/tr[3]/td[1]/input"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.02 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '13.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:60069}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir20560_1066737239}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e8ecf9c0a35d268159ce9c9c9beda315
+*** Element info: {Using=xpath, value=//*[@id="RST_ibPP"]/table/tbody/tr[3]/td[1]/input} 
+2020-02-05 15:18:52,141 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:18:52,141 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:43:00,218 INFO  [Log] Excel sheet opened 
+2020-02-05 15:43:00,232 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 15:43:00,233 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:43:00,233 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:43:00,233 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 15:43:00,233 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:43:00,233 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:45:13,626 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="RST_ibPP"]/table/tbody/tr[3]/td[1]/input"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '13.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:60497}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir24416_1847238991}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: dbead7b6b4a6b1a6f9bfbee7f7765283
+*** Element info: {Using=xpath, value=//*[@id="RST_ibPP"]/table/tbody/tr[3]/td[1]/input} 
+2020-02-05 15:45:13,643 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:45:13,644 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:54:00,379 INFO  [Log] Excel sheet opened 
+2020-02-05 15:54:00,397 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 15:54:00,397 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:54:00,397 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:54:00,397 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 15:54:00,397 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:54:00,398 INFO  [Log] **************************************************************************************** 
+2020-02-05 15:56:17,996 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 15:56:17,996 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 16:52:36,340 INFO  [Log] Excel sheet opened 
+2020-02-05 16:52:36,370 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-05 16:52:36,370 INFO  [Log] **************************************************************************************** 
+2020-02-05 16:52:36,370 INFO  [Log] **************************************************************************************** 
+2020-02-05 16:52:36,370 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-05 16:52:36,373 INFO  [Log] **************************************************************************************** 
+2020-02-05 16:52:36,373 INFO  [Log] **************************************************************************************** 
+2020-02-05 16:56:51,815 ERROR [Log] stale element reference: element is not attached to the page document
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 9.41 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:63903}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir43656_723643153}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d99a080029bdbf446423b4a3ad413713 
+2020-02-05 16:56:51,839 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-05 16:56:51,839 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-06 14:30:16,769 INFO  [Log] Excel sheet opened 
+2020-02-06 14:30:16,793 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-06 14:30:16,793 INFO  [Log] **************************************************************************************** 
+2020-02-06 14:30:16,793 INFO  [Log] **************************************************************************************** 
+2020-02-06 14:30:16,793 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-06 14:30:16,793 INFO  [Log] **************************************************************************************** 
+2020-02-06 14:30:16,794 INFO  [Log] **************************************************************************************** 
+2020-02-06 14:35:01,740 ERROR [Log] element not interactable
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.03 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52570}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir28648_2095728155}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: eb4b3a0cff56ad24a3c10ff3aeca9805 
+2020-02-06 14:35:01,759 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-06 14:35:01,760 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-06 15:13:27,207 INFO  [Log] Excel sheet opened 
+2020-02-06 15:13:27,251 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-06 15:13:27,252 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:13:27,252 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:13:27,252 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-06 15:13:27,252 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:13:27,252 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:18:42,917 ERROR [Log] element not interactable
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.03 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:55579}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir35248_883672110}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: aab03794f055fe6ee071eb8264d1baee 
+2020-02-06 15:18:42,937 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-06 15:18:42,937 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-06 15:39:22,314 INFO  [Log] Excel sheet opened 
+2020-02-06 15:39:22,342 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-06 15:39:22,342 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:39:22,342 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:39:22,343 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-06 15:39:22,343 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:39:22,343 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:43:17,245 INFO  [Log] Excel sheet opened 
+2020-02-06 15:43:17,269 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-06 15:43:17,270 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:43:17,270 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:43:17,270 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-06 15:43:17,270 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:43:17,270 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:48:33,602 INFO  [Log] Excel sheet opened 
+2020-02-06 15:48:33,623 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-06 15:48:33,624 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:48:33,625 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:48:33,625 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-06 15:48:33,625 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:48:33,625 INFO  [Log] **************************************************************************************** 
+2020-02-06 15:53:42,194 ERROR [Log] element not interactable
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.01 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '13.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:57282}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir688_400085104}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 3667374d63a2f97bd0e82b792fd3bf23 
+2020-02-06 15:53:42,230 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-06 15:53:42,230 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:19:31,633 INFO  [Log] Excel sheet opened 
+2020-02-07 12:19:31,663 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 12:19:31,664 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:19:31,664 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:19:31,664 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 12:19:31,664 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:19:31,664 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:24:33,935 ERROR [Log] element not interactable
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 53.33 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:51256}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir17872_535941410}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d908a4643c0b0ee6e6209c8b7292b3a4 
+2020-02-07 12:24:33,983 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:24:33,983 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:33:04,779 INFO  [Log] Excel sheet opened 
+2020-02-07 12:33:04,800 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 12:33:04,800 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:33:04,800 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:33:04,800 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 12:33:04,800 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:33:04,800 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:36:11,622 ERROR [Log] no such element: Unable to locate element: {"method":"id","selector":"ctl00_ctl00_MainContent_Main_BOBSOrderControl1_ctl00_ctl07_ctl01_ctl04_ctl01"}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 50.84 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52297}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir41336_1601177649}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 63580efd3f55c88f0333f018a89a78ad
+*** Element info: {Using=id, value=ctl00_ctl00_MainContent_Main_BOBSOrderControl1_ctl00_ctl07_ctl01_ctl04_ctl01} 
+2020-02-07 12:36:11,638 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:36:11,638 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:37:49,726 INFO  [Log] Excel sheet opened 
+2020-02-07 12:37:49,746 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 12:37:49,746 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:37:49,747 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:37:49,747 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 12:37:49,747 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:37:49,747 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:41:51,959 ERROR [Log] no such alert
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:52790}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir24284_926569568}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 9a88e762180a9d4687ed6abc5e226301 
+2020-02-07 12:41:51,978 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:41:51,979 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:43:57,873 INFO  [Log] Excel sheet opened 
+2020-02-07 12:43:57,891 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 12:43:57,891 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:43:57,891 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:43:57,891 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 12:43:57,891 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:43:57,891 INFO  [Log] **************************************************************************************** 
+2020-02-07 12:48:27,995 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 12:48:27,995 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 14:54:42,370 INFO  [Log] Excel sheet opened 
+2020-02-07 14:54:42,413 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 14:54:42,413 INFO  [Log] **************************************************************************************** 
+2020-02-07 14:54:42,413 INFO  [Log] **************************************************************************************** 
+2020-02-07 14:54:42,413 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 14:54:42,413 INFO  [Log] **************************************************************************************** 
+2020-02-07 14:54:42,414 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:00:07,135 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 15:00:07,136 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 15:18:00,206 INFO  [Log] Excel sheet opened 
+2020-02-07 15:18:00,226 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 15:18:00,226 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:18:00,227 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:18:00,227 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 15:18:00,227 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:18:00,227 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:19:10,684 ERROR [Log] stale element reference: element is not attached to the page document
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 675 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:49461}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir33732_583662039}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d941adce0e6630e17db58e13bceb1d56 
+2020-02-07 15:19:10,698 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 15:19:10,699 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 15:21:42,405 INFO  [Log] Excel sheet opened 
+2020-02-07 15:21:42,442 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 15:21:42,442 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:21:42,442 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:21:42,442 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 15:21:42,442 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:21:42,443 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:25:52,606 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 15:25:52,606 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 15:41:20,830 INFO  [Log] Excel sheet opened 
+2020-02-07 15:41:20,867 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 15:41:20,867 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:41:20,867 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:41:20,868 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 15:41:20,868 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:41:20,868 INFO  [Log] **************************************************************************************** 
+2020-02-07 15:45:44,991 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 15:45:44,991 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 16:11:23,509 INFO  [Log] Excel sheet opened 
+2020-02-07 16:11:23,526 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 16:11:23,527 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:11:23,527 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:11:23,527 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 16:11:23,527 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:11:23,528 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:13:38,233 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '13.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:53646}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir15556_1995813598}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: bc2dbbcdcb57e16c5df380814d2aba34 
+2020-02-07 16:13:38,244 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 16:13:38,244 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 16:53:15,653 INFO  [Log] Excel sheet opened 
+2020-02-07 16:53:15,673 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-07 16:53:15,674 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:53:15,675 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:53:15,675 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-07 16:53:15,675 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:53:15,676 INFO  [Log] **************************************************************************************** 
+2020-02-07 16:57:59,396 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-07 16:57:59,396 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 14:58:14,279 INFO  [Log] Excel sheet opened 
+2020-02-10 14:58:14,299 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-10 14:58:14,299 INFO  [Log] **************************************************************************************** 
+2020-02-10 14:58:14,299 INFO  [Log] **************************************************************************************** 
+2020-02-10 14:58:14,299 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-10 14:58:14,299 INFO  [Log] **************************************************************************************** 
+2020-02-10 14:58:14,299 INFO  [Log] **************************************************************************************** 
+2020-02-10 14:59:32,019 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:57584}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir33632_1486216804}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e8c8c9733574b1a91a8715fb5069429d 
+2020-02-10 14:59:32,033 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 14:59:32,033 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 15:17:50,396 INFO  [Log] Excel sheet opened 
+2020-02-10 15:17:50,417 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-10 15:17:50,417 INFO  [Log] **************************************************************************************** 
+2020-02-10 15:17:50,417 INFO  [Log] **************************************************************************************** 
+2020-02-10 15:17:50,417 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-10 15:17:50,417 INFO  [Log] **************************************************************************************** 
+2020-02-10 15:17:50,417 INFO  [Log] **************************************************************************************** 
+2020-02-10 15:19:09,657 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:54132}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir22236_328144914}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 90662a96ea1ad67ad5f1201dd812eef4 
+2020-02-10 15:19:09,692 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 15:19:09,692 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 16:21:47,623 INFO  [Log] Excel sheet opened 
+2020-02-10 16:21:47,641 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-10 16:21:47,641 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:21:47,641 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:21:47,641 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-10 16:21:47,641 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:21:47,642 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:22:26,542 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : chrome not reachable
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 6.01 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:51708}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir15044_1269571211}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 57f54d992fe672f4b75c2c7660b002bd 
+2020-02-10 16:22:26,553 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 16:22:26,553 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 16:26:31,666 INFO  [Log] Excel sheet opened 
+2020-02-10 16:26:31,683 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-10 16:26:31,683 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:26:31,683 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:26:31,683 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-10 16:26:31,683 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:26:31,684 INFO  [Log] **************************************************************************************** 
+2020-02-10 16:28:21,911 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:51846}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir41276_1928356861}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: b7c4ef8a18c1473ab980b2dd6ae7e7dd 
+2020-02-10 16:28:21,923 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-10 16:28:21,923 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 11:47:39,952 INFO  [Log] Excel sheet opened 
+2020-02-11 11:47:39,981 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-11 11:47:39,982 INFO  [Log] **************************************************************************************** 
+2020-02-11 11:47:39,982 INFO  [Log] **************************************************************************************** 
+2020-02-11 11:47:39,982 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-11 11:47:39,982 INFO  [Log] **************************************************************************************** 
+2020-02-11 11:47:39,982 INFO  [Log] **************************************************************************************** 
+2020-02-11 11:50:27,975 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 6 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:62606}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir34384_604305895}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1dd3553fd2a7ac75d8699708625b3d8d 
+2020-02-11 11:50:28,025 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 11:50:28,027 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 12:54:53,329 INFO  [Log] Excel sheet opened 
+2020-02-11 12:54:53,353 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-11 12:54:53,353 INFO  [Log] **************************************************************************************** 
+2020-02-11 12:54:53,353 INFO  [Log] **************************************************************************************** 
+2020-02-11 12:54:53,354 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-11 12:54:53,354 INFO  [Log] **************************************************************************************** 
+2020-02-11 12:54:53,354 INFO  [Log] **************************************************************************************** 
+2020-02-11 12:57:07,243 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 22 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:63554}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\scoped_dir2256_263158166}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 2a8af96bbf5093703c866a805c1c2d00 
+2020-02-11 12:57:07,419 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 12:57:07,419 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 14:40:05,565 INFO  [Log] Excel sheet opened 
+2020-02-11 14:40:05,589 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-11 14:40:05,589 INFO  [Log] **************************************************************************************** 
+2020-02-11 14:40:05,589 INFO  [Log] **************************************************************************************** 
+2020-02-11 14:40:05,589 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-11 14:40:05,590 INFO  [Log] **************************************************************************************** 
+2020-02-11 14:40:05,590 INFO  [Log] **************************************************************************************** 
+2020-02-11 14:41:38,586 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 7 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:65526}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir11824_1473095094}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: fcd0d00c9958d030f8223390a413fd4f 
+2020-02-11 14:41:38,600 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 14:41:38,601 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 17:02:55,721 INFO  [Log] Excel sheet opened 
+2020-02-11 17:02:55,745 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-11 17:02:55,745 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:02:55,746 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:02:55,746 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-11 17:02:55,746 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:02:55,746 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:04:07,027 ERROR [Log] unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:51401}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir4392_1958539090}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: a9c19ef48362a2bcbc917dc8cbcb3c20
+*** Element info: {Using=id, value=ctl00_ctl00_MainContent_Main_BOBSOrderControl1_ctl00_ctl07_ctl01_ctl04_ctl01} 
+2020-02-11 17:04:07,055 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 17:04:07,055 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 17:17:54,132 INFO  [Log] Excel sheet opened 
+2020-02-11 17:17:54,155 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-11 17:17:54,156 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:17:54,156 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:17:54,156 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-11 17:17:54,156 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:17:54,156 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:36:57,428 INFO  [Log] Excel sheet opened 
+2020-02-11 17:36:57,454 INFO  [Log] Total number of Row used return as < 1 >. 
+2020-02-11 17:36:57,454 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:36:57,455 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:36:57,455 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$BGANActivation$$$$$$$$$$$$$$$$$$$$$$$$$ 
+2020-02-11 17:36:57,455 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:36:57,455 INFO  [Log] **************************************************************************************** 
+2020-02-11 17:38:11,625 ERROR [Log] unexpected alert open: {Alert text : Dashboard Alert: Cannot Activate because the card you selected has a status other than Assigned or Deactivated; please select only cards with a valid status.}
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds: null
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'X3552', ip: '10.140.117.26', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, timeouts={implicit=0, pageLoad=300000, script=30000}, hasTouchScreen=false, platform=XP, acceptSslCerts=false, goog:chromeOptions={debuggerAddress=localhost:51910}, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=ignore, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}), userDataDir=C:\Users\PRAVEE~1\AppData\Local\Temp\7\scoped_dir5780_489290717}, takesHeapSnapshot=true, pageLoadStrategy=normal, strictFileInteractability=false, databaseEnabled=false, handlesAlerts=true, version=79.0.3945.130, browserConnectionEnabled=false, proxy={}, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1b4b519b3e02b0950fdd7f077caa5fc4
+*** Element info: {Using=id, value=ctl00_ctl00_MainContent_Main_BOBSOrderControl1_ctl00_ctl07_ctl01_ctl04_ctl01} 
+2020-02-11 17:38:11,647 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-            XXXXXXXXXXXXXXXXXXXXXX 
+2020-02-11 17:38:11,647 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
