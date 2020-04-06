@@ -9,9 +9,9 @@
 // 01/08/20     Trishita Tadala     Written
 //======================================================
 
-//package inmarsatPDF;
 package Invoice_Validation;
-//import inmarsatXML.inmarsatXML;
+
+
 
 public class InvoiceNumber {
 public static String[][] InvoiceNumber_PDF;

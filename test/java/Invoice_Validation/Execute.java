@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.pdfbox.contentstream.PDFTextStripper;
 //import org.apache.tools.ant.BuildException;
 //import org.apache.tools.ant.DefaultLogger;
 //import org.apache.tools.ant.Project;
@@ -374,7 +375,7 @@ public static void main(String[] args) throws Exception{
 		}
 		
 		/* Credit Note Validation*/
-		else {
+		else if(inmarsatXML.DisplayText_XML[k].equals("CREDIT NOTE")&& inmarsatXML.InvoiceNumber_SAP_XML[k]==null ) {
 			
 			System.out.println("**************************************");
 			//System.out.println("This is " + inmarsatXML.DisplayText_XML[k] + " validation");
@@ -555,6 +556,86 @@ public static void main(String[] args) throws Exception{
 					FileOutputStream outFile =new FileOutputStream(new File(System.getProperty("user.dir")+"\\InmarsatPDFExcel.xlsx"));
 				      workbook.write(outFile);
 				      outFile.close();
+		}
+		else {
+			
+
+			System.out.println("**************************************");
+			String remarks = ""; // Remarks set to Blank
+			System.out.println("**************************************");
+			System.out.println("Front Page of the SAP Equipment Sales "+ inmarsatXML.InvoiceNumber_SAP_XML[k]);
+			System.out.println("**************************************");
+			
+			if(inmarsatXML.InvoiceNumber_SAP_XML[k]==null ||inmarsatXML.InvoiceNumber_SAP_XML[k]==""||inmarsatXML.InvoiceNumber_SAP_XML[k].equalsIgnoreCase(InvoiceNumber.invoiceNumber_PDF[k])){
+			      
+			      //Front Page->Invoice Details->Invoice Number Jan-8-2020
+			System.out.println("Number - XML value:"+inmarsatXML.InvoiceNumber_SAP_XML[k]);
+			System.out.println("Number - PDF value:"+InvoiceNumber.invoiceNumber_PDF[k]);
+					  a = true;
+					     
+			}
+			else 
+			{
+				System.out.println(" Number - XML value:"+inmarsatXML.InvoiceNumber_SAP_XML[k]);
+				System.out.println(" Number - PDF value:"+InvoiceNumber.invoiceNumber_PDF[k]);	
+				a = false;
+				remarks+= ("  Number - XML value:"+inmarsatXML.InvoiceNumber_SAP_XML[k]+ " Number - PDF value:"+InvoiceNumber.invoiceNumber_PDF[k]);
+			}
+		
+			
+				
+				if(inmarsatXML.BillTo_XML[k]==null ||inmarsatXML.BillToReference_XML[k]==""||inmarsatXML.BillToReference_XML[k].equalsIgnoreCase(BillToReference.billToReference_PDF[k])){
+				      
+				      //Front Page->Invoice Details->Bill to Reference Jan-8-2020
+				System.out.println("Bill To Reference - XML value:"+inmarsatXML.BillTo_XML[k]);
+				System.out.println("Bill To Reference - PDF value:"+BillToReference.billToReference_PDF[k]);
+						  b = true;
+						     
+				}
+				else 
+				{
+					System.out.println("Bill To Reference - XML value:"+inmarsatXML.BillTo_XML[k]);
+					System.out.println("Bill To Reference - PDF value:"+BillToReference.billToReference_PDF[k]);	
+					b = false;
+					remarks+= (" Bill To Reference - XML value:"+inmarsatXML.BillTo_XML[k]+ "Bill To Reference - PDF value:"+BillToReference.billToReference_PDF[k]);
+				}
+				
+				if(inmarsatXML.SoldTo_XML[k]==null ||inmarsatXML.SoldTo_XML[k]==""||inmarsatXML.SoldTo_XML[k].equalsIgnoreCase(SoldToReference.soldToReference_PDF[k])){
+				      
+				      //Front Page->Invoice Details->Sold to Reference Jan-8-2020
+				System.out.println("Sold To Reference - XML value:"+inmarsatXML.SoldTo_XML[k]);
+				System.out.println("Sold To Reference - PDF value:"+SoldToReference.soldToReference_PDF[k]);
+						  c = true;
+						     
+				}
+				else 
+				{
+					System.out.println("Sold To Reference - XML value:"+inmarsatXML.SoldTo_XML[k]);
+					System.out.println("Sold To Reference - PDF value:"+SoldToReference.soldToReference_PDF[k]);	
+					c = false;
+					remarks+= (" Sold To Reference - XML value:"+inmarsatXML.SoldTo_XML[k]+ "Sold To Reference - PDF value:"+ SoldToReference.soldToReference_PDF[k]);
+				}
+			
+				
+				if (a&&b&&c){
+					 cell = sheet.getRow(k+1).getCell(2);
+					   cell.setCellValue("PASS");
+					   
+				}
+				else{
+					cell = sheet.getRow(k+1).getCell(2);
+					   cell.setCellValue("FAIL");
+					   cell=sheet.getRow(k+1).getCell(3);
+					   //System.out.println(remarks);
+					   cell.setCellValue(remarks);
+				}
+				
+				
+				
+				FileOutputStream outFile =new FileOutputStream(new File(System.getProperty("user.dir")+"\\InmarsatPDFExcel.xlsx"));
+			      workbook.write(outFile);
+			      outFile.close();
+			
 		}
 	}
  }

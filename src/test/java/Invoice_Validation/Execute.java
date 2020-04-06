@@ -58,6 +58,8 @@ public static void main(String[] args) throws Exception{
 	PDFFileExtract.pdfextract(); // Extraction of PDF contents to notepad
 	InvoiceNumber.invoiceNumber();// Extraction of Invoice Number
 	BillToReference.billToReference();//Bill To Reference Extraction
+	//PDFElements.billToReference();
+	//PDFElements.creditsOrDebits();
 	SoldToReference.soldToReference();// Sold to reference Extraction
 	//YourReference.yourToReference();//Your Reference Extraction
 	InvoiceCurrency.invoiceCurrency();//Currency
@@ -73,9 +75,9 @@ public static void main(String[] args) throws Exception{
 	CreditsorDebits.creditsOrDebits();//Credits and Debits CNT
 	Servicesummary.Servicesummary();
 	Servicesdetails.Servicesdetails();
-	SummaryComparision.summaryComparision(); //Front Page
+	//SummaryComparision.summaryComparision(); //Front Page
 	//TotalAdjust.totaladjust();
-	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x;// l to be used
+	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l;// 
 	//TotalCarrierAirtime.TotalCarrierAirtime();
 	//System.out.println(TotalAirtimeCharges.totalfees_PDF + "Inmarsat PDF");
 	//System.out.println(inmarsatXML.TotalFees_XML + "Inmarsat XML");
@@ -102,7 +104,21 @@ public static void main(String[] args) throws Exception{
 		System.out.println("Front Page of the "+ inmarsatXML.DisplayText_XML[k] + " ID :" + inmarsatXML.InvoiceNumber_XML[k]);
 		System.out.println("**************************************");
 		
-		
+		if(inmarsatXML.BillToFrontPage_XML[k]==null ||inmarsatXML.BillToFrontPage_XML[k]==""||inmarsatXML.BillToFrontPage_XML[k].equalsIgnoreCase(BillTo.billTo_PDF[k])){
+		      
+		      //Front Page->Invoice Details->Bill to Reference Jan-8-2020
+		System.out.println("Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]);
+		System.out.println("Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
+				  l = true;
+				     
+		}
+		else 
+		{
+			System.out.println("Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]);
+			System.out.println("Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);	
+			l = false;
+			remarks+= (" Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]+ "Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
+		}
 		
 			
 			if(inmarsatXML.InvoiceNumber_XML[k]==null ||inmarsatXML.InvoiceNumber_XML[k]==""||inmarsatXML.InvoiceNumber_XML[k].equalsIgnoreCase(InvoiceNumber.invoiceNumber_PDF[k])){
@@ -353,7 +369,7 @@ public static void main(String[] args) throws Exception{
 		remarks+=" Total Incl Taxes - XML value:"+inmarsatXML.TotalAmountincl_XML[k]+"Total Incl Taxes - PDF value:"+TotalinclTaxes.totalAmountIncl_PDF[k];
 		}
 		
-		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y){
+		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l){
 			 cell = sheet.getRow(k+1).getCell(2);
 			   cell.setCellValue("PASS");
 			   

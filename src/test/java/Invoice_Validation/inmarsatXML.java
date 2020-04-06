@@ -29,11 +29,14 @@ import org.w3c.dom.NodeList;
 
 public class inmarsatXML { 
 	public static String[] DisplayText_XML = new String[50];
-    public static String[] InvoiceNumber_XML= new String[7]; //Invoice Number
+    public static String[] InvoiceNumber_XML= new String[100]; //Invoice Number
+    public static String[] InvoiceNumber_SAP_XML = new String[100];
 	public static String[] ADJNmber_XML= new String[50]; //ADJ Number
-	//public static String[] BillTo_XML = new String[5000];
+	public static String[] BillToFrontPage_XML = new String[5000];
 	public static String[] BillToReference_XML = new String[5000];//Bill to reference
+	public static String[] BillTo_XML = new String[5000];//Bill to reference
 	public static String[] SoldToReference_XML = new String[5000];//Sold to reference
+	public static String[] SoldTo_XML = new String[5000];//Sold to reference
 	public static String[] YourReference_XML = new String[5000];//Your reference
 	public static String[] Currency_XML = new String[50];// CustomerInvoice Currency
 	public static String[] InvoiceDate_XML = new String[20];//Invoice Date
@@ -69,8 +72,14 @@ public class inmarsatXML {
 
 			doc.getDocumentElement().normalize();
 			
-			//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+			try {
+			InvoiceNumber_SAP_XML[k]= doc.getElementsByTagName("InvoiceNumber").item(1).getTextContent();
+			}catch(Exception e){}
 			
+			BillToFrontPage_XML[k] = doc.getElementsByTagName("SLEAddress").item(0).getTextContent();
+			
+			//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+//******************************Tax Related Logic Start*******************************************
 			Salesorg_XML[k] = doc.getElementsByTagName("SalesOrg").item(0).getTextContent();
 			if  (Salesorg_XML[k]== "6720") {
 		           TotalTaxes_XML[k] = doc.getElementsByTagName("VATInNOK").item(0).getTextContent();
@@ -101,12 +110,13 @@ public class inmarsatXML {
 	        		catch(Exception e){}
 			}
 			}
-	        
+//**********************************Tax Related Logic End*******************************************  
 	        			
 			/*********** Invoice Details tags logic, dated Jan-14-2020 *************/
 			//Invoice Number
 			try {
 				InvoiceNumber_XML[k] = doc.getElementsByTagName("InvoiceNumber").item(0).getTextContent();
+				
 			} catch (Exception e) {
 				//e.printStackTrace();
 							
@@ -186,6 +196,8 @@ public class inmarsatXML {
 			
 			BillRunType_XML[k] = doc.getElementsByTagName("BillRunType").item(0).getTextContent();
 			
+//*************************STANDARD BILL RUN*******************************************
+			
 			// Invoice or Credit Note
 			if (inmarsatXML.BillRunType_XML[k].equals("Standard Bill Run")) {
 			
@@ -193,15 +205,7 @@ public class inmarsatXML {
 			
                /*********** Taxes is driven by conditional logic, dated Jan-14-2020 needs updated*************/	
 			
-			
-			
-			
-			
-			
-			
-			
-			
-					
+								
         
 			try {
 				TotalAmountincl_XML[k] =doc.getElementsByTagName("TotalAmountDue").item(0).getTextContent();
@@ -250,14 +254,45 @@ public class inmarsatXML {
 	        }
 	        
 		} 
+			
+//*************************IMMEDIATE BILL RUN*******************************************
+			else if (InvoiceNumber_SAP_XML[k]!=null) {
+			
+				try {
+				      BillTo_XML[k] = doc.getElementsByTagName("BillTo").item(0).getTextContent();
+				      SoldTo_XML[k] = doc.getElementsByTagName("SoldTo").item(0).getTextContent();
+				      
+						} catch (Exception e) {}
+						
+				
+				
+				
+				
+				
+			/*	javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
+				String equipsales ="//EquipmentSale";
+				NodeList taxtype = (NodeList) xPath.compile(equipsales).evaluate(doc, XPathConstants.NODESET);
+		        NodeList taxnode = (NodeList) taxtype;
+		        m = taxnode.getLength();
+		        for (int i = 0; i < taxnode.getLength(); i++) {
+		        	try{
+		        		TaxType[k][i]= (taxnode.item(i).getFirstChild().getNodeValue());
+			}catch(Exception e){}
+		        }*/
+			}
 			else {
+				
+				try {
 				DisplayText_XML[k] = doc.getElementsByTagName("DisplayText").item(1).getTextContent();
 				CreditsorDebits_XML[k] = doc.getElementsByTagName("TotalAmount").item(1).getTextContent();
 				TotalTaxes_XML[k] = doc.getElementsByTagName("TotalTaxConsolidationLC").item(0).getTextContent();
+				}catch(Exception e){}
 				
 			}
 
+
 }
+	}
 }
-}
+
 
