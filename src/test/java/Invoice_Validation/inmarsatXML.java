@@ -60,6 +60,7 @@ public class inmarsatXML {
 	public static String[] CreditsorDebits_XML= new String[5000]; // Front Page Summary Amount Exclusive Taxes
 	public static String[][] TaxType = new String[50][50];
 	public static String[] USFFee_XML =  new String[50];
+	public static String[] Footer_XML = new String[5000];
 	public static int y=0;
 	public static int m=0;
 	public static int p=0;
@@ -264,11 +265,17 @@ public class inmarsatXML {
 			try {
 				InvoiceDate_XML[k] =doc.getElementsByTagName("InvoiceDate").item(0).getTextContent();
 			}
-			catch (Exception e) {
-				//e.printStackTrace();
-										}
-			
-			/****************Line Items child Nodes in the XML***************************/
+			catch (Exception e) {}
+/********************************************FOOTER***********************************************************/			
+			try {
+				Footer_XML[k] =doc.getElementsByTagName("SLEName").item(0).getTextContent()
+						+" "+doc.getElementsByTagName("SLEAddress").item(0).getTextContent()
+						+"|"+doc.getElementsByTagName("TaxRegNoDescription").item(0).getTextContent()
+						+" "+doc.getElementsByTagName("TaxRegistrationNumber").item(0).getTextContent()
+						+" "+"www.inmarsat.com";
+			}
+			catch (Exception e) {}
+				/*************Line Items child Nodes in the XML**************************
 			
 			//javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
 			String expression ="//ServiceSummary/ProductDetails/Product";
@@ -293,7 +300,7 @@ public class inmarsatXML {
 		        			p= p +1;
 		        			//System.out.println(Total[y][k]);
 		        }catch(Exception e){}
-	        }
+	        }*/
 	        
 		} 
 			

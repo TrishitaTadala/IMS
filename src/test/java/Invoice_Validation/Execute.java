@@ -27,11 +27,11 @@ public class Execute {
 
    
 public static void main(String[] args) throws Exception{
-	
+/***********************************************************************************************************/		
 	ReadExcelFile.readExcelFile(); // Reading the Contents of the Excel file containing the path to access the Invoice PDF and the Single view XML
 	inmarsatXML.inmarsatxml(); //Single View XML
 	PDFFileExtract.pdfextract(); // Extraction of PDF contents to notepad
-	
+/***********************************************************************************************************/	
 	BillTo.billTo();
 	InvoiceNumber.invoiceNumber();// Extraction of Invoice Number
 	BillToReference.billToReference();//Bill To Reference Extraction
@@ -54,7 +54,8 @@ public static void main(String[] args) throws Exception{
 	Servicesdetails.Servicesdetails();
 	//SummaryComparision.summaryComparision(); //Front Page
 	//TotalAdjust.totaladjust();
-	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l;// 
+	Footer1.footer1();
+	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,u = true;// 
 	//TotalCarrierAirtime.TotalCarrierAirtime();
 	//System.out.println(TotalAirtimeCharges.totalfees_PDF + "Inmarsat PDF");
 	//System.out.println(inmarsatXML.TotalFees_XML + "Inmarsat XML");
@@ -343,10 +344,24 @@ public static void main(String[] args) throws Exception{
 			System.out.println("Total Incl Taxes - XML value:"+inmarsatXML.TotalAmountincl_XML[k]);
 			System.out.println("Total Incl Taxes - PDF value:"+TotalinclTaxes.totalAmountIncl_PDF[k]);   
 		g=false;
-		remarks+=" Total Incl Taxes - XML value:"+inmarsatXML.TotalAmountincl_XML[k]+"Total Incl Taxes - PDF value:"+TotalinclTaxes.totalAmountIncl_PDF[k];
+		remarks+=" Total Incl Taxes - XML value:"+inmarsatXML.TotalAmountincl_XML[k]+"  Total Incl Taxes - PDF value:"+TotalinclTaxes.totalAmountIncl_PDF[k];
+		}
+		try {
+		
+		if (Footer1.isFound[k] == true) {
+			System.out.println("PASSED - No Footer Discrepancies"+ k);
+			
+			u = true;
+			
+		}
+		else {
+			u = false;
+			remarks+= "Footer Info"+inmarsatXML.Footer_XML[k]+ " PDF Footer Contents" + Footer1.FooterExtract_PDF[k];
 		}
 		
-		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l){
+		}catch(Exception e2) {}
+		
+		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u){
 			 cell = sheet.getRow(k+1).getCell(2);
 			   cell.setCellValue("PASS");
 			   

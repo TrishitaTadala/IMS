@@ -1,5 +1,3 @@
-
-
 //All the variables should be declared
 //======================================================
 // Class      : BillTo
