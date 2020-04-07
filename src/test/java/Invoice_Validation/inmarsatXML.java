@@ -76,7 +76,14 @@ public class inmarsatXML {
 			InvoiceNumber_SAP_XML[k]= doc.getElementsByTagName("InvoiceNumber").item(1).getTextContent();
 			}catch(Exception e){}
 			
-			BillToFrontPage_XML[k] = doc.getElementsByTagName("SLEAddress").item(0).getTextContent();
+			BillToFrontPage_XML[k] = doc.getElementsByTagName("Name").item(0).getTextContent()
+					+" " + doc.getElementsByTagName("Line1").item(0).getTextContent()
+					+" " + doc.getElementsByTagName("Line2").item(0).getTextContent()
+					+" " + doc.getElementsByTagName("City").item(0).getTextContent()
+					+" " + doc.getElementsByTagName("State").item(0).getTextContent()
+					+" " + doc.getElementsByTagName("Postcode").item(0).getTextContent()
+					+" " + doc.getElementsByTagName("Country").item(0).getTextContent();
+					
 			
 			//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 //******************************Tax Related Logic Start*******************************************

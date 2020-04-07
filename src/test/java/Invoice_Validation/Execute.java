@@ -21,32 +21,8 @@ import java.io.FileOutputStream;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-//import org.apache.tools.ant.BuildException;
-//import org.apache.tools.ant.DefaultLogger;
-//import org.apache.tools.ant.Project;
-//import org.apache.tools.ant.ProjectHelper;
-/*
-import ReadExcelFile.ReadExcelFile;
-import inmarsatPDF.PDFFileExtract;
-import inmarsatPDF.PrepaidAirtime;//Jan-8-2020 - Prepaid Airtime capture from the PDF
-import inmarsatPDF.Servicesdetails;
-import inmarsatPDF.Servicesummary;
-import inmarsatPDF.SoldToReference;
-import inmarsatPDF.SummaryComparision;
-//import inmarsatPDF.TotalAdjust;
-import inmarsatPDF.TotalAirtime;
-import inmarsatPDF.TotalCA;
-import inmarsatPDF.BillToReference;
-import inmarsatPDF.CreditsorDebits;//Feb-11-2020 - Credits/Debits capture from Credit Note 
-import inmarsatPDF.InvoiceCurrency;//Feb-11-2020 - Currency capture from the PDF
-import inmarsatPDF.InvoiceNumber; //Jan-8-2020 - Invoice Number capture from the PDF
-import inmarsatPDF.InvoiceDate;//Feb-11-2020 - Date capture from the PDF
-import inmarsatPDF.TotalFees;
-import inmarsatPDF.TotalTaxes;
-import inmarsatPDF.TotalexclTaxes;
-import inmarsatPDF.TotalinclTaxes;
-import inmarsatXML.inmarsatXML;
-//import inmarsatXML.BillToPartyXML;*/
+
+
 public class Execute {
 
    
@@ -54,8 +30,9 @@ public static void main(String[] args) throws Exception{
 	
 	ReadExcelFile.readExcelFile(); // Reading the Contents of the Excel file containing the path to access the Invoice PDF and the Single view XML
 	inmarsatXML.inmarsatxml(); //Single View XML
-	//BillToPartyXML.billtopartyXML(); // BillToParty Address Details
 	PDFFileExtract.pdfextract(); // Extraction of PDF contents to notepad
+	
+	BillTo.billTo();
 	InvoiceNumber.invoiceNumber();// Extraction of Invoice Number
 	BillToReference.billToReference();//Bill To Reference Extraction
 	//PDFElements.billToReference();
