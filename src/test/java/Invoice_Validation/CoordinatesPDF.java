@@ -80,3 +80,59 @@ public class CoordinatesPDF extends PDFTextStripper {
         
         }
     }
+
+//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+
+/*	javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
+	String equipsales ="//EquipmentSale";
+	NodeList taxtype = (NodeList) xPath.compile(equipsales).evaluate(doc, XPathConstants.NODESET);
+    NodeList taxnode = (NodeList) taxtype;
+    m = taxnode.getLength();
+    for (int i = 0; i < taxnode.getLength(); i++) {
+    	try{
+    		TaxType[k][i]= (taxnode.item(i).getFirstChild().getNodeValue());
+}catch(Exception e){}
+    }*/
+
+/* 
+String Addresspath ="//Bill_To_Party/AddressDetails";
+NodeList Address = (NodeList) xPath.compile(Addresspath).evaluate(doc, XPathConstants.NODESET);
+NodeList Addr = (NodeList) Address;
+m = Addr.getLength();
+for (int i = 0; i < Addr.getLength(); i++) {
+	try{
+	
+		BillAddress[k][i]= (Addr.item(i).getNodeName());
+		System
+		
+	switch (BillAddress[k][i]){
+	
+	case "Line1":
+	Line1_XML[k] = Addr.item(i).getFirstChild().getNodeValue();
+	
+	
+	case "Line2":
+    Line2_XML[k] = Addr.item(i).getFirstChild().getNodeValue();
+   	
+    	
+	case "City":
+	City_XML[k] = Addr.item(i).getFirstChild().getNodeValue();
+
+
+	case "State":
+	State_XML[k] = Addr.item(i).getFirstChild().getNodeValue();
+	
+
+	case "Country":
+	Country_XML[k] = Addr.item(i).getFirstChild().getNodeValue();
+	
+	
+	case "Postcode":
+	Postcode_XML[k] = Addr.item(i).getFirstChild().getNodeValue();
+	
+	
+		        	
+	}   	
+		
+}catch(Exception e){}
+}*/

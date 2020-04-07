@@ -7,16 +7,12 @@
 // Changes----------------------------------------------
 // Date         Test Analyst        Change
 // 26/12/19     Trishita Tadala     Written
-// 20/03/20     Trishita Tadala     Modification
+// 07/04/20     Trishita Tadala     Modification
 //======================================================
 
 package Invoice_Validation;
 
-//import org.apache.xmlbeans.impl.common.XPath;
-//import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
-//import ReadExcelFile.ReadExcelFile;
 
 import javax.xml.parsers.*;
 import javax.xml.xpath.XPathConstants;
@@ -33,6 +29,13 @@ public class inmarsatXML {
     public static String[] InvoiceNumber_SAP_XML = new String[100];
 	public static String[] ADJNmber_XML= new String[50]; //ADJ Number
 	public static String[] BillToFrontPage_XML = new String[5000];
+	public static String[] Name_XML = new String[5000];
+	public static String[] Line1_XML = new String[5000];
+	public static String[] Line2_XML = new String[5000];
+	public static String[] State_XML = new String[5000];
+	public static String[] City_XML = new String[5000];
+	public static String[] Country_XML = new String[5000];
+	public static String[] Postcode_XML = new String[5000];
 	public static String[] BillToReference_XML = new String[5000];//Bill to reference
 	public static String[] BillTo_XML = new String[5000];//Bill to reference
 	public static String[] SoldToReference_XML = new String[5000];//Sold to reference
@@ -61,7 +64,7 @@ public class inmarsatXML {
 	public static int m=0;
 	public static int p=0;
 	public static void inmarsatxml() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
-
+	
 		
 			for(int k =0;k<ReadExcelFile.i;k++){	
 			System.out.println(ReadExcelFile.XMLFILENAME[k]);
@@ -72,30 +75,62 @@ public class inmarsatXML {
 
 			doc.getDocumentElement().normalize();
 			
+ /******************************************XPATH DECLARATION****************************/		
+			
+			javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
+			
+/******************Invoice Number for a Standard Invoice************************/		
 			try {
 			InvoiceNumber_SAP_XML[k]= doc.getElementsByTagName("InvoiceNumber").item(1).getTextContent();
 			}catch(Exception e){}
+
+/******************Billing Address for a Standard Invoice dated 7-Apr-2020************************/	
+			     
+			try {
+			Name_XML[k] = doc.getElementsByTagName("BillToCustomerName").item(0).getTextContent();
+			}catch(Exception e){}
+ 			try {
+			Line1_XML[k] = doc.getElementsByTagName("Line1").item(1).getTextContent();	
+			}catch(Exception e){}
+			try {
+			Line2_XML[k] = doc.getElementsByTagName("Line2").item(1).getTextContent();
+			}catch(Exception e){}
+			try {
+			State_XML[k] = doc.getElementsByTagName("State").item(1).getTextContent();
+			}catch(Exception e){}
+			try {
+			Country_XML[k] = doc.getElementsByTagName("Country").item(1).getTextContent();
+	        }catch(Exception e){}
+			try {
+			Postcode_XML[k] = doc.getElementsByTagName("Postcode").item(1).getTextContent(); 
+			}catch(Exception e){}
+			try {
+			City_XML[k] = doc.getElementsByTagName("City").item(1).getTextContent();
 			
-			BillToFrontPage_XML[k] = doc.getElementsByTagName("Name").item(0).getTextContent()
-					+" " + doc.getElementsByTagName("Line1").item(0).getTextContent()
-					+" " + doc.getElementsByTagName("Line2").item(0).getTextContent()
-					+" " + doc.getElementsByTagName("City").item(0).getTextContent()
-					+" " + doc.getElementsByTagName("State").item(0).getTextContent()
-					+" " + doc.getElementsByTagName("Postcode").item(0).getTextContent()
-					+" " + doc.getElementsByTagName("Country").item(0).getTextContent();
-					
+			}catch(Exception e){}
+		
+			BillToFrontPage_XML[k] = Name_XML[k]
+			        +" " + Line1_XML[k]
+					+" " + Line2_XML[k]
+					+" " + City_XML[k]
+					+" " + State_XML[k]
+					+" " + Postcode_XML[k]
+					+" " + Country_XML[k];
+		       
+			BillToFrontPage_XML[k] =BillToFrontPage_XML[k].replaceAll("null ", "");
 			
-			//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-//******************************Tax Related Logic Start*******************************************
+			
+/******************************Tax Related Logic Start*******************************************/
+			
 			Salesorg_XML[k] = doc.getElementsByTagName("SalesOrg").item(0).getTextContent();
 			if  (Salesorg_XML[k]== "6720") {
 		           TotalTaxes_XML[k] = doc.getElementsByTagName("VATInNOK").item(0).getTextContent();
  		}
 			else {
 			
-			/*********** USF Fee, dated March-20-2020 *************/
+			/***************************** USF Fee, dated March-20-2020 ****************************/
 			
-			javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
+			//javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
 			String pertaxtype ="//PerTaxType/TaxType";
 			NodeList taxtype = (NodeList) xPath.compile(pertaxtype).evaluate(doc, XPathConstants.NODESET);
 	        NodeList taxnode = (NodeList) taxtype;
@@ -203,7 +238,7 @@ public class inmarsatXML {
 			
 			BillRunType_XML[k] = doc.getElementsByTagName("BillRunType").item(0).getTextContent();
 			
-//*************************STANDARD BILL RUN*******************************************
+/********************************************STANDARD BILL RUN*******************************************/
 			
 			// Invoice or Credit Note
 			if (inmarsatXML.BillRunType_XML[k].equals("Standard Bill Run")) {
@@ -235,7 +270,7 @@ public class inmarsatXML {
 			
 			/****************Line Items child Nodes in the XML***************************/
 			
-			javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
+			//javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
 			String expression ="//ServiceSummary/ProductDetails/Product";
 			NodeList list = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
 	        NodeList nodes = (NodeList) list;
@@ -271,22 +306,8 @@ public class inmarsatXML {
 				      
 						} catch (Exception e) {}
 						
-				
-				
-				
-				
-				
-			/*	javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
-				String equipsales ="//EquipmentSale";
-				NodeList taxtype = (NodeList) xPath.compile(equipsales).evaluate(doc, XPathConstants.NODESET);
-		        NodeList taxnode = (NodeList) taxtype;
-		        m = taxnode.getLength();
-		        for (int i = 0; i < taxnode.getLength(); i++) {
-		        	try{
-		        		TaxType[k][i]= (taxnode.item(i).getFirstChild().getNodeValue());
-			}catch(Exception e){}
-		        }*/
-			}
+	
+						}
 			else {
 				
 				try {
