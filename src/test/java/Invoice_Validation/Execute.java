@@ -33,14 +33,18 @@ public static void main(String[] args) throws Exception{
 	PDFFileExtract.pdfextract(); // Extraction of PDF contents to notepad
 /***********************************************************************************************************/	
 	BillTo.billTo();
+	
 	InvoiceNumber.invoiceNumber();// Extraction of Invoice Number
 	BillToReference.billToReference();//Bill To Reference Extraction
-	//PDFElements.billToReference();
-	//PDFElements.creditsOrDebits();
 	SoldToReference.soldToReference();// Sold to reference Extraction
 	//YourReference.yourToReference();//Your Reference Extraction
 	InvoiceCurrency.invoiceCurrency();//Currency
 	InvoiceDate.invoiceDate();//Date
+		
+	PricingAgreeID.pricingAgreeID();
+	
+	LegacyIDs.legacyIDs();
+	
 	TotalFees.totalFees();
 	TotalAirtime.Totalairtime();
 	TotalCA.totalCA();
@@ -49,27 +53,28 @@ public static void main(String[] args) throws Exception{
 	TotalTaxes.totalTaxes();
 	USFFee.uSFFee();
 	TotalinclTaxes.totalinclTaxes();
+	
 	CreditsorDebits.creditsOrDebits();//Credits and Debits CNT
 	Servicesummary.Servicesummary();
 	Servicesdetails.Servicesdetails();
 	//SummaryComparision.summaryComparision(); //Front Page
 	//TotalAdjust.totaladjust();
-	Footer1.footer1();
+	Footer1.footer1();// Footer across all pages
+	
+/************************************************BOOLEAN VALIDATION VARIABLES***********************************************************/	
 	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,u = true;// 
 	//TotalCarrierAirtime.TotalCarrierAirtime();
 	//System.out.println(TotalAirtimeCharges.totalfees_PDF + "Inmarsat PDF");
 	//System.out.println(inmarsatXML.TotalFees_XML + "Inmarsat XML");
+/***********************************************************************************************************/	
 	FileInputStream file = new FileInputStream(new File(System.getProperty("user.dir")+"\\InmarsatPDFExcel.xlsx"));
 	  
-	  org.apache.poi.ss.usermodel.Workbook workbook = WorkbookFactory.create(file);
+	org.apache.poi.ss.usermodel.Workbook workbook = WorkbookFactory.create(file);
 	  
-	  
-//    XSSFWorkbook workbook = new XSSFWorkbook(file);
-	  
-	  org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheetAt(0);
-//    XSSFSheet sheet = workbook.getSheetAt(0);
+	org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheetAt(0);
+
     Cell cell = null;
-    
+    /***********************************************************************************************************/   
     
 	for(int k =0;k<ReadExcelFile.i;k++){
 		
@@ -196,6 +201,22 @@ public static void main(String[] args) throws Exception{
 					remarks+= (" Currency - XML value:"+inmarsatXML.Currency_XML[k]+ "Currency - PDF value:"+InvoiceCurrency.invoiceCurrency_PDF[k]);
 				}
 			
+				if(inmarsatXML.PricingAgreeID_XML[k]==null ||inmarsatXML.PricingAgreeID_XML[k]==""||inmarsatXML.PricingAgreeID_XML[k].equalsIgnoreCase(PricingAgreeID.pricingAgree_PDF[k])){
+				      
+				      //Front Page->Invoice Details->Invoice Number Jan-8-2020
+				System.out.println("Pricing Agreement ID - XML value:"+inmarsatXML.PricingAgreeID_XML[k]);
+				System.out.println("Pricing Agreement ID - PDF value:"+PricingAgreeID.pricingAgree_PDF[k]);
+						  a = true;
+						     
+				}
+				else 
+				{
+					System.out.println("Pricing Agreement ID - XML value:"+inmarsatXML.PricingAgreeID_XML[k]);
+					System.out.println("Pricing Agreement ID - PDF value:"+PricingAgreeID.pricingAgree_PDF[k]);	
+					a = false;
+					remarks+= (" Pricing Agreement ID - XML value:"+inmarsatXML.PricingAgreeID_XML[k]+ "Pricing Agreement ID - PDF value:"+PricingAgreeID.pricingAgree_PDF[k]);
+				}
+				
 				
 			
 		
@@ -346,6 +367,16 @@ public static void main(String[] args) throws Exception{
 		g=false;
 		remarks+=" Total Incl Taxes - XML value:"+inmarsatXML.TotalAmountincl_XML[k]+"  Total Incl Taxes - PDF value:"+TotalinclTaxes.totalAmountIncl_PDF[k];
 		}
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
 		try {
 		
 		if (Footer1.isFound[k] == true) {

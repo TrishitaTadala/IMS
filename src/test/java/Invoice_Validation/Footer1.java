@@ -1,8 +1,8 @@
 //All the variables should be declared
 //======================================================
 // Class      : Footer1
-// Description: The Footer1 across all the Pages
-//              in the invoice PDF is captured
+// Description: The Footer1 across all the Pages in the invoice  
+//              PDF is captured using Coordinates Extraction
 // ======================================================
 // Changes----------------------------------------------
 // Date         Test Analyst        Change

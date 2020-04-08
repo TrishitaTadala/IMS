@@ -28,7 +28,8 @@ public class inmarsatXML {
     public static String[] InvoiceNumber_XML= new String[100]; //Invoice Number
     public static String[] InvoiceNumber_SAP_XML = new String[100];
 	public static String[] ADJNmber_XML= new String[50]; //ADJ Number
-	public static String[] BillToFrontPage_XML = new String[5000];
+	
+	public static String[] BillToFrontPage_XML = new String[5000];//BillTo Address Front Page
 	public static String[] Name_XML = new String[5000];
 	public static String[] Line1_XML = new String[5000];
 	public static String[] Line2_XML = new String[5000];
@@ -36,6 +37,17 @@ public class inmarsatXML {
 	public static String[] City_XML = new String[5000];
 	public static String[] Country_XML = new String[5000];
 	public static String[] Postcode_XML = new String[5000];
+	
+	public static String[] PricingAgreeID_XML = new String[5000];// Front Page Total Taxes
+	
+	public static String[] LegacyIDs_XML = new String[5000];// LegacyIDs Cluster
+	public static String[] AccountNo_XML = new String[5000];//AccountNo
+	public static String[] BillingProfile_XML =  new String[5000];//BillingProfile
+	public static String[] MIPsID_XML =  new String[5000];//MIPS Account ID
+	public static String[] DPID_XML =  new String[5000];//DP ID
+	public static String[] ShipAccID_XML =  new String[5000];//Ship Account ID
+	
+		
 	public static String[] BillToReference_XML = new String[5000];//Bill to reference
 	public static String[] BillTo_XML = new String[5000];//Bill to reference
 	public static String[] SoldToReference_XML = new String[5000];//Sold to reference
@@ -51,6 +63,7 @@ public class inmarsatXML {
 	public static String[] TotalAmountexcl_XML= new String[5000]; // Front Page Summary Amount Exclusive Taxes
 	public static String[] TotalAmountincl_XML= new String[5000]; // Front Page Summary Amount Inclusive Taxes
 	public static String[] TotalTaxes_XML = new String[5000];// Front Page Total Taxes
+	
 	public static String[] Salesorg_XML = new String[5000]; //Sales Org tag for Taxes logic
 	public static String[] BillRunType_XML = new String[5000];
 	public static String billRunType;
@@ -86,7 +99,7 @@ public class inmarsatXML {
 			}catch(Exception e){}
 
 /******************Billing Address for a Standard Invoice dated 7-Apr-2020************************/	
-			     
+			
 			try {
 			Name_XML[k] = doc.getElementsByTagName("BillToCustomerName").item(0).getTextContent();
 			}catch(Exception e){}
@@ -237,6 +250,21 @@ public class inmarsatXML {
 			}catch (Exception e) {}
 				//e.printStackTrace();
 			
+/********************************************LEGACY IDS*******************************************/	
+			try {
+			AccountNo_XML[k] = doc.getElementsByTagName("SAPAccountNumber").item(0).getTextContent();
+			BillingProfile_XML[k] = doc.getElementsByTagName("BillingProfileCode").item(0).getTextContent();
+			MIPsID_XML[k] =  doc.getElementsByTagName("MIPSMasterAccountId").item(0).getTextContent();
+			DPID_XML[k] =  doc.getElementsByTagName("DPId").item(0).getTextContent();
+			ShipAccID_XML[k] = doc.getElementsByTagName("GWShipAccntId").item(0).getTextContent();
+			}catch (Exception e) {}
+			
+			LegacyIDs_XML[k] = "Legacy IDs:Account Number:"+ AccountNo_XML[k]
+					          +".Billing Profile:"+BillingProfile_XML[k]
+					          +".MIPS Master Acct ID:"+ MIPsID_XML[k]
+					          +".Ship Acct ID:"+ ShipAccID_XML
+					          +"DP ID:"+DPID_XML[k]+".";
+			
 			BillRunType_XML[k] = doc.getElementsByTagName("BillRunType").item(0).getTextContent();
 			
 /********************************************STANDARD BILL RUN*******************************************/
@@ -266,6 +294,12 @@ public class inmarsatXML {
 				InvoiceDate_XML[k] =doc.getElementsByTagName("InvoiceDate").item(0).getTextContent();
 			}
 			catch (Exception e) {}
+			
+			try {
+				PricingAgreeID_XML[k] =doc.getElementsByTagName("PricingAgreementID").item(0).getTextContent();
+			}
+			catch (Exception e) {}
+			
 /********************************************FOOTER***********************************************************/			
 			try {
 				Footer_XML[k] =doc.getElementsByTagName("SLEName").item(0).getTextContent()
