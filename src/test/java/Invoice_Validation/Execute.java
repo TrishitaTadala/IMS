@@ -33,18 +33,18 @@ public static void main(String[] args) throws Exception{
 	PDFFileExtract.pdfextract(); // Extraction of PDF contents to notepad
 /***********************************************************************************************************/	
 	BillTo.billTo();
-	
+/***********************************************************************************************************/		
 	InvoiceNumber.invoiceNumber();// Extraction of Invoice Number
 	BillToReference.billToReference();//Bill To Reference Extraction
 	SoldToReference.soldToReference();// Sold to reference Extraction
 	//YourReference.yourToReference();//Your Reference Extraction
 	InvoiceCurrency.invoiceCurrency();//Currency
 	InvoiceDate.invoiceDate();//Date
-		
+/***********************************************************************************************************/			
 	PricingAgreeID.pricingAgreeID();
 	
 	LegacyIDs.legacyIDs();
-	
+	/***********************************************************************************************************/		
 	TotalFees.totalFees();
 	TotalAirtime.Totalairtime();
 	TotalCA.totalCA();
@@ -62,7 +62,7 @@ public static void main(String[] args) throws Exception{
 	Footer1.footer1();// Footer across all pages
 	
 /************************************************BOOLEAN VALIDATION VARIABLES***********************************************************/	
-	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,u = true;// 
+	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,t,u= true;// s,
 	//TotalCarrierAirtime.TotalCarrierAirtime();
 	//System.out.println(TotalAirtimeCharges.totalfees_PDF + "Inmarsat PDF");
 	//System.out.println(inmarsatXML.TotalFees_XML + "Inmarsat XML");
@@ -217,6 +217,14 @@ public static void main(String[] args) throws Exception{
 					remarks+= (" Pricing Agreement ID - XML value:"+inmarsatXML.PricingAgreeID_XML[k]+ "Pricing Agreement ID - PDF value:"+PricingAgreeID.pricingAgree_PDF[k]);
 				}
 				
+				if (LegacyIDs.isFoundLegacyIDs[k] == true) {
+					 t=true;
+					System.out.println("LegacyIDs Passed");}
+				 else {
+					 t= false;
+					 System.out.println("Discrepancies"+ LegacyIDs.legacyIDRemarks[k]);
+					 remarks+= LegacyIDs.legacyIDRemarks[k];
+				 }
 				
 			
 		
@@ -368,18 +376,15 @@ public static void main(String[] args) throws Exception{
 		remarks+=" Total Incl Taxes - XML value:"+inmarsatXML.TotalAmountincl_XML[k]+"  Total Incl Taxes - PDF value:"+TotalinclTaxes.totalAmountIncl_PDF[k];
 		}
 		
-		
-	
-		
+				
 		
 		
 		
-		
-		
-		
+/***********************************************************************************************************/			
 		try {
 		
 		if (Footer1.isFound[k] == true) {
+			
 			System.out.println("PASSED - No Footer Discrepancies"+ k);
 			
 			u = true;
@@ -387,12 +392,14 @@ public static void main(String[] args) throws Exception{
 		}
 		else {
 			u = false;
-			remarks+= "Footer Info"+inmarsatXML.Footer_XML[k]+ " PDF Footer Contents" + Footer1.FooterExtract_PDF[k];
+			remarks+= " XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + Footer1.FooterExtract_PDF[k];
+			System.out.println("FAILED - There are Footer Discrepancies"+ k);
+			System.out.println( "XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + Footer1.FooterExtract_PDF[k]);
 		}
 		
 		}catch(Exception e2) {}
 		
-		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u){
+		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t){
 			 cell = sheet.getRow(k+1).getCell(2);
 			   cell.setCellValue("PASS");
 			   

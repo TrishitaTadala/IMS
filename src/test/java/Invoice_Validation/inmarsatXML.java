@@ -45,7 +45,7 @@ public class inmarsatXML {
 	public static String[] BillingProfile_XML =  new String[5000];//BillingProfile
 	public static String[] MIPsID_XML =  new String[5000];//MIPS Account ID
 	public static String[] DPID_XML =  new String[5000];//DP ID
-	public static String[] ShipAccID_XML =  new String[5000];//Ship Account ID
+	//public static String[] ShipAccID_XML =  new String[5000];//Ship Account ID
 	
 		
 	public static String[] BillToReference_XML = new String[5000];//Bill to reference
@@ -256,14 +256,19 @@ public class inmarsatXML {
 			BillingProfile_XML[k] = doc.getElementsByTagName("BillingProfileCode").item(0).getTextContent();
 			MIPsID_XML[k] =  doc.getElementsByTagName("MIPSMasterAccountId").item(0).getTextContent();
 			DPID_XML[k] =  doc.getElementsByTagName("DPId").item(0).getTextContent();
-			ShipAccID_XML[k] = doc.getElementsByTagName("GWShipAccntId").item(0).getTextContent();
+			//ShipAccID_XML[k] = doc.getElementsByTagName("GWShipAccntId").item(0).getTextContent();
 			}catch (Exception e) {}
 			
-			LegacyIDs_XML[k] = "Legacy IDs:Account Number:"+ AccountNo_XML[k]
-					          +".Billing Profile:"+BillingProfile_XML[k]
-					          +".MIPS Master Acct ID:"+ MIPsID_XML[k]
-					          +".Ship Acct ID:"+ ShipAccID_XML
-					          +"DP ID:"+DPID_XML[k]+".";
+			LegacyIDs_XML[k] = "Legacy IDs: Account Number: "+ AccountNo_XML[k]
+					          +".Billing Profile: "+BillingProfile_XML[k]
+					          +".MIPS Master Acct ID: "+ MIPsID_XML[k]
+					          //+". Ship Acct ID:"+ ShipAccID_XML
+					          +".DP ID: "+DPID_XML[k]+".";
+			
+			LegacyIDs_XML[k] =LegacyIDs_XML[k].replaceAll("null", "");
+			LegacyIDs_XML[k] =LegacyIDs_XML[k].replaceAll(" ", "");
+
+/******************Billing Address for a Standard Invoice dated 7-Apr-2020************************/
 			
 			BillRunType_XML[k] = doc.getElementsByTagName("BillRunType").item(0).getTextContent();
 			
@@ -302,13 +307,15 @@ public class inmarsatXML {
 			
 /********************************************FOOTER***********************************************************/			
 			try {
-				Footer_XML[k] =doc.getElementsByTagName("SLEName").item(0).getTextContent()
+				Footer_XML[k] ="Soldby:"+doc.getElementsByTagName("SLEName").item(0).getTextContent()
 						+" "+doc.getElementsByTagName("SLEAddress").item(0).getTextContent()
 						+"|"+doc.getElementsByTagName("TaxRegNoDescription").item(0).getTextContent()
 						+" "+doc.getElementsByTagName("TaxRegistrationNumber").item(0).getTextContent()
-						+" "+"www.inmarsat.com";
+						+"|"+"www.inmarsat.com";
 			}
 			catch (Exception e) {}
+			Footer_XML[k] = Footer_XML[k].replaceAll("null", "");
+			Footer_XML[k] = Footer_XML[k].replaceAll(" ", "");
 				/*************Line Items child Nodes in the XML**************************
 			
 			//javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
