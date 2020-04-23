@@ -1,12 +1,12 @@
 //All the variables should be declared
 //======================================================
-// Class      : Legacy IDs
-// Description: The Legacy IDs in the front Page in the invoice  
+// Class      : TaxInfo
+// Description: The Tax Information in the front Page in the invoice  
 //              PDF is captured using Coordinates Extraction
 // ======================================================
 // Changes----------------------------------------------
 // Date         Test Analyst        Change
-// 08/04/20     Trishita Tadala     Written
+// 09/04/20     Trishita Tadala     Written
 //======================================================
 
 package Invoice_Validation;
@@ -31,24 +31,23 @@ import com.itextpdf.text.pdf.parser.RegionTextRenderFilter;
 import com.itextpdf.text.pdf.parser.RenderFilter;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
-
-public class LegacyIDs  {
-	
-	public static String[] LegacyIDsExtract_PDF = new String[5000];
-    public static boolean[] isFoundLegacyIDs = new boolean[5000];
-    public static String[] legacyIDRemarks = new String[5000];
-	public static void legacyIDs() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException 
+public class TaxInfo {
+	public static String[] TaxInfoExtract_PDF = new String[5000];
+    public static boolean[] isFoundTaxInfo = new boolean[5000];
+    public static String[] TaxInfoRemarks = new String[5000];
+    
+    public static void taxInfo() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException 
 	{
 		for(int k =0;k<ReadExcelFile.i;k++){	
 			String[] filepaths = ReadExcelFile.PDFFILENAME; //File location of the PDF 
 				
 			try {
-				LegacyIDsExtract_PDF[k]= getLegacyId(0f, 550f, 200f, 600f,filepaths[k]);
-				LegacyIDsExtract_PDF[k] =LegacyIDsExtract_PDF[k].replaceAll(" ", "");
-				//Ternary Operator						
-			 isFoundLegacyIDs[k] = (inmarsatXML.LegacyIDs_XML[k].indexOf(LegacyIDsExtract_PDF[k])) !=-1? true: false;
+				TaxInfoExtract_PDF[k]= getTaxInfo(0, 378, 600, 375,filepaths[k]);
+				TaxInfoExtract_PDF[k] =TaxInfoExtract_PDF[k].replaceAll(" ", "");
+										
+				isFoundTaxInfo[k] = (TaxInfoExtract_PDF[k].indexOf(inmarsatXML.TaxInfo_XML[k])) !=-1? true: false;
 			 //true
-			 legacyIDRemarks[k] = (k+1)+" XML value "+ inmarsatXML.LegacyIDs_XML[k]+ "\n"+"PDF value "+LegacyIDsExtract_PDF[k]; 
+				TaxInfoRemarks[k] = (k+1)+" XML value "+ inmarsatXML.TaxInfo_XML[k]+ "\n"+"PDF value "+TaxInfoExtract_PDF[k]; 
 			 
 			 			 
 			}catch(Exception e){
@@ -60,19 +59,21 @@ public class LegacyIDs  {
 	
 	
 	//public class ExtractPageContentArea {
-		public static String getLegacyId(float x,float y,float width,float height,String pdf) throws IOException {
-			String LegacyIDsExtract;		
+		public static String getTaxInfo(float x,float y,float width,float height,String pdf) throws IOException {
+			String TaxinfoExtract;		
 			PdfReader reader = new PdfReader(pdf);
 	        Rectangle rect = new Rectangle(x, y, width, height);
 	        RenderFilter filter = new RegionTextRenderFilter(rect);
 	        TextExtractionStrategy strategy;
 	       
 	            strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
-	            LegacyIDsExtract = PdfTextExtractor.getTextFromPage(reader, 1, strategy);
+	            TaxinfoExtract = PdfTextExtractor.getTextFromPage(reader, 1, strategy);
 	            //System.out.println("PDF"+LegacyIDsExtract);
 	           
 	       
 	        //reader.close();
-	       return  LegacyIDsExtract;
+	       return  TaxinfoExtract;
 	    }
 }
+
+

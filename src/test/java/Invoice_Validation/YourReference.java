@@ -6,13 +6,12 @@
 // ======================================================
 // Changes----------------------------------------------
 // Date         Test Analyst        Change
-// 01/22/20     Trishita Tadala     Written
+// 22/01/20     Trishita Tadala     Written
+// 13/04/20     Trishita Tadala     Modified
 //======================================================
 
-//package inmarsatPDF;
 package Invoice_Validation;
-//import ReadExcelFile.ReadExcelFile;
-//import inmarsatXML.inmarsatXML;
+
 
 public class YourReference {
 public static String[][] YourReference_PDF;
@@ -36,41 +35,31 @@ public static String yourRef=null;
 		{
 			try{
 				yourreference_PDF =YourReference_PDF[i][k];
-					if(yourreference_PDF.equalsIgnoreCase("reference")){
-						
-						m = (i+8);
-						System.out.println(m);}
-						
-						//yourReference_PDF[p]=YourReference_PDF[m+8][k];		
-						//yourReference_PDF[p]=yourReference_PDF[p].replaceAll(",", "");
-						//break;
-					
-					if(yourreference_PDF.equalsIgnoreCase("additional")){n =(i-2);}
-					
-			}catch(Exception e){
+				if(yourreference_PDF.equalsIgnoreCase("Your"))
+				{
+					m =i;
+					yourReference_PDF[p]=YourReference_PDF[m+2][k];		
+					yourReference_PDF[p]=yourReference_PDF[p].replaceAll(",", "");
+					break;
+				}
+			}
+			catch(Exception e){
 				
 			}
 			
-			do {
-				yourRef = yourRef.concat(YourReference_PDF[m+j][k]);
-				
-				yourReference_PDF[p]= yourRef;		
-			
-				yourReference_PDF[p]=yourReference_PDF[p].replaceAll(",", "");
-				j++;
-				//break;
-			} while (j>n);
 			
 } 
 }
 else
 {
 yourReference_PDF[p] =null;
-}
+
 
 p = p +1;
 }
+}
+	}
+}
 
 
-}
-}
+

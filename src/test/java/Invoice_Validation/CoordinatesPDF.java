@@ -52,8 +52,9 @@ public class CoordinatesPDF extends PDFTextStripper {
              *0f, 0f, 595f, 842f
              *-20f,-35f, 225, 842f
              *-20f,-35f, 125f, 742f
+             *0f, 10f, 600f, 20f
              **/
-            ExtractPageContentArea.extractPageContentArea(0f,-35f, 125f, 742f,"C:\\\\Users\\\\Trishita.Tadala\\\\Desktop\\\\IMS\\\\Invoice\\\\INVOICE_1386249_986021_201904.pdf"); 
+            ExtractPageContentArea.extractPageContentArea(0, 450, 600,450,"C:\\\\Users\\\\Trishita.Tadala\\\\Desktop\\\\IMS\\\\Invoice\\\\INVOICE_1386249_986021_201904.pdf"); 
           
         }
         finally {

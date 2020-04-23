@@ -37,14 +37,14 @@ public static void main(String[] args) throws Exception{
 	InvoiceNumber.invoiceNumber();// Extraction of Invoice Number
 	BillToReference.billToReference();//Bill To Reference Extraction
 	SoldToReference.soldToReference();// Sold to reference Extraction
-	//YourReference.yourToReference();//Your Reference Extraction
+	YourReference.yourToReference();//Your Reference Extraction
 	InvoiceCurrency.invoiceCurrency();//Currency
 	InvoiceDate.invoiceDate();//Date
 /***********************************************************************************************************/			
 	PricingAgreeID.pricingAgreeID();
 	
 	LegacyIDs.legacyIDs();
-	/***********************************************************************************************************/		
+/***********************************************************************************************************/		
 	TotalFees.totalFees();
 	TotalAirtime.Totalairtime();
 	TotalCA.totalCA();
@@ -59,10 +59,12 @@ public static void main(String[] args) throws Exception{
 	Servicesdetails.Servicesdetails();
 	//SummaryComparision.summaryComparision(); //Front Page
 	//TotalAdjust.totaladjust();
+	
+/***********************************************************************************************************/
 	Footer1.footer1();// Footer across all pages
 	
 /************************************************BOOLEAN VALIDATION VARIABLES***********************************************************/	
-	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,t,u= true;// s,
+	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,t,r,u= true, s= true;// 
 	//TotalCarrierAirtime.TotalCarrierAirtime();
 	//System.out.println(TotalAirtimeCharges.totalfees_PDF + "Inmarsat PDF");
 	//System.out.println(inmarsatXML.TotalFees_XML + "Inmarsat XML");
@@ -87,12 +89,17 @@ public static void main(String[] args) throws Exception{
 		System.out.println("Front Page of the "+ inmarsatXML.DisplayText_XML[k] + " ID :" + inmarsatXML.InvoiceNumber_XML[k]);
 		System.out.println("**************************************");
 		
-		if(inmarsatXML.BillToFrontPage_XML[k]==null ||inmarsatXML.BillToFrontPage_XML[k]==""||inmarsatXML.BillToFrontPage_XML[k].equalsIgnoreCase(BillTo.billTo_PDF[k])){
+		l = (BillTo.billTo_PDF[k].indexOf(inmarsatXML.BillToFrontPage_XML[k])) !=-1? true: false;
+		if(inmarsatXML.BillToFrontPage_XML[k]==null ||inmarsatXML.BillToFrontPage_XML[k]==""||
+				
+				l == true){
 		      
 		      //Front Page->Invoice Details->Bill to Reference Jan-8-2020
-		System.out.println("Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]);
-		System.out.println("Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
-				  l = true;
+		//System.out.println("Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]);
+		//System.out.println("Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
+			System.out.println("No Discrepancies for Bill To Address Info");
+		//l = (BillTo.billTo_PDF[k].indexOf(inmarsatXML.BillToFrontPage_XML[k])) !=-1? true: false;
+				 
 				     
 		}
 		else 
@@ -153,21 +160,21 @@ public static void main(String[] args) throws Exception{
 					j = false;
 					remarks+= (" Sold To Reference - XML value:"+inmarsatXML.SoldToReference_XML[k]+ "Sold To Reference - PDF value:"+ SoldToReference.soldToReference_PDF[k]);
 				}
-			/*	if(inmarsatXML.YourReference_XML[k]==null ||inmarsatXML.YourReference_XML[k]==""||inmarsatXML.YourReference_XML[k].equalsIgnoreCase(YourReference.yourReference_PDF[k])){
+		      if(inmarsatXML.YourReference_XML[k]==null ||inmarsatXML.YourReference_XML[k]=="-"||inmarsatXML.YourReference_XML[k]==""||inmarsatXML.YourReference_XML[k].equalsIgnoreCase(YourReference.yourReference_PDF[k])){
 				      
 				      //Front Page->Invoice Details->Your Reference Jan-22-2020
 				System.out.println("Your Reference - XML value:"+inmarsatXML.YourReference_XML[k]);
 				System.out.println("Your Reference - PDF value:"+YourReference.yourReference_PDF[k]);
-						  l = true;
+						  r = true;
 						     
 				}
 				else 
 				{
 					System.out.println("Your Reference - XML value:"+inmarsatXML.YourReference_XML[k]);
 					System.out.println("Your Reference - PDF value:"+YourReference.yourReference_PDF[k]);	
-					l = false;
+					r = false;
 					remarks+= (" Your Reference - XML value:"+inmarsatXML.YourReference_XML[k]+ "Your Reference - PDF value:"+ YourReference.yourReference_PDF[k]);
-				}*/
+				}
 				
 				
 				if(inmarsatXML.InvoiceDate_XML[k]==null ||inmarsatXML.InvoiceDate_XML[k]==""||inmarsatXML.InvoiceDate_XML[k].equalsIgnoreCase(InvoiceDate.invoiceDate_PDF[k])){
@@ -375,31 +382,40 @@ public static void main(String[] args) throws Exception{
 		g=false;
 		remarks+=" Total Incl Taxes - XML value:"+inmarsatXML.TotalAmountincl_XML[k]+"  Total Incl Taxes - PDF value:"+TotalinclTaxes.totalAmountIncl_PDF[k];
 		}
+/****************************************************TAX INFORMATION*******************************************************/			
+		/*try {
 		
-				
+		if (TaxInfo.isFoundTaxInfo[k] == true) {
+			 s=true;
+			System.out.println("Tax Information -  PASSED ");}
+		 else {
+			 s= false;
+			 System.out.println("Discrepancies"+ TaxInfo.TaxInfoRemarks[k]);
+			 remarks+= TaxInfo.TaxInfoRemarks[k];
+		 }		
 		
+		}catch(Exception e2) {}*/
 		
-		
-/***********************************************************************************************************/			
+/****************************************************FOOTER***************************************************************/			
 		try {
 		
 		if (Footer1.isFound[k] == true) {
 			
-			System.out.println("PASSED - No Footer Discrepancies"+ k);
+			System.out.println("PASSED - No Footer Discrepancies");
 			
 			u = true;
 			
 		}
 		else {
 			u = false;
-			remarks+= " XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + Footer1.FooterExtract_PDF[k];
-			System.out.println("FAILED - There are Footer Discrepancies"+ k);
+			remarks+= " XML Footer Contents "+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents " + Footer1.FooterExtract_PDF[k];
+			System.out.println("FAILED - There are Footer Discrepancies");
 			System.out.println( "XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + Footer1.FooterExtract_PDF[k]);
 		}
 		
 		}catch(Exception e2) {}
 		
-		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t){
+		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t&&s&&r){
 			 cell = sheet.getRow(k+1).getCell(2);
 			   cell.setCellValue("PASS");
 			   
@@ -606,6 +622,3 @@ public static void main(String[] args) throws Exception{
  }
 }
 	
-
-
-

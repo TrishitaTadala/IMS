@@ -47,7 +47,7 @@ public class Footer1  {
 				extractPageContentArea(0, 10, 450,20,filepaths[k]);
 				
 			    FooterExtract_PDF[k] = FooterExtract;
-			
+	//	    Ternary Operator
 			    isFound[k] = (FooterExtract_PDF[k].indexOf(inmarsatXML.Footer_XML[k])) !=-1? true: false; //true
 			 //System.out.println( "XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + FooterExtract_PDF[k]);
              }catch(Exception e){

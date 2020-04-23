@@ -7,7 +7,7 @@
 // Changes----------------------------------------------
 // Date         Test Analyst        Change
 // 26/12/19     Trishita Tadala     Written
-// 07/04/20     Trishita Tadala     Modification
+// 09/04/20     Trishita Tadala     Modification
 //======================================================
 
 package Invoice_Validation;
@@ -33,6 +33,7 @@ public class inmarsatXML {
 	public static String[] Name_XML = new String[5000];
 	public static String[] Line1_XML = new String[5000];
 	public static String[] Line2_XML = new String[5000];
+	public static String[] Suburb_XML = new String[5000];
 	public static String[] State_XML = new String[5000];
 	public static String[] City_XML = new String[5000];
 	public static String[] Country_XML = new String[5000];
@@ -71,8 +72,13 @@ public class inmarsatXML {
 	public static String[][] Total = new String[50][50];
 	public static String[] Totals = new String[50];
 	public static String[] CreditsorDebits_XML= new String[5000]; // Front Page Summary Amount Exclusive Taxes
-	public static String[][] TaxType = new String[50][50];
-	public static String[] USFFee_XML =  new String[50];
+	
+	
+	
+	public static String[] USFFee_XML =  new String[5000];
+	public static String[] TaxInfo_XML =  new String[5000];
+	public static String[][] TaxType = new String[500][500];
+	
 	public static String[] Footer_XML = new String[5000];
 	public static int y=0;
 	public static int m=0;
@@ -100,38 +106,25 @@ public class inmarsatXML {
 
 /******************Billing Address for a Standard Invoice dated 7-Apr-2020************************/	
 			
-			try {
-			Name_XML[k] = doc.getElementsByTagName("BillToCustomerName").item(0).getTextContent();
-			}catch(Exception e){}
- 			try {
-			Line1_XML[k] = doc.getElementsByTagName("Line1").item(1).getTextContent();	
-			}catch(Exception e){}
-			try {
-			Line2_XML[k] = doc.getElementsByTagName("Line2").item(1).getTextContent();
-			}catch(Exception e){}
-			try {
-			State_XML[k] = doc.getElementsByTagName("State").item(1).getTextContent();
-			}catch(Exception e){}
-			try {
-			Country_XML[k] = doc.getElementsByTagName("Country").item(1).getTextContent();
-	        }catch(Exception e){}
-			try {
-			Postcode_XML[k] = doc.getElementsByTagName("Postcode").item(1).getTextContent(); 
-			}catch(Exception e){}
-			try {
-			City_XML[k] = doc.getElementsByTagName("City").item(1).getTextContent();
 			
+			String billtoparty ="//Bill_To_Party/AddressDetails";
+			NodeList Addlist = (NodeList) xPath.compile(billtoparty).evaluate(doc, XPathConstants.NODESET);
+	        
+			try {
+				BillToFrontPage_XML[k] = doc.getElementsByTagName("BillToCustomerName").item(0).getTextContent();
 			}catch(Exception e){}
-		
-			BillToFrontPage_XML[k] = Name_XML[k]
-			        +" " + Line1_XML[k]
-					+" " + Line2_XML[k]
-					+" " + City_XML[k]
-					+" " + State_XML[k]
-					+" " + Postcode_XML[k]
-					+" " + Country_XML[k];
-		       
-			BillToFrontPage_XML[k] =BillToFrontPage_XML[k].replaceAll("null ", "");
+			
+			int count = Addlist.getLength();
+			try {
+			for (int i = 0;i<=count;i++)
+			{
+				BillToFrontPage_XML[k]+= Addlist.item(i).getTextContent();
+			}
+			}catch(Exception e){}
+ 			
+							       
+			//BillToFrontPage_XML[k] =BillToFrontPage_XML[k].replaceAll("null ", " ");
+			BillToFrontPage_XML[k] =BillToFrontPage_XML[k].replaceAll("\n", " ");
 			
 			
 /******************************Tax Related Logic Start*******************************************/
@@ -139,12 +132,11 @@ public class inmarsatXML {
 			Salesorg_XML[k] = doc.getElementsByTagName("SalesOrg").item(0).getTextContent();
 			if  (Salesorg_XML[k]== "6720") {
 		           TotalTaxes_XML[k] = doc.getElementsByTagName("VATInNOK").item(0).getTextContent();
- 		}
+ 		        }
 			else {
 			
-			/***************************** USF Fee, dated March-20-2020 ****************************/
+/***************************** USF Fee, dated March-20-2020 ****************************/
 			
-			//javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
 			String pertaxtype ="//PerTaxType/TaxType";
 			NodeList taxtype = (NodeList) xPath.compile(pertaxtype).evaluate(doc, XPathConstants.NODESET);
 	        NodeList taxnode = (NodeList) taxtype;
@@ -160,63 +152,42 @@ public class inmarsatXML {
 	        		
                     else if(TaxType[k][i]!= ("USF Fee")) 
                     
-                    {TotalTaxes_XML[k] = doc.getElementsByTagName("GrandTotalTaxAmtAC").item(0).getTextContent(); 
-	        }
+                    {
+                    	TotalTaxes_XML[k] = doc.getElementsByTagName("GrandTotalTaxAmtAC").item(0).getTextContent(); 
+                    	
+	                }
+	        		
+	        		
 	        	}
 	        		catch(Exception e){}
 			}
 			}
+			try{
+			TaxInfo_XML[k] = doc.getElementsByTagName("TaxType").item(0).getTextContent()
+					   + doc.getElementsByTagName("TaxPercentage").item(0).getTextContent()
+				       + doc.getElementsByTagName("TotalTaxAmount").item(0).getTextContent()
+				       + doc.getElementsByTagName("TaxDisclosure").item(0).getTextContent()
+				       ;
+		TaxInfo_XML[k] = TaxInfo_XML[k].replaceAll("null ", "");
+			}
+    		catch(Exception e){}
 //**********************************Tax Related Logic End*******************************************  
 	        			
 			/*********** Invoice Details tags logic, dated Jan-14-2020 *************/
-			//Invoice Number
+			
 			try {
+				//Invoice Number
 				InvoiceNumber_XML[k] = doc.getElementsByTagName("InvoiceNumber").item(0).getTextContent();
-				
-			} catch (Exception e) {
-				//e.printStackTrace();
-							
-			}
-			
-			//ADJNumber
-			
-			try {
+				//ADJNumber
 				ADJNmber_XML[k] = doc.getElementsByTagName("ADJNumber").item(0).getTextContent();
-			} catch (Exception e) {
-				//e.printStackTrace();
-							
-			}
-			
-			
-			//Bill To Reference
-			
-			try {
+				//Bill To Reference
 				BillToReference_XML[k] = doc.getElementsByTagName("BillingProfileId").item(0).getTextContent();
-			} catch (Exception e) {
-				//e.printStackTrace();
-				
-				
-			}
-			
-			//Sold To Reference
-			
-			try {
+				//Sold To Reference
 				SoldToReference_XML[k] = doc.getElementsByTagName("SAPAccountNumber").item(0).getTextContent();
-			} catch (Exception e) {
-				//e.printStackTrace();
-				
-				
-			}
-			
-           //Your Reference
-			
-			try {
+				//Your Reference
 				YourReference_XML[k] = doc.getElementsByTagName("YourReference").item(0).getTextContent();
-			} catch (Exception e) {
-				//e.printStackTrace();
-				
-				
-			}
+			    } catch (Exception e) {}
+			
 			
 			//Front Page Total Fees tags from the Single View XML Jan-8-2020
 			try {
@@ -353,9 +324,8 @@ public class inmarsatXML {
 				      SoldTo_XML[k] = doc.getElementsByTagName("SoldTo").item(0).getTextContent();
 				      
 						} catch (Exception e) {}
-						
-	
-						}
+							
+					}
 			else {
 				
 				try {
@@ -371,4 +341,4 @@ public class inmarsatXML {
 	}
 }
 
-
+//e.printStackTrace();
