@@ -128,7 +128,7 @@ public class LineItems {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
             
-            String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
+            //String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
             String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();
             String Subscription = PerProductDetails.getElementsByTagName("Subscription").item(0).getFirstChild().getTextContent();
             String Total = PerProductDetails.getElementsByTagName("Total").item(0).getFirstChild().getTextContent();
