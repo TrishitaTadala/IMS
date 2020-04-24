@@ -9,9 +9,10 @@
 // 26/12/19     Trishita Tadala     Written
 // 20/03/20     Trishita Tadala     Modification
 // 23/04/20     Trishita Tadala     Bill To Comparison Logic
+// 24/04/20     Trishita Tadala     ServiceSummaryCall
 //======================================================
 
-//package inmarsatExecutable;
+
 package Invoice_Validation;
 
 //Main Executable Java class to validate the Totals in the Invoice against the Single View XML
@@ -70,7 +71,7 @@ public static void main(String[] args) throws Exception{
 	Footer1.footer1();// Footer across all pages
 	
 /************************************************BOOLEAN VALIDATION VARIABLES***********************************************************/	
-	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,t,r,u= true, s= true,q=true;// 
+	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,t,r,u= true, s= true,p =true;// 
 
 /***********************************************************************************************************/	
 	FileInputStream file = new FileInputStream(new File(System.getProperty("user.dir")+"\\InmarsatPDFExcel.xlsx"));
@@ -405,16 +406,22 @@ public static void main(String[] args) throws Exception{
 		
 		}catch(Exception e2) {}*/
 
+		String XMLpath = ReadExcelFile.XMLFILENAME[k];
+		String PDFpath = ReadExcelFile.PDFFILENAME[k];
+/****************************************************SERVICE SUMMARY ***************************************************************/		
+		boolean ss = RetailCustomer.ServiceSummaryPDF(PDFpath, XMLpath);
+		
+		remarks+= RetailCustomer.ServiceSummaryLineItemsRemarks;
+
 			
 /****************************************************FEE SUMMARY LINE ITEMS***************************************************************/
 
 		if (inmarsatXML.CustomerInvoicePreference_XML[k].equals("SUMMARY")) {
 		
 			System.out.println("This is a Wholesale Customer");
-		    String XMLpath = ReadExcelFile.XMLFILENAME[k];
-			String PDFpath = ReadExcelFile.PDFFILENAME[k];
+		    
 			
-			q = WholesaleCustomer.wholesaleCustomer(PDFpath, XMLpath);
+			p = WholesaleCustomer.FeesummaryPDF(PDFpath, XMLpath);
 			
 			remarks+= WholesaleCustomer.FeeSummaryLineItemsRemarks;
 		
@@ -442,7 +449,7 @@ public static void main(String[] args) throws Exception{
 		
 		}catch(Exception e2) {}
 		
-		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t&&s&&r&&q){
+		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t&&s&&r&&p&&ss){
 			 cell = sheet.getRow(k+1).getCell(2);
 			   cell.setCellValue("PASS");
 			   

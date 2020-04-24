@@ -1,6 +1,6 @@
 //All the variables should be declared
 //======================================================
-// Class      : Wholesale Customer
+// Class      : Retail Customer
 // Description: The Parent class that invokes all the child classes
 //               from other packages
 // ======================================================
@@ -37,23 +37,21 @@ import com.itextpdf.text.pdf.parser.RegionTextRenderFilter;
 import com.itextpdf.text.pdf.parser.RenderFilter;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
-public class LineItems {
+public class RetailCustomer {
 
 	
 	public static String PDFtext;
 	public static String  xmlSSrows;
 	public static boolean q;
 	public static String ServiceSummaryLineItemsRemarks;
-
-	public static void main(String[] args) throws Exception {
-//public static boolean ServiceSummaryPDF(/*String filename,String xmlpath*/) throws Exception{
+	
+public static boolean ServiceSummaryPDF(String filename,String xmlpath) throws Exception{
 		
 		 //Create a hash map
 		 LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 PDFHashMap.clear();
 		 XMLHashMap.clear();
-		String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_1590512_118014_202009.pdf";
 		PdfReader reader = new PdfReader(filename);  
 		
 		PDFHashMap.put("ServiceSummaryPDF"+"\n", getServiceSummary(reader));
@@ -72,8 +70,7 @@ public class LineItems {
 			System.out.println(PDFtext);
 		}
 			
-		//XMLHashMap = readServiceSummaryXML(xmlpath);
-		XMLHashMap = readServiceSummaryXML();
+		XMLHashMap = readServiceSummaryXML(xmlpath);
 		
 		System.out.println("XML Contents ");    
         
@@ -104,15 +101,15 @@ public class LineItems {
 		
          //reader.close();
 		
-		//return q;
+		return q;
 	}
 	
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readServiceSummaryXML(/*String xmlfilepath*/) throws Exception {
+	public static LinkedHashMap<String,String> readServiceSummaryXML(String xmlfilepath) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
         
-        String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\116111_118014_1590512_20200930.xml";
+        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\116111_118014_1590512_20200930.xml";
         File xmlinputFile = new File(xmlfilepath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -128,24 +125,26 @@ public class LineItems {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
             
+            try {
             String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
             String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();
-            String Subscription = PerProductDetails.getElementsByTagName("Subscription").item(0).getFirstChild().getTextContent();
+            String Usage = PerProductDetails.getElementsByTagName("Usage").item(0).getFirstChild().getTextContent();
             String Total = PerProductDetails.getElementsByTagName("Total").item(0).getFirstChild().getTextContent();
            
-            String  ServiceSummaryTableRow = (Product+"\n"+"Fee - Subscriptions "+Subscription+"\n"+"Total "+Total);
-            ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
             
-           /* //ServiceSummaryTableRowsMap.put("ColumnNames","Description Total");
+            ServiceSummaryTableRowsMap.put("ColumnNames","Description Total");
             ServiceSummaryTableRowsMap.put("SG"+i+" ",ServiceGroup );
             ServiceSummaryTableRowsMap.put("Product"+i+" ",Product );
-            ServiceSummaryTableRowsMap.put("Subscription"+i+" ","Subscription "+Subscription );
-            ServiceSummaryTableRowsMap.put("Total"+i+" ","Total "+Total );*/
+            ServiceSummaryTableRowsMap.put("Airtime"+i+" ","Airtime "+Usage );
+            ServiceSummaryTableRowsMap.put("Total"+i+" ","Total "+Total );
            
             
-               }
+        }catch(Exception e){
+        }
+
+        }
         
-      /*  XPathExpression exprSSProdTotal = xpath.compile("//ServiceSummary/Subtotal");
+        XPathExpression exprSSProdTotal = xpath.compile("//ServiceSummary/Subtotal");
         NodeList PerProdTotalRows = (NodeList)exprSSProdTotal.evaluate(doc1, XPathConstants.NODESET);
         for (int i1 = 0; i1 < PerProdTotalRows.getLength(); i1++)  {
         	Element PerProductTotal = (Element)PerProdTotalRows.item(i1);
@@ -154,11 +153,18 @@ public class LineItems {
         	
         	ServiceSummaryTableRowsMap.put(ProductGroup+" "+i1+" ","Total for Service Group "+ProductGroupTotalSum );
        	
-        }*/
+        }
         
-             return ServiceSummaryTableRowsMap;               
+            
+        
+        
+            
+
+        return ServiceSummaryTableRowsMap;               
   
-	}
+		    
+        
+       	}
 	
 	
 	
