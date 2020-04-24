@@ -13,18 +13,26 @@
 package Invoice_Validation;
 
 import org.xml.sax.SAXException;
-
+import java.util.LinkedHashMap;
+import java.util.Iterator;
 import javax.xml.parsers.*;
+import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import java.io.*;
+import java.util.LinkedHashMap;
+import java.util.*;
+
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class inmarsatXML { 
 	public static String[] DisplayText_XML = new String[50];
+	public static String[] CustomerInvoicePreference_XML = new String[50];
     public static String[] InvoiceNumber_XML= new String[100]; //Invoice Number
     public static String[] InvoiceNumber_SAP_XML = new String[100];
 	public static String[] ADJNmber_XML= new String[50]; //ADJ Number
@@ -79,6 +87,7 @@ public class inmarsatXML {
 	public static String[] TaxInfo_XML =  new String[5000];
 	public static String[][] TaxType = new String[500][500];
 	
+	public static String[] FeeSummaryLines_XML = new String[100000];
 	public static String[] Footer_XML = new String[5000];
 	public static int y=0;
 	public static int m=0;
@@ -102,6 +111,7 @@ public class inmarsatXML {
 /******************Invoice Number for a Standard Invoice************************/		
 			try {
 			InvoiceNumber_SAP_XML[k]= doc.getElementsByTagName("InvoiceNumber").item(1).getTextContent();
+			DisplayText_XML[k] = doc.getElementsByTagName("DisplayText").item(0).getTextContent();
 			}catch(Exception e){}
 
 /******************Billing Address for a Standard Invoice dated 7-Apr-2020************************/	
@@ -114,19 +124,14 @@ public class inmarsatXML {
 				BillToFrontPage_XML[k] = doc.getElementsByTagName("BillToCustomerName").item(0).getTextContent();
 			}catch(Exception e){}
 			
-			int count = Addlist.getLength();
+			int count = (Addlist.getLength());
 			try {
 			for (int i = 0;i<=count;i++)
 			{
 				BillToFrontPage_XML[k]+= Addlist.item(i).getTextContent();
 			}
+			
 			}catch(Exception e){}
- 			
-							       
-			//BillToFrontPage_XML[k] =BillToFrontPage_XML[k].replaceAll("null ", " ");
-			BillToFrontPage_XML[k] =BillToFrontPage_XML[k].replaceAll("\n", " ");
-			
-			
 /******************************Tax Related Logic Start*******************************************/
 			
 			Salesorg_XML[k] = doc.getElementsByTagName("SalesOrg").item(0).getTextContent();
@@ -168,12 +173,12 @@ public class inmarsatXML {
 				       + doc.getElementsByTagName("TotalTaxAmount").item(0).getTextContent()
 				       + doc.getElementsByTagName("TaxDisclosure").item(0).getTextContent()
 				       ;
-		TaxInfo_XML[k] = TaxInfo_XML[k].replaceAll("null ", "");
+		    TaxInfo_XML[k] = TaxInfo_XML[k].replaceAll("null ", "");
 			}
     		catch(Exception e){}
 //**********************************Tax Related Logic End*******************************************  
 	        			
-			/*********** Invoice Details tags logic, dated Jan-14-2020 *************/
+/*************************Invoice Details tags logic, dated Jan-14-2020 **********************************************************/
 			
 			try {
 				//Invoice Number
@@ -239,18 +244,24 @@ public class inmarsatXML {
 			LegacyIDs_XML[k] =LegacyIDs_XML[k].replaceAll("null", "");
 			LegacyIDs_XML[k] =LegacyIDs_XML[k].replaceAll(" ", "");
 
-/******************Billing Address for a Standard Invoice dated 7-Apr-2020************************/
+
+/********************************************STANDARD BILL RUN*******************************************/
+
+/******************Fee Summary Line Items for a Standard Invoice Wholesale Customer************************/
 			
 			BillRunType_XML[k] = doc.getElementsByTagName("BillRunType").item(0).getTextContent();
 			
-/********************************************STANDARD BILL RUN*******************************************/
-			
+			CustomerInvoicePreference_XML[k] =doc.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
+			          
+		             
+		            	
 			// Invoice or Credit Note
+			
 			if (inmarsatXML.BillRunType_XML[k].equals("Standard Bill Run")) {
 			
 			DisplayText_XML[k] = doc.getElementsByTagName("DisplayText").item(0).getTextContent();
 			
-               /*********** Taxes is driven by conditional logic, dated Jan-14-2020 needs updated*************/	
+ /*********** Taxes is driven by conditional logic, dated Jan-14-2020 needs updated*************/	
 			
 								
         
@@ -276,6 +287,9 @@ public class inmarsatXML {
 			}
 			catch (Exception e) {}
 			
+
+			
+			
 /********************************************FOOTER***********************************************************/			
 			try {
 				Footer_XML[k] ="Soldby:"+doc.getElementsByTagName("SLEName").item(0).getTextContent()
@@ -287,32 +301,10 @@ public class inmarsatXML {
 			catch (Exception e) {}
 			Footer_XML[k] = Footer_XML[k].replaceAll("null", "");
 			Footer_XML[k] = Footer_XML[k].replaceAll(" ", "");
-				/*************Line Items child Nodes in the XML**************************
+				
 			
-			//javax.xml.xpath.XPath xPath =  XPathFactory.newInstance().newXPath();
-			String expression ="//ServiceSummary/ProductDetails/Product";
-			NodeList list = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
-	        NodeList nodes = (NodeList) list;
-	        m = nodes.getLength();
-	        for (int i = 0; i < nodes.getLength(); i++) {
-	        	try{
-	        	Product[k][i]= (nodes.item(i).getFirstChild().getNodeValue());
-	        }catch(Exception e){}
-	        }
-	        
-	        String total ="//ServiceSummary/ProductDetails/Total";
-			NodeList listtotal = (NodeList) xPath.compile(total).evaluate(doc, XPathConstants.NODESET);
-	        NodeList nodestotal = (NodeList) listtotal;
-	        m = nodestotal.getLength();
-	        for (y = 0; y < nodestotal.getLength(); y++) {
-	        	try{
-		        	Total[y][k]= (nodestotal.item(y).getFirstChild().getNodeValue());
-		        	Totals[p]=Total[y][k];
-		        	
-		        			p= p +1;
-		        			//System.out.println(Total[y][k]);
-		        }catch(Exception e){}
-	        }*/
+			
+			
 	        
 		} 
 			
@@ -341,4 +333,6 @@ public class inmarsatXML {
 	}
 }
 
-//e.printStackTrace();
+
+
+

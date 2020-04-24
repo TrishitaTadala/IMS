@@ -1,7 +1,7 @@
 package Invoice_Validation;
 
 
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Iterator;
 
@@ -30,6 +30,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -52,20 +53,28 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 
-public class ExtractInvoiceDetails {
+public class  ExtractInvoiceDetails {
+	
+	public static String PDFtext;
+	public static String  xmlFSrows;
+	
 	public static void main(String[] args) throws Exception {
 		
 		 //Create a hash map
-		 HashMap<String,String> PDFHashMap  = new HashMap();
+		 LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
+		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 PDFHashMap.clear();
-		 
+		 XMLHashMap.clear();
 		 // Put elements to the map
-		String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1386249_986021_201904.pdf";
+		String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_1590512_118014_202009.pdf";
 		PdfReader reader = new PdfReader(filename);  
 		
-		PDFHashMap.put("BillTo", getBillingAddress(reader));
-		PDFHashMap.put("Legacy IDs", getLegacyId(reader));
-		PDFHashMap.put("ServiceSummary", getServiceSummary(reader));
+		//PDFHashMap.put("BillTo", getBillingAddress(reader));
+		//PDFHashMap.put("Legacy IDs", getLegacyId(reader));
+		//PDFHashMap.put("ServiceSummary"+"\n", getServiceSummary(reader));
+		PDFHashMap.put("FeeSummary"+"\n", getFeeSummary(reader));
+		
+		
 		/*
 		getBillingAddress(reader);
 		getInvoiceDetails(reader);
@@ -79,11 +88,39 @@ public class ExtractInvoiceDetails {
 		while(PDFkeySetIterator.hasNext()) {
 			
 			String key = PDFkeySetIterator.next();
-			System.out.println(key + PDFHashMap.get(key));
+			//System.out.println(key + PDFHashMap.get(key));
+			PDFtext = PDFHashMap.get(key).replaceAll(",", "");
+			System.out.println(PDFtext);
 		}
 		
-		readXML();
+		
+		XMLHashMap = readFeeSummaryXML();
+		
+		
+		
+		System.out.println("//Fees/PerTransaction/ChargePerTransaction");    
+        
+		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
+         while(XMLkeySetIterator.hasNext()) {
+			
+			String keyXML = XMLkeySetIterator.next();
+			
+			//System.out.println(XMLHashMap.get(keyXML));
+			xmlFSrows = XMLHashMap.get(keyXML);
+			
+		
+		if (  PDFtext.indexOf(xmlFSrows)!=-1? true: false){
+			
+			System.out.println(xmlFSrows +" It's a Match!!!");
+			
+		}
+		else{
+			System.out.println(xmlFSrows +" Mismatch due to Discrepancies in Line items");
+					
+		}
+		
 		reader.close();
+         }
 		
 		
 		
@@ -91,18 +128,11 @@ public class ExtractInvoiceDetails {
 	}
 	
 	/****************************************************************************/
-	public static void readXML() throws Exception{
+	public static LinkedHashMap<String,String> readFeeSummaryXML() throws Exception {
         
-      // ArrayList duplicateRows = new ArrayList<String>();
-        int rateRowCount = 0;
-        //int noOfXML = 0;
-        LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-        HashMap<String, HashMap> rateTable = new HashMap<>();
+        LinkedHashMap<String, String> FeeSummaryTableRowsMap= new LinkedHashMap<>();
         
-        LinkedHashMap<String, String> ProductTableRows;
-        ProductTableRows = new LinkedHashMap<>();
-        //ProductTableRows.clear();
-        String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\117976_986021_1386249_20190430.xml";
+        String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\116111_118014_1590512_20200930.xml";
         File xmlinputFile = new File(xmlfilepath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -111,81 +141,44 @@ public class ExtractInvoiceDetails {
         doc1.getDocumentElement().normalize();
         XPath xpath = XPathFactory.newInstance().newXPath();
         
-        XPathExpression exprRR = xpath.compile("//ServiceSummary/ProductDetails");
+        //XPathExpression exprRR = xpath.compile("//ServiceSummary/ProductDetails");
+        XPathExpression exprFees = xpath.compile("//Fees/PerTransaction/ChargePerTransaction");
         
+        NodeList PerTransRows = (NodeList)exprFees.evaluate(doc1, XPathConstants.NODESET);
+        for (int i = 0; i < PerTransRows.getLength(); i++) {
+                       
+            Element PerTransaction = (Element)PerTransRows.item(i);
+            
+            
+            String RatePlanID = PerTransaction.getElementsByTagName("RatePlan").item(0).getFirstChild().getTextContent();
+            String Events = PerTransaction.getElementsByTagName("Events").item(0).getFirstChild().getTextContent();
+            String Units = PerTransaction.getElementsByTagName("Units").item(0).getFirstChild().getTextContent();
+            String UoM = PerTransaction.getElementsByTagName("UoM").item(0).getFirstChild().getTextContent();
+            String Rate = PerTransaction.getElementsByTagName("Rate").item(0).getFirstChild().getTextContent();
+            String TotalCharge = PerTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
+            
+            String  FeeSummaryTableRow = RatePlanID+" " +Events+" "+Units+ " " +UoM+" " +Rate+" "+TotalCharge;
+            FeeSummaryTableRowsMap.put("Line"+i+" ",FeeSummaryTableRow );
+        }
+            
+        return FeeSummaryTableRowsMap;
+            
+            /*
+            String ChargeTypeValue = PerTransaction.getElementsByTagName("ChargeType").item(0).getFirstChild().getTextContent();
+            String ProductGroupValue = PerTransaction.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
+            String ProductTypeValue = PerTransaction.getElementsByTagName("ProductType").item(0).getFirstChild().getTextContent();
+            
+            FeeSummaryTableRows.put(""+i+" ", ChargeTypeValue);
+            FeeSummaryTableRows.put("ServiceGroup"+i+" ", ProductGroupValue);
+            FeeSummaryTableRows.put("ProductType"+i+" ", ProductTypeValue);*/
+                       
+         
+		//return 	FeeSummaryTableRowsMap;
+		    
         
-        //ArrayList<String> Actualvalue= new ArrayList<String>();
-        //ArrayList<String> Trimmedvalue= new ArrayList<String>();
-        //int count = 0;
-        NodeList ProductRows = (NodeList)exprRR.evaluate(doc1, XPathConstants.NODESET);
-        for (int i = 0; i < ProductRows.getLength(); i++) {
-            rateRowCount++;
-            
-            Element ProductDetails = (Element)ProductRows.item(i);
-
-            String ProductGroupValue = ProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
-            String ProductValue = ProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();
-            String ProductTypeValue = ProductDetails.getElementsByTagName("ProductType").item(0).getFirstChild().getTextContent();
-            String ProductUsageValue = ProductDetails.getElementsByTagName("Usage").item(0).getFirstChild().getTextContent();
-            String ProductTotalValue = ProductDetails.getElementsByTagName("Total").item(0).getFirstChild().getTextContent();
-           
-            ProductTableRows.put("ProductGroup"+i+" ", ProductGroupValue);
-            ProductTableRows.put("Product"+i+" ", ProductValue);
-            ProductTableRows.put("ProductType"+i+" ", ProductTypeValue);
-            ProductTableRows.put("Usage"+i+" ", ProductUsageValue);
-            ProductTableRows.put("Total"+i+" ", ProductTotalValue);
-            
-           // ProductTableRows= ProductTableRows(0)+ProductTableRows;
-    		
-            
-            }	
-        
-Iterator<String> XMLkeySetIterator = ProductTableRows.keySet().iterator();
-				
-				while(XMLkeySetIterator.hasNext()) {
-   	
-   	String key1 = XMLkeySetIterator.next();
-   	System.out.println(key1 + ProductTableRows.get(key1)); 
-   		}
-        //return ProductTableRows;
        	}
 	
-	/*
-        
-        try {
-           // DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            //DocumentBuilder db = dbf.newDocumentBuilder();
-            //Document doc = db.parse("C://logs//XML.xml");
-        	NodeList nodeList = (NodeList)exprRR.evaluate(doc1, XPathConstants.NODESET);
-            //NodeList nodeList = exprRR.getChildNodes();
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node textChild = nodeList.item(i);
-                NodeList childNodes = textChild.getChildNodes();
-                for (int j = 0; j < childNodes.getLength(); j++) {
-                    Node grantChild = childNodes.item(j);
-                   // NodeList grantChildNodes = grantChild.getChildNodes();
-                  /*  for (int k = 0; k < grantChildNodes.getLength(); k++) {
-                       //if(!StrUtl.isEmptyTrimmed( grantChildNodes.item(k).getTextContent() ) ) {
-                            
-                                    map.put(grantChildNodes.item(k).getNodeName() , grantChildNodes.item(k).getTextContent());
-                                    System.out.println(map);
-                        //}
-                    }*/
-                   // map.put(childNodes.item(j).getNodeName() , childNodes.item(j).getTextContent());
-                    //System.out.println(map);
-               // }
-            //}
-       // }catch (Exception e){
-       //         e.printStackTrace();
-       // }
-        
-       // return map;
-	//}
-          
 	
-        
-
-
 	
 	public static String getBillingAddress(PdfReader reader) throws Exception {		    
         Rectangle billingAddressSection = new Rectangle(0, 620, 200, 750);
@@ -231,10 +224,30 @@ Iterator<String> XMLkeySetIterator = ProductTableRows.keySet().iterator();
 	}
 	
 	public static String getServiceSummary(PdfReader reader) throws Exception {
-		Rectangle serviceSummary = new Rectangle(0, 600, 600, 400);
+		//LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap();
+		String PDFtext;
+		//0, 600, 600, 400 (Entire)
+		//0, 450, 600, 400 (totals only)
+		//(0, 600, 600, 478)
+		Rectangle serviceSummary = new Rectangle(0, 600, 600, 478);
+			
         RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
         TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
-        return(PdfTextExtractor.getTextFromPage(reader, 2, strategy));
+        PDFtext = (PdfTextExtractor.getTextFromPage(reader, 2, strategy));
+        return PDFtext;
+	}
+	public static String getFeeSummary(PdfReader reader) throws Exception {
+		//LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap();
+		String PDFtext;
+		//0, 600, 600, 400 (Entire)
+		//0, 450, 600, 400 (totals only)
+		//(0, 600, 600, 478)
+		Rectangle serviceSummary = new Rectangle(0, 600, 600, 50);
+			
+        RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
+        TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
+        PDFtext = (PdfTextExtractor.getTextFromPage(reader, 3, strategy));
+        return PDFtext;
 	}
 	
 	

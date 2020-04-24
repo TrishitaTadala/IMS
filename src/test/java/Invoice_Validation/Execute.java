@@ -8,6 +8,7 @@
 // Date         Test Analyst        Change
 // 26/12/19     Trishita Tadala     Written
 // 20/03/20     Trishita Tadala     Modification
+// 23/04/20     Trishita Tadala     Bill To Comparison Logic
 //======================================================
 
 //package inmarsatExecutable;
@@ -15,9 +16,12 @@ package Invoice_Validation;
 
 //Main Executable Java class to validate the Totals in the Invoice against the Single View XML
 
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.*;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -53,7 +57,9 @@ public static void main(String[] args) throws Exception{
 	TotalTaxes.totalTaxes();
 	USFFee.uSFFee();
 	TotalinclTaxes.totalinclTaxes();
-	
+/***********************************************************************************************************/
+	//Fees WholesaleCustomer.FeeSummary(); 
+/***********************************************************************************************************/
 	CreditsorDebits.creditsOrDebits();//Credits and Debits CNT
 	Servicesummary.Servicesummary();
 	Servicesdetails.Servicesdetails();
@@ -64,10 +70,8 @@ public static void main(String[] args) throws Exception{
 	Footer1.footer1();// Footer across all pages
 	
 /************************************************BOOLEAN VALIDATION VARIABLES***********************************************************/	
-	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,t,r,u= true, s= true;// 
-	//TotalCarrierAirtime.TotalCarrierAirtime();
-	//System.out.println(TotalAirtimeCharges.totalfees_PDF + "Inmarsat PDF");
-	//System.out.println(inmarsatXML.TotalFees_XML + "Inmarsat XML");
+	Boolean a,b,c = true,d,e,f = true,g,i,h,j,z,y,x,l,t,r,u= true, s= true,q=true;// 
+
 /***********************************************************************************************************/	
 	FileInputStream file = new FileInputStream(new File(System.getProperty("user.dir")+"\\InmarsatPDFExcel.xlsx"));
 	  
@@ -89,16 +93,21 @@ public static void main(String[] args) throws Exception{
 		System.out.println("Front Page of the "+ inmarsatXML.DisplayText_XML[k] + " ID :" + inmarsatXML.InvoiceNumber_XML[k]);
 		System.out.println("**************************************");
 		
-		l = (BillTo.billTo_PDF[k].indexOf(inmarsatXML.BillToFrontPage_XML[k])) !=-1? true: false;
-		if(inmarsatXML.BillToFrontPage_XML[k]==null ||inmarsatXML.BillToFrontPage_XML[k]==""||
-				
-				l == true){
+/***********************************BILL TO ADDRESS*****************************************************************/		
+		
+		String billstr1 = inmarsatXML.BillToFrontPage_XML[k].replaceAll("\n", " ");
+        String billstr2 = BillTo.billTo_PDF[k];
+        
+        Set<String> set1 = new TreeSet<String>(Arrays.asList(billstr1.split(" ")));
+        Set<String> set2 = new TreeSet<String>(Arrays.asList(billstr2.split(" ")));
+        
+		if(inmarsatXML.BillToFrontPage_XML[k]==null ||inmarsatXML.BillToFrontPage_XML[k]==""||set1.equals(set2)){
 		      
-		      //Front Page->Invoice Details->Bill to Reference Jan-8-2020
+		      
 		//System.out.println("Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]);
 		//System.out.println("Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
 			System.out.println("No Discrepancies for Bill To Address Info");
-		//l = (BillTo.billTo_PDF[k].indexOf(inmarsatXML.BillToFrontPage_XML[k])) !=-1? true: false;
+		l = true;
 				 
 				     
 		}
@@ -110,7 +119,7 @@ public static void main(String[] args) throws Exception{
 			remarks+= (" Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]+ "Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
 		}
 		
-			
+		/***********************************INVOICE DETAILS*****************************************************************/					
 			if(inmarsatXML.InvoiceNumber_XML[k]==null ||inmarsatXML.InvoiceNumber_XML[k]==""||inmarsatXML.InvoiceNumber_XML[k].equalsIgnoreCase(InvoiceNumber.invoiceNumber_PDF[k])){
 			      
 			      //Front Page->Invoice Details->Invoice Number Jan-8-2020
@@ -395,6 +404,24 @@ public static void main(String[] args) throws Exception{
 		 }		
 		
 		}catch(Exception e2) {}*/
+
+			
+/****************************************************FEE SUMMARY LINE ITEMS***************************************************************/
+
+		if (inmarsatXML.CustomerInvoicePreference_XML[k].equals("SUMMARY")) {
+		
+			System.out.println("This is a Wholesale Customer");
+		    String XMLpath = ReadExcelFile.XMLFILENAME[k];
+			String PDFpath = ReadExcelFile.PDFFILENAME[k];
+			
+			q = WholesaleCustomer.wholesaleCustomer(PDFpath, XMLpath);
+			
+			remarks+= WholesaleCustomer.FeeSummaryLineItemsRemarks;
+		
+		}
+		else {
+			System.out.println("This is a Retail Customer");
+		}
 		
 /****************************************************FOOTER***************************************************************/			
 		try {
@@ -415,7 +442,7 @@ public static void main(String[] args) throws Exception{
 		
 		}catch(Exception e2) {}
 		
-		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t&&s&&r){
+		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t&&s&&r&&q){
 			 cell = sheet.getRow(k+1).getCell(2);
 			   cell.setCellValue("PASS");
 			   
