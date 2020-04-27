@@ -62,8 +62,8 @@ public static void main(String[] args) throws Exception{
 	//Fees WholesaleCustomer.FeeSummary(); 
 /***********************************************************************************************************/
 	CreditsorDebits.creditsOrDebits();//Credits and Debits CNT
-	Servicesummary.Servicesummary();
-	Servicesdetails.Servicesdetails();
+	//Servicesummary.Servicesummary();
+	//Servicesdetails.Servicesdetails();
 	//SummaryComparision.summaryComparision(); //Front Page
 	//TotalAdjust.totaladjust();
 	
@@ -408,10 +408,12 @@ public static void main(String[] args) throws Exception{
 
 		String XMLpath = ReadExcelFile.XMLFILENAME[k];
 		String PDFpath = ReadExcelFile.PDFFILENAME[k];
+		//(PDFpath, XMLpath);
 /****************************************************SERVICE SUMMARY ***************************************************************/		
-		boolean ss = RetailCustomer.ServiceSummaryPDF(PDFpath, XMLpath);
+		boolean ss = Servicesummary.servicesummary(PDFpath, XMLpath);
+				
 		
-		remarks+= RetailCustomer.ServiceSummaryLineItemsRemarks;
+		remarks+= Servicesummary.SSRemarks;
 
 			
 /****************************************************FEE SUMMARY LINE ITEMS***************************************************************/

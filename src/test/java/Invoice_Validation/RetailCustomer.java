@@ -41,7 +41,7 @@ public class RetailCustomer {
 
 	
 	public static String PDFtext;
-	public static String  xmlSSrows;
+	public static String  xmlrows;
 	public static boolean q;
 	public static String ServiceSummaryLineItemsRemarks;
 	
@@ -70,34 +70,8 @@ public static boolean ServiceSummaryPDF(String filename,String xmlpath) throws E
 			System.out.println(PDFtext);
 		}
 			
-		XMLHashMap = readServiceSummaryXML(xmlpath);
-		
-		System.out.println("XML Contents ");    
-        
-		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
-         while(XMLkeySetIterator.hasNext()) {
-			
-			String keyXML = XMLkeySetIterator.next();
-			
-			//System.out.println(XMLHashMap.get(keyXML));
-			xmlSSrows = XMLHashMap.get(keyXML);
-			
-		
-		if (  PDFtext.indexOf(xmlSSrows)!=-1? true: false){
-			
-			System.out.println(xmlSSrows +" It's a Match!!!");
-			 q = true;
-			 ServiceSummaryLineItemsRemarks = "\n"+ xmlSSrows +" It's a Match!!!";
-			
-		}
-		else{
-			System.out.println( xmlSSrows +" Mismatch due to Discrepancies in Service Summary Line items");
-				 q = false;	
-				 ServiceSummaryLineItemsRemarks = "\n"+xmlSSrows +" Mismatch due to Discrepancies in Service Summary Line items";
-		}
-		
-		
-         }
+		   Compare(readSSGroupsXML(xmlpath));
+		   Compare(readSSSubscriptionsXML(xmlpath));
 		
          //reader.close();
 		
@@ -105,74 +79,73 @@ public static boolean ServiceSummaryPDF(String filename,String xmlpath) throws E
 	}
 	
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readServiceSummaryXML(String xmlfilepath) throws Exception {
+public static LinkedHashMap<String,String> readSSGroupsXML(String xmlfilepath) throws Exception {
+    
+    LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
+    
+    //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
+    File xmlinputFile = new File(xmlfilepath);
+    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+    
+    Document doc1 = dBuilder.parse(xmlinputFile);
+    doc1.getDocumentElement().normalize();
+    XPath xpath = XPathFactory.newInstance().newXPath();
+    
+     XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
+    
+    NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+    for (int i = 0; i < PerProdRows.getLength(); i++) {
+                   
+        Element PerProductDetails = (Element)PerProdRows.item(i);
         
-        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
+        String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
+        String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();         
+        ServiceSummaryGroupRowsMap.put("ServiceGroup"+i,"SERVICE GROUP: "+ServiceGroup+"\n"+Product);
         
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\116111_118014_1590512_20200930.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
-        XPath xpath = XPathFactory.newInstance().newXPath();
-        
-         XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
-        
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
-        for (int i = 0; i < PerProdRows.getLength(); i++) {
-                       
-            Element PerProductDetails = (Element)PerProdRows.item(i);
-            
-            try {
-            String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
-            String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();
-            String Usage = PerProductDetails.getElementsByTagName("Usage").item(0).getFirstChild().getTextContent();
-            String Total = PerProductDetails.getElementsByTagName("Total").item(0).getFirstChild().getTextContent();
-           
-            
-            ServiceSummaryTableRowsMap.put("ColumnNames","Description Total");
-            ServiceSummaryTableRowsMap.put("SG"+i+" ",ServiceGroup );
-            ServiceSummaryTableRowsMap.put("Product"+i+" ",Product );
-            ServiceSummaryTableRowsMap.put("Airtime"+i+" ","Airtime "+Usage );
-            ServiceSummaryTableRowsMap.put("Total"+i+" ","Total "+Total );
-           
-            
-        }catch(Exception e){
-        }
+    }       
+         return ServiceSummaryGroupRowsMap;               
 
-        }
-        
-        XPathExpression exprSSProdTotal = xpath.compile("//ServiceSummary/Subtotal");
-        NodeList PerProdTotalRows = (NodeList)exprSSProdTotal.evaluate(doc1, XPathConstants.NODESET);
-        for (int i1 = 0; i1 < PerProdTotalRows.getLength(); i1++)  {
-        	Element PerProductTotal = (Element)PerProdTotalRows.item(i1);
-        	String ProductGroup = PerProductTotal.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
-        	String ProductGroupTotalSum = PerProductTotal.getElementsByTagName("ProductGroupTotalSum").item(0).getFirstChild().getTextContent(); 
-        	
-        	ServiceSummaryTableRowsMap.put(ProductGroup+" "+i1+" ","Total for Service Group "+ProductGroupTotalSum );
-       	
-        }
-        
-            
-        
-        
-            
+}
 
-        return ServiceSummaryTableRowsMap;               
-  
-		    
+public static LinkedHashMap<String,String> readSSSubscriptionsXML(String xmlfilepath) throws Exception {
+    
+    LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
+    
+    //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
+    File xmlinputFile = new File(xmlfilepath);
+    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+    
+    Document doc1 = dBuilder.parse(xmlinputFile);
+    doc1.getDocumentElement().normalize();
+    XPath xpath = XPathFactory.newInstance().newXPath();
+    
+     XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
+    
+    NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+    for (int i = 0; i < PerProdRows.getLength(); i++) {
+                   
+        Element PerProductDetails = (Element)PerProdRows.item(i);
+        try {
         
-       	}
-	
-	
+        String Subscription = PerProductDetails.getElementsByTagName("Subscription").item(0).getFirstChild().getTextContent();
+        
+        
+        String  ServiceSummaryTableRow = ("Fee - Subscriptions "+Subscription);
+        ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
+        }catch(Exception e){}
+    }       
+         return ServiceSummaryTableRowsMap;               
+
+}
+
 	
 	
 	public static String getServiceSummary(PdfReader reader) throws Exception {
 		
 		String PDFtext;
-		Rectangle serviceSummary = new Rectangle(0, 600, 600, 478);
+		Rectangle serviceSummary = new Rectangle(0, 600, 600, 100);
 			
         RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
         TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
@@ -180,7 +153,36 @@ public static boolean ServiceSummaryPDF(String filename,String xmlpath) throws E
         return PDFtext;
 	}
 	
+	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
+        System.out.println("XML Contents ");    
+        
+		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
+         while(XMLkeySetIterator.hasNext()) {
+			
+			String keyXML = XMLkeySetIterator.next();
+			
+			xmlrows = XMLHashMap.get(keyXML);
+			//System.out.println(xmlSSrows);
+		
+		if (  PDFtext.indexOf(xmlrows)!=-1? true: false){
+			
+			System.out.println(xmlrows +" It's a Match!!!");
+			 q = true;
+			 //ServiceSummaryLineItemsRemarks = "\n"+ xmlSSrows +" It's a Match!!!";
+			
+		}
+		else{
+			System.out.println( xmlrows +" Mismatch due to Discrepancies in Service Summary Line items");
+				 q = false;	
+				 ServiceSummaryLineItemsRemarks = "\n"+xmlrows +" Mismatch due to Discrepancies in Service Summary Line items";
+		}
+		
+		
+         } 
+			
 	
+	
+	}
 	
 	
 }
