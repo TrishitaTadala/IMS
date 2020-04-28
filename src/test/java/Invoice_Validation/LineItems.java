@@ -66,17 +66,18 @@ public class LineItems {
 		}
 		
 		System.out.println("********************XML Values*************************\n");
-		   //Compare(readSSGroupsXML(/*xmlpath*/));
+		   Compare(readSSGroupsXML(/*xmlpath*/));
 		   Compare(readSSActivationXML(/*xmlpath*/));
-		  // Compare(readSSSubscriptionsXML(/*xmlpath*/));
-		   ///Compare(readSSCancellationXML(/*xmlpath*/));
-		   //Compare(readSSEarlyTerminationXML(/*xmlpath*/));
-		   //Compare(readSSUsageXML(/*xmlpath*/));
-		   //Compare(readSSOtherXML(/*xmlpath*/)); //Further Modification Required
-		   //Compare(readSStotalXML(/*xmlpath*/));
-		   //Compare(readSSSubtotalXML(/*xmlpath*/));
-		   //Compare(readSSAllTotalXML(/*xmlpath*/));
-		   //Compare(readSSGrandTotalXML(/*xmlpath*/));
+		   Compare(readSSSubscriptionsXML(/*xmlpath*/));
+		   Compare(readSSCancellationXML(/*xmlpath*/));
+		   Compare(readSSEarlyTerminationXML(/*xmlpath*/));
+		   Compare(readSSUsageXML(/*xmlpath*/));
+		   Compare(readSSOtherXML(/*xmlpath*/)); //Further Modification Required
+		   Compare(readSStotalXML(/*xmlpath*/));
+		   Compare(readSSSubtotalXML(/*xmlpath*/));
+		   Compare(readSSAllTotalXML(/*xmlpath*/));
+		   Compare(readSSGrandTotalXML(/*xmlpath*/));
+		   
        	}
 
 	/****************************************************************************/
@@ -84,7 +85,7 @@ public class LineItems {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
         
-        String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\116111_118014_1590512_20200930.xml";
+        String xmlfilepath = "C:\\\\Users\\\\Trishita.Tadala\\\\Desktop\\\\IMS\\\\XMLs\\\\10001327_954226_1590428_20200430.xml";
         File xmlinputFile = new File(xmlfilepath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -469,15 +470,16 @@ public class LineItems {
 	public static String getServiceSummary(PdfReader reader) throws Exception {
 		
 		String PDFtext = "";
-		Rectangle serviceSummary = new Rectangle(0, 600, 600, 100);
+		Rectangle serviceSummary = new Rectangle(0, 800, 600, 10);
 			
         RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
         TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
         
        
-       // for (int i = 2; i <= reader.getNumberOfPages()-1; i++) {
+       //for (int i = 3; i <= (reader.getNumberOfPages()-3); i++) {
         	
-        	 PDFtext += (PdfTextExtractor.getTextFromPage(reader, 2, strategy));
+        	// PDFtext += (PdfTextExtractor.getTextFromPage(reader, i, strategy));
+        PDFtext += (PdfTextExtractor.getTextFromPage(reader, reader.getNumberOfPages(), strategy));
         
         //}
         return PDFtext;

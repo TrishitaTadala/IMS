@@ -44,6 +44,7 @@ public class Servicesummary {
 	public static String  xmlSSrows;
 	public static boolean q;
 	public static String SSRemarks;
+	public static String xmlpath;
 	 
 	public static boolean servicesummary(String filename, String xmlpath) throws Exception {
 		LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
@@ -104,8 +105,7 @@ public class Servicesummary {
             try {
                 
                 String Activation = PerProductDetails.getElementsByTagName("Activation").item(0).getFirstChild().getTextContent();
-                //String Total = PerProductDetails.getElementsByTagName("Total").item(0).getFirstChild().getTextContent();
-               
+                              
                 String  ServiceSummaryTableRow = ("Fee - Activations "+Activation);
                 ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
                 
@@ -485,6 +485,7 @@ public class Servicesummary {
 	
 	
 	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
+
         //System.out.println("XML Contents ");    
         
 		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
@@ -513,6 +514,7 @@ public class Servicesummary {
 			
 		
 	}
+	
 }
 	
 	
