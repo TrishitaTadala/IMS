@@ -1,14 +1,14 @@
 //All the variables should be declared
 //======================================================
 //Class      : WCust
-//Description: The Parent class that invokes all the child classes
-//             from other packages
+//Description: The WholesaleCustomer Invoice Validation 
+//             with exception to Front Page and Last Pagefrom other packages
 //======================================================
 //Changes----------------------------------------------
 //Date         Test Analyst        Change
 //23/04/20     Trishita Tadala     Written
 //24/04/20     Trishita Tadala     FeeSummary Section
-//XX/04/20     Trishita Tadala     AirtimeSummary Section
+//04/05/20     Trishita Tadala     AirtimeSummary Section
 //======================================================
 
 package Invoice_Validation;
@@ -58,11 +58,13 @@ public class WCust {
 		 LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 
-		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_5450013_118047_202004.pdf";
-	    //"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_5450013_118047_202004.pdf";
+		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_5448299_117921_202004.pdf";
+			   //INVOICE_5450013_118047_202004.pdf"
+	           //INVOICE_5450013_118047_202004.pdf";
 			
-		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\QA_129171_118047_5450013_20200430.xml";
-		//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\QA_129171_118047_5450013_20200430.xml";
+		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\QA_129171_117921_5448299_20200430.xml";
+			    //QA_129171_118047_5450013_20200430.xml"
+		        //QA_129171_118047_5450013_20200430.xml";
 		
 		PdfReader reader = new PdfReader(pdfpath); 
 		
@@ -78,16 +80,16 @@ public class WCust {
 			//System.out.println(PDFtext);
 		}
 		
-		/*********FeeSummaryValidation*************
-		Compare(readFSGroupChargeXML(xmlpath));//ChargeType & Service Group - Fee Summary
+		//*********FeeSummaryValidation*************
+		Compare(readFSGroupChargeXML(xmlpath));//Service Group - Fee Summary
 		Compare(readFeeSummaryLinesXML(xmlpath)); //Fees Summary Lines
 		Compare(readFSSubtotalXML(xmlpath));//Fees Summary Sub Total Lines
 		Compare(readFSProductGroupXML(xmlpath));//Fees Summary Product Group Lines
 		Compare(readFSChargeTotalXML(xmlpath));//Fees Summary Charge Totals
 		Compare(readFStotalXML(xmlpath));//Total Fees Summary 
-		*******/
+		//*******/
 		//*********Compare(readAirtimeSummaryLinesXML(xmlpath));*************
-		Compare(readAirtimeSummaryLinesXML(xmlpath));
+		Compare(readAirtimeSummaryLinesXML(xmlpath));// Airtime Summary LineItems
 	}
 	
 	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
@@ -106,7 +108,7 @@ public class WCust {
 		
 		if (PDFtext.indexOf(xmlrows)!=-1? true: false){
 			
-			System.out.println(xmlrows +" It's a Match!!!");
+			//System.out.println(xmlrows +" It's a Match!!!");
 			 q = true;
 					
 		    }
@@ -141,7 +143,7 @@ public class WCust {
                 //System.out.println(PDFtext);
         return PDFtext;
 	}
-/********************************FEE SUMMARY WHOLESALECUSTOMER*******************************************/
+/********************************FEE SUMMARY WHOLESALE CUSTOMER*******************************************/
 	public static LinkedHashMap<String,String> readFSGroupChargeXML(String xmlfilepath) throws Exception {
 		      
 		      LinkedHashMap<String, String> FeeSummaryTableGCRowsMap= new LinkedHashMap<>();
@@ -165,10 +167,10 @@ public class WCust {
 		          
 		          try {
 		              
-		              String ChargeType = GroupProductDetails.getElementsByTagName("TypeOfCharge").item(0).getFirstChild().getTextContent();
+		              //String ChargeType = GroupProductDetails.getElementsByTagName("TypeOfCharge").item(0).getFirstChild().getTextContent();
 		              String Prodgroup = GroupProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
 		              
-		              String  FeeSummaryTableRow = (ChargeType+"\n"+"SERVICE GROUP: "+Prodgroup);
+		              String  FeeSummaryTableRow = ("SERVICE GROUP: "+Prodgroup);
 		              FeeSummaryTableGCRowsMap.put("Set"+i,FeeSummaryTableRow);
 		              
 		          }  catch(Exception e){}  
@@ -335,11 +337,12 @@ public class WCust {
 
   	}	   
 
-/********************************AIRTIME SUMMARY WHOLESALECUSTOMER*******************************************/
+/********************************AIRTIME SUMMARY WHOLESALE CUSTOMER*******************************************/
+    // Line Items having new Line values in the columns are identified as mismatch
   public static LinkedHashMap<String,String> readAirtimeSummaryLinesXML(String xmlfilepath) throws Exception{
         
         LinkedHashMap<String, String> AirtimeSummaryTableRowsMap= new LinkedHashMap<>();
-              
+       
         File inputFile = new File(xmlfilepath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -355,20 +358,24 @@ public class WCust {
                        
             Element PerTransaction = (Element)PerChargeRows.item(i);
             
-            
+            try {
             String TrafficType = PerTransaction.getElementsByTagName("TrafficType").item(0).getFirstChild().getTextContent();
             String IPGroup = PerTransaction.getElementsByTagName("IPGroup").item(0).getFirstChild().getTextContent();
-            String BitRate = PerTransaction.getElementsByTagName("BitRate").item(0).getFirstChild().getTextContent();
+            String[] BitRate = PerTransaction.getElementsByTagName("BitRate").item(0).getFirstChild().getTextContent().split(" ");
             String CallDestination = PerTransaction.getElementsByTagName("CallDestination").item(0).getFirstChild().getTextContent();
             String CallDir = PerTransaction.getElementsByTagName("CallDir").item(0).getFirstChild().getTextContent();
             String Allow = PerTransaction.getElementsByTagName("Allow").item(0).getFirstChild().getTextContent();
+            String Events = PerTransaction.getElementsByTagName("Events").item(0).getFirstChild().getTextContent();
             String Units = PerTransaction.getElementsByTagName("Units").item(0).getFirstChild().getTextContent();
             String UoM = PerTransaction.getElementsByTagName("UoM").item(0).getFirstChild().getTextContent();
             String TotalCharge = PerTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
             
-            String  AirtimeSummaryTableRow = " "+TrafficType+" "+IPGroup+" "+BitRate+" "+CallDestination
-            		+" "+CallDir+" "+Allow+" "+Units+" "+UoM+" "+TotalCharge;
+            String  AirtimeSummaryTableRow = " "+TrafficType+" "+IPGroup+" "+BitRate[0]+" "+CallDestination
+            		+" "+CallDir+" "+Allow+" "+Events+" "+Units+" "+UoM+" "+TotalCharge;
             AirtimeSummaryTableRowsMap.put("Line"+i+" ",AirtimeSummaryTableRow );
+            }catch(Exception e){
+				
+			}
         }
             
         return AirtimeSummaryTableRowsMap;
