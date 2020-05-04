@@ -45,13 +45,15 @@ public class Servicesummary {
 	public static boolean q;
 	public static String SSRemarks;
 	public static String xmlpath;
-	 
-	public static boolean servicesummary(String filename, String xmlpath) throws Exception {
+	//public static void main(String[] args) throws Exception {	 
+	public static void servicesummary(String filename, String xmlpath) throws Exception {
 		LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
 		 LinkedHashMap<String,String>XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 PDFHashMap.clear();
-		
+			
 		//String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1590428_954226_202004.pdf";
+		//String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
+
 		PdfReader reader = new PdfReader(filename);  
 		
 		PDFHashMap.put("ServiceSummaryPDF"+"\n", getServiceSummary(reader));
@@ -63,11 +65,12 @@ public class Servicesummary {
 			String key = PDFkeySetIterator.next();
 			//System.out.println(key + PDFHashMap.get(key));
 			PDFtext = (key+PDFHashMap.get(key)).replaceAll(",", "");
-			System.out.println(PDFtext);
+			//System.out.println(PDFtext);
 		}
 		
-		System.out.println("********************XML Values*************************\n");
-		   Compare(readSSGroupsXML(xmlpath));
+		System.out.println("********************XML SERVICE SUMMARY Values*************************\n");
+		   Compare(readSSGroupXML(xmlpath));
+		   Compare(readSSProductXML(xmlpath));
 		   Compare(readSSActivationXML(xmlpath));
 		   Compare(readSSSubscriptionsXML(xmlpath));
 		   Compare(readSSCancellationXML(xmlpath));
@@ -78,8 +81,9 @@ public class Servicesummary {
 		   Compare(readSSSubtotalXML(xmlpath));
 		   Compare(readSSAllTotalXML(xmlpath));
 		   Compare(readSSGrandTotalXML(xmlpath));
-		   return q;
+		   //return q;
        	}
+	
 
 	/****************************************************************************/
 	public static LinkedHashMap<String,String> readSSActivationXML(String xmlfilepath) throws Exception {
@@ -435,7 +439,37 @@ public class Servicesummary {
 	}
 
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readSSGroupsXML(String xmlfilepath) throws Exception {
+	public static LinkedHashMap<String,String> readSSProductXML(String xmlfilepath) throws Exception {
+        
+        LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
+        
+        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
+        File xmlinputFile = new File(xmlfilepath);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        
+        Document doc1 = dBuilder.parse(xmlinputFile);
+        doc1.getDocumentElement().normalize();
+        XPath xpath = XPathFactory.newInstance().newXPath();
+        
+         XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
+        
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        for (int i = 0; i < PerProdRows.getLength(); i++) {
+                       
+            Element PerProductDetails = (Element)PerProdRows.item(i);
+            
+            //String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
+            String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();         
+            ServiceSummaryGroupRowsMap.put("ProductOnly"+i,Product);
+            
+        }       
+             return ServiceSummaryGroupRowsMap;               
+  
+	}
+		
+	/****************************************************************************/
+	public static LinkedHashMap<String,String> readSSGroupXML(String xmlfilepath) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
         
@@ -456,15 +490,13 @@ public class Servicesummary {
             Element PerProductDetails = (Element)PerProdRows.item(i);
             
             String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
-            String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();         
-            ServiceSummaryGroupRowsMap.put("ServiceGroup"+i,"SERVICE GROUP: "+ServiceGroup+"\n"+Product);
+            //String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();         
+            ServiceSummaryGroupRowsMap.put("ServiceGroupOnly"+i,ServiceGroup);
             
         }       
              return ServiceSummaryGroupRowsMap;               
   
-	}
-		
-	
+	}	
 	
 	public static String getServiceSummary(PdfReader reader) throws Exception {
 		
@@ -506,7 +538,7 @@ public class Servicesummary {
 		else{
 			System.out.println( xmlSSrows +" Mismatch in the Line Indicated");
 				 q = false;	
-				 SSRemarks = "\n"+xmlSSrows +" Mismatch in the Line Indicated";
+				 SSRemarks += "\n"+xmlSSrows +" Mismatch in the Line Indicated";
 		}
 		
 		

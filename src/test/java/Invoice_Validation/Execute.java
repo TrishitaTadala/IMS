@@ -84,6 +84,8 @@ public static void main(String[] args) throws Exception{
     /***********************************************************************************************************/   
     
 	for(int k =0;k<ReadExcelFile.i;k++){
+		String XMLpath = ReadExcelFile.XMLFILENAME[k];
+		String PDFpath = ReadExcelFile.PDFFILENAME[k];
 		
 		if (inmarsatXML.BillRunType_XML[k].equals("Standard Bill Run")) {
 		String remarks = ""; // Remarks set to Blank
@@ -406,16 +408,9 @@ public static void main(String[] args) throws Exception{
 		
 		}catch(Exception e2) {}*/
 
-		String XMLpath = ReadExcelFile.XMLFILENAME[k];
-		String PDFpath = ReadExcelFile.PDFFILENAME[k];
-		//(PDFpath, XMLpath);
-/****************************************************SERVICE SUMMARY ***************************************************************/		
-		boolean ss = Servicesummary.servicesummary(PDFpath, XMLpath);
-				
-		
-		remarks+= Servicesummary.SSRemarks;
 
-			
+		//(PDFpath, XMLpath);
+
 /****************************************************FEE SUMMARY LINE ITEMS***************************************************************/
 
 		if (inmarsatXML.CustomerInvoicePreference_XML[k].equals("SUMMARY")) {
@@ -423,9 +418,9 @@ public static void main(String[] args) throws Exception{
 			System.out.println("This is a Wholesale Customer");
 		    
 			
-			p = WholesaleCustomer.FeesummaryPDF(PDFpath, XMLpath);
+			//p = WholesaleCustomer.FeesummaryPDF(PDFpath, XMLpath);
 			
-			remarks+= WholesaleCustomer.FeeSummaryLineItemsRemarks;
+			//remarks+= WholesaleCustomer.FeeSummaryLineItemsRemarks;
 		
 		}
 		else {
@@ -437,7 +432,7 @@ public static void main(String[] args) throws Exception{
 		
 		if (Footer1.isFound[k] == true) {
 			
-			System.out.println("PASSED - No Footer Discrepancies");
+			System.out.println("****************PASSED - No Footer Discrepancies*********************");
 			
 			u = true;
 			
@@ -445,13 +440,13 @@ public static void main(String[] args) throws Exception{
 		else {
 			u = false;
 			remarks+= " XML Footer Contents "+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents " + Footer1.FooterExtract_PDF[k];
-			System.out.println("FAILED - There are Footer Discrepancies");
+			System.out.println("*******FAILED - There are Footer Discrepancies********");
 			System.out.println( "XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + Footer1.FooterExtract_PDF[k]);
 		}
 		
 		}catch(Exception e2) {}
 		
-		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t&&s&&r&&p&&ss){
+		if (a&&b&&c&&d&&e&&f&&g&&i&&h&&j&&x&&z&&y&&l&&u&&t&&s&&r&&p){
 			 cell = sheet.getRow(k+1).getCell(2);
 			   cell.setCellValue("PASS");
 			   
@@ -469,6 +464,15 @@ public static void main(String[] args) throws Exception{
 		FileOutputStream outFile =new FileOutputStream(new File(System.getProperty("user.dir")+"\\InmarsatPDFExcel.xlsx"));
 	      workbook.write(outFile);
 	      outFile.close();
+	      
+	   /****************************************************SERVICE SUMMARY ***************************************************************/		
+		    //Servicesummary.servicesummary(PDFpath, XMLpath);
+		//	remarks+= Servicesummary.SSRemarks;
+	/****************************************************LAST PAGE ***************************************************************/		
+			//LastPage.lastpage(PDFpath, XMLpath);	
+			//remarks+= LastPage.LPRemarks;
+	      
+	      
 		}
 		
 		/* Credit Note Validation*/
