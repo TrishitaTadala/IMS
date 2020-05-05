@@ -80,23 +80,25 @@ public class WCust {
 			//System.out.println(PDFtext);
 		}
 		
-		//*********FeeSummaryValidation*************
+		/*********FeeSummaryValidation*************
 		Compare(readFSGroupChargeXML(xmlpath));//Service Group - Fee Summary
 		Compare(readFeeSummaryLinesXML(xmlpath)); //Fees Summary Lines
 		Compare(readFSSubtotalXML(xmlpath));//Fees Summary Sub Total Lines
 		Compare(readFSProductGroupXML(xmlpath));//Fees Summary Product Group Lines
 		Compare(readFSChargeTotalXML(xmlpath));//Fees Summary Charge Totals
 		Compare(readFStotalXML(xmlpath));//Total Fees Summary 
-		//*******/
-		//*********Compare(readAirtimeSummaryLinesXML(xmlpath));*************
+		*******/
+		//*********Compare(readAStotalXML(xmlpath));*************
+		Compare(readASGroupChargeXML(xmlpath));//Service Group - Airtime Summary
 		Compare(readAirtimeSummaryLinesXML(xmlpath));// Airtime Summary LineItems
+		Compare(readAStotalXML(xmlpath));
 	}
 	
 	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
         
 		PDFtext = PDFtext.replaceAll(",", "");
 		
-		System.out.println("XML Contents ");    
+		System.out.println("*****************XML Contents******************");    
         
 		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
          while(XMLkeySetIterator.hasNext()) {
@@ -108,7 +110,7 @@ public class WCust {
 		
 		if (PDFtext.indexOf(xmlrows)!=-1? true: false){
 			
-			//System.out.println(xmlrows +" It's a Match!!!");
+			System.out.println(xmlrows +" It's a Match!!!");
 			 q = true;
 					
 		    }
@@ -158,9 +160,9 @@ public class WCust {
 		      XPath xpath = XPathFactory.newInstance().newXPath();
 
 		      
-		       XPathExpression exprfsGC = xpath.compile("//Fees/TotalforAllRatePlans/Subtotal");
+		       XPathExpression exprsGC = xpath.compile("//Fees/TotalforAllRatePlans/Subtotal");
 		      
-		      NodeList GroupChargeRows = (NodeList)exprfsGC.evaluate(doc1, XPathConstants.NODESET);
+		      NodeList GroupChargeRows = (NodeList)exprsGC.evaluate(doc1, XPathConstants.NODESET);
 		      for (int i = 0; i < GroupChargeRows.getLength(); i++) {
 		                     
 		          Element GroupProductDetails = (Element)GroupChargeRows.item(i);
@@ -338,6 +340,41 @@ public class WCust {
   	}	   
 
 /********************************AIRTIME SUMMARY WHOLESALE CUSTOMER*******************************************/
+	public static LinkedHashMap<String,String> readASGroupChargeXML(String xmlfilepath) throws Exception {
+	      
+	      LinkedHashMap<String, String> AirtimeSummaryTableGCRowsMap= new LinkedHashMap<>();
+	      
+	      
+	      File xmlinputFile = new File(xmlfilepath);
+	      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	      
+	      Document doc1 = dBuilder.parse(xmlinputFile);
+	      doc1.getDocumentElement().normalize();
+	      XPath xpath = XPathFactory.newInstance().newXPath();
+
+	      
+	       XPathExpression exprasGC = xpath.compile("//Airtime/ChargeDetails");
+	      
+	      NodeList GroupChargeRows = (NodeList)exprasGC.evaluate(doc1, XPathConstants.NODESET);
+	      for (int i = 0; i < GroupChargeRows.getLength(); i++) {
+	                     
+	          Element GroupProductDetails = (Element)GroupChargeRows.item(i);
+	          
+	          try {
+	              
+	              //String ChargeType = GroupProductDetails.getElementsByTagName("TypeOfCharge").item(0).getFirstChild().getTextContent();
+	              String Prodgroup = GroupProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
+	              
+	              String  AirtimeSummaryTableRow = ("SERVICE GROUP: "+Prodgroup);
+	              AirtimeSummaryTableGCRowsMap.put("Set"+i,AirtimeSummaryTableRow);
+	              
+	          }  catch(Exception e){}  
+	          
+	      }       
+	           return AirtimeSummaryTableGCRowsMap;               
+
+		}
     // Line Items having new Line values in the columns are identified as mismatch
   public static LinkedHashMap<String,String> readAirtimeSummaryLinesXML(String xmlfilepath) throws Exception{
         
@@ -381,5 +418,25 @@ public class WCust {
         return AirtimeSummaryTableRowsMap;
             
 	}
+  public static LinkedHashMap<String,String> readAStotalXML(String xmlfilepath) throws Exception {
+      
+      LinkedHashMap<String, String> AirtimeSummaryTableTotal= new LinkedHashMap<>();
+      
+      
+      File xmlinputFile = new File(xmlfilepath);
+      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+      
+      Document doc1 = dBuilder.parse(xmlinputFile);
+      doc1.getDocumentElement().normalize();
+     
+              
+              String SummaryTotal = doc1.getElementsByTagName("AirtimeOverAllTotal").item(0).getTextContent();
+              
+              String  FeeSummaryTableRow = ("Total Airtime Summary "+SummaryTotal);
+              AirtimeSummaryTableTotal.put("TASTotal",FeeSummaryTableRow);
+    
+              return AirtimeSummaryTableTotal;               
 
+	}
 }
