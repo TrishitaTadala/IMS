@@ -54,8 +54,8 @@ public class ReadExcelFile {
        public static void readExcelFile() throws Exception{ 
     	   
     	   //Input Stream reads the data from the file
-    			FileInputStream inputStream = new FileInputStream("C:\\Users\\Trishita.Tadala\\git\\IMS_GIT\\InmarsatPDFExcel.xlsx");
-    			//FileInputStream inputStream = new FileInputStream(new File(System.getProperty("C:\\Users\\Praveen Kumar Voora\\eclipse-workspace\\INMARSAT BTP Regression\\BTP_Regression\\src\\test\\java\\Invocie_Validation\\InmarsatPDFExcel.xlsx")));  
+    			FileInputStream inputStream = new FileInputStream("C:\\Users\\Trishita.Tadala\\Desktop\\IMS_WorkSpace\\InmarsatPDFExcel.xlsx");
+    			
     			int m=0;
     		      Workbook workbook = new XSSFWorkbook(inputStream);
     		      Sheet firstSheet = workbook.getSheetAt(0);
@@ -92,13 +92,7 @@ public class ReadExcelFile {
     		        	  }catch(Exception E){}
     		          }
     		      }
-    		     // for (int k=0;k<i;k++){
-    		    	  //System.out.println(XMLFILENAME[k]); 
-    		    	 // System.out.println(PDFFILENAME[k]);
-    		    //  }
-
-
-    		      
+  		      
     		      workbook.close();
     		      inputStream.close();
     		}

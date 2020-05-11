@@ -27,6 +27,8 @@ import java.util.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import com.itextpdf.text.pdf.PdfReader;
+
 
 public class Execute {
 
@@ -475,7 +477,7 @@ public static void main(String[] args) throws Exception{
 	      
 		}
 		
-		/* Credit Note Validation*/
+		/* Immediate Bill Run Invoices Front Page Validation*/
 		else {
 			
 			System.out.println("**************************************");
@@ -485,7 +487,35 @@ public static void main(String[] args) throws Exception{
 			System.out.println("Front Page of the "+ inmarsatXML.DisplayText_XML[k] + " ID : "+ inmarsatXML.ADJNmber_XML[k]);
 			System.out.println("**************************************");
 			
+			PdfReader reader = new PdfReader(PDFpath); 
+			CNT.getCNTtext(reader);
+			//CNT.Compare(CNT.readCNTFrontPageXML(XMLpath, "SLEName"));
+
+			/***********************************BILL TO ADDRESS*****************************************************************/		
 			
+			String billstr1 = inmarsatXML.BillToFrontPage_XML[k].replaceAll("\n", " ");
+	        String billstr2 = BillTo.billTo_PDF[k];
+	        
+	        Set<String> set1 = new TreeSet<String>(Arrays.asList(billstr1.split(" ")));
+	        Set<String> set2 = new TreeSet<String>(Arrays.asList(billstr2.split(" ")));
+	        
+			if(inmarsatXML.BillToFrontPage_XML[k]==null ||inmarsatXML.BillToFrontPage_XML[k]==""||set1.equals(set2)){
+			      
+			      
+			//System.out.println("Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]);
+			//System.out.println("Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
+				System.out.println("No Discrepancies for Bill To Address Info");
+			l = true;
+					 
+					     
+			}
+			else 
+			{
+				System.out.println("Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]);
+				System.out.println("Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);	
+				l = false;
+				remarks+= (" Bill To Address - XML value:"+inmarsatXML.BillToFrontPage_XML[k]+ "Bill To Address - PDF value:"+BillTo.billTo_PDF[k]);
+			}
 			
 				
 				if(inmarsatXML.ADJNmber_XML[k]==null ||inmarsatXML.ADJNmber_XML[k]==""||inmarsatXML.ADJNmber_XML[k].equalsIgnoreCase(InvoiceNumber.invoiceNumber_PDF[k])){
