@@ -29,6 +29,7 @@ public class CNT {
 	
 
 	public static String PDFtext;
+	public static String textPDF;
 	public static String  xmlrows;
 	public static boolean q;
 	public static String CntRemarks;
@@ -44,6 +45,15 @@ public class CNT {
 			
 		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001503_1038204_1590891_20200507.xml";
 				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10000601_114251_1588607_20200220.xml";
+		System.out.println("*****************CreditNote Billing Address_XML - FrontPage******************"); 
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"CustName"));	            
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"Line1"));
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"Line2"));
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"Suburb"));
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"City"));
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"State"));
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"Country"));
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"PostCode"));
 		
 		System.out.println("*****************CreditNote Invoice Details_XML - FrontPage******************"); 
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"SLEName"));
@@ -52,10 +62,12 @@ public class CNT {
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"SoldToRef"));
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"InvoiceDate"));
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"Currency"));
+			        
+			        
 	
 			/*********SecondPageValidation Compare(readCDtotalXML(xmlpath));*************/
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"SLEName"));
-			      	    	/*****Rework on Bill To**********/
+			      	    	
 			      	
 			System.out.println("*****************CreditNote Invoice Details_XML - Page2******************"); 
 			        Compare(getCNTtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"Number"));  
@@ -70,9 +82,11 @@ public class CNT {
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"Description"));
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"ChargeType"));
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"CDtotal"));
+		    //System.out.println("*****************LastPage_Static Text******************");
+		            //Compare(getCNTtextPDF(pdfpath,"Last"),readLastPageStaticText());       
 		}
 		
-  public static String getCNTtextPDF(String pdfpath, String Page) throws Exception{
+    public static String getCNTtextPDF(String pdfpath, String Page) throws Exception{
 	
 	  LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
 	  
@@ -85,10 +99,10 @@ public class CNT {
 	     break;
 	     
 	   case "Last":
-		   //PDFHashMap.put("middlepages", getCNTtext(reader));
+		   PDFHashMap.put("LastPage", getCNTfrontpage(reader));
 		     break;
 		     
-		 default:
+	   default:
 			 PDFHashMap.put("middlepages", getCNTtext(reader));
 			 break;
 	   }
@@ -99,11 +113,11 @@ public class CNT {
 		
 		String key = PDFkeySetIterator.next();
 		
-		PDFtext += PDFHashMap.get(key);
+		textPDF += PDFHashMap.get(key);
 		//System.out.println(PDFtext);
 		
 		}
-	return PDFtext;
+	return textPDF;
 	
 	
   }
@@ -148,8 +162,89 @@ public class CNT {
 	    PDFtext = PDFtext.replace(",","");
 	            //System.out.println(PDFtext);
 	    return PDFtext;
+	   
 	}
 
+	 public static LinkedHashMap<String,String> readBillAddressXML(String xmlfilepath,String VarType) throws Exception {
+	        
+	        LinkedHashMap<String, String> CNTFrontPageMap= new LinkedHashMap<>();
+	        
+	        
+	        File xmlinputFile = new File(xmlfilepath);
+	        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	        
+	        Document doc1 = dBuilder.parse(xmlinputFile);
+	        doc1.getDocumentElement().normalize();
+	        XPath xpath = XPathFactory.newInstance().newXPath();
+	         XPathExpression exprCNTAdd = xpath.compile("//Bill_To_Party/AddressDetails");
+	        
+	           NodeList PerCNTTransRows = (NodeList)exprCNTAdd.evaluate(doc1, XPathConstants.NODESET);
+	           Element PerTransaction = (Element)PerCNTTransRows.item(0);  
+	           
+	           switch (VarType){
+	       	
+	         	case "Line1":
+	         		try {
+	         			CNTFrontPageMap.put("Line1",(PerTransaction.getElementsByTagName("Line1").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	         		}catch(Exception e){}
+	                break;  
+	                
+	         	case "Line2":
+	         		try {
+	         			CNTFrontPageMap.put("Line2",(PerTransaction.getElementsByTagName("Line2").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	         		}catch(Exception e){}
+	                break;
+	         	
+	         	case "Suburb":
+	         		try {
+	         			CNTFrontPageMap.put("Suburb",(PerTransaction.getElementsByTagName("Suburb").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	         		}catch(Exception e){}
+	                break;
+	                
+	         	case "City":
+	         		try {
+	         			CNTFrontPageMap.put("City",(PerTransaction.getElementsByTagName("City").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	         		}catch(Exception e){}
+	                break;
+	                
+	         	case "State":
+	         		try {
+	         			CNTFrontPageMap.put("State",(PerTransaction.getElementsByTagName("State").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	         		}catch(Exception e){}
+	                break;
+	                
+	         	case "Country":
+	         		try {
+	         			CNTFrontPageMap.put("Country",(PerTransaction.getElementsByTagName("Country").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	         		}catch(Exception e){}
+	                break;
+	                
+	         	case "PostCode":
+	         		try {
+	         			CNTFrontPageMap.put("PostCode",(PerTransaction.getElementsByTagName("Postcode").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	         		}catch(Exception e){}
+	                break;
+	                
+	           }
+	                return CNTFrontPageMap;               
+
+	  	}
+	    
+	public static String getCNTlastpage(PdfReader reader) throws Exception {
+		Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
+			
+	    RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
+	    TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);           
+	    
+	    strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
+	        
+	    PDFtext += "\n"+PdfTextExtractor.getTextFromPage(reader,reader.getNumberOfPages() , strategy);
+	        
+	    PDFtext = PDFtext.replace(",","");
+	            //System.out.println(PDFtext);
+	    return PDFtext;
+	}
 	
 	public static String getCNTtext(PdfReader reader) throws Exception {
 	Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
@@ -169,7 +264,6 @@ public class CNT {
     return PDFtext;
 }
 
-	
 	public static LinkedHashMap<String,String> readCNTSLENameXML(String xmlfilepath, String VarType) throws Exception{
 	        
 	        LinkedHashMap<String, String> CNTFrontPageMap= new LinkedHashMap<>();
@@ -184,35 +278,29 @@ public class CNT {
             
          switch (VarType){
     	
-    	case "SLEName":
-	    		String SLEName = doc1.getElementsByTagName("SLEName").item(0).getTextContent();    
-	    		CNTFrontPageMap.put("sleLine",SLEName);
-	    		break;
+    	case "SLEName":  
+	         CNTFrontPageMap.put("sleLine",doc1.getElementsByTagName("SLEName").item(0).getTextContent());
+	         break;
 	    		
-    	case "BillToRef":
+    	case "BillToRef":   
+    		 CNTFrontPageMap.put("BillToRef","Bill to reference "+doc1.getElementsByTagName("BillingProfileID").item(0).getTextContent());
+    		 break;	
     		
-    		String BillToRef = doc1.getElementsByTagName("BillingProfileID").item(0).getTextContent();    
-    		CNTFrontPageMap.put("BillToRef","Bill to reference "+BillToRef);
-    		break;	
+    	case "SoldToRef":  
+    		 CNTFrontPageMap.put("SoldToRef","Sold to reference "+doc1.getElementsByTagName("SAPAccountNumber").item(0).getTextContent());
+    		 break;
     		
-    	case "SoldToRef":
+        case "InvoiceDate":   
+    		 CNTFrontPageMap.put("InvoiceDate","Date "+doc1.getElementsByTagName("InvoiceDate").item(0).getTextContent());
+    		 break;  
     		
-    		String SoldToRef = doc1.getElementsByTagName("SAPAccountNumber").item(0).getTextContent();    
-    		CNTFrontPageMap.put("SoldToRef","Sold to reference "+SoldToRef);
-    		break;
-    		
-         case "InvoiceDate":
-    		
-    		String InvoiceDate = doc1.getElementsByTagName("InvoiceDate").item(0).getTextContent();    
-    		CNTFrontPageMap.put("InvoiceDate","Date "+InvoiceDate);
-    		break;  
-    		
-         case "Currency":
+        case "Currency":   
+     		 CNTFrontPageMap.put("Currency","Currency "+doc1.getElementsByTagName("CustomerInvoiceCurrency").item(0).getTextContent());
+     		 break;
      		
-     		String Currency = doc1.getElementsByTagName("CustomerInvoiceCurrency").item(0).getTextContent();    
-     		CNTFrontPageMap.put("Currency","Currency "+Currency);
-     		break;
-    		
+        case "CustName":
+      		 CNTFrontPageMap.put("CustName",doc1.getElementsByTagName("BillToCustomerName").item(0).getTextContent());
+      		 break;    		
          }       
 	        return CNTFrontPageMap;
 	            
@@ -287,8 +375,7 @@ public class CNT {
         return CNTFrontPageMap;
 
 	}         
-
-    	
+   	
     public static LinkedHashMap<String,String> readCDtotalXML(String xmlfilepath,String VarType) throws Exception {
         
         LinkedHashMap<String, String> CNTSecondPageMap= new LinkedHashMap<>();
@@ -325,5 +412,104 @@ public class CNT {
                 return CNTSecondPageMap;               
 
   	}
+    
+    public static LinkedHashMap<String,String> readLastPageStaticText() throws Exception {
+		
+		LinkedHashMap<String, String> LastPageRowsMap= new LinkedHashMap<>();
+		
+		LastPageRowsMap.put("Support & Inquiries", "Enterprise, Aviation and Government customers:"+"\n" 
+				+"Billing enquiry (except LPI)"+"\n" + 
+				"   globalcustomersupport@inmarsat.com"+"\n" + 
+				"\n" + 
+				"Please contact Global Customer Operations with any query or dispute "+"\n" + 
+				"   +44 (0) 207 728 1020" +"\n" + 
+				"regarding this invoice within seven days of the invoice date.  Please  "+"\n" + 
+				"reference your Bill To number and invoice number in any correspondence. Maritime customers:"+"\n" + 
+				"   support.maritime@inmarsat.com"+"\n" + 
+				"   +47 (0) 70 17 24 00"+"\n" + 
+				"Customers located in North America:"+"\n" + 
+				"Late Payment Interest (LPI) Enquiry"+"\n" + 
+				"    collections-americas@inmarsat.com"+"\n" + 
+				"\n" + 
+				"Please contact the Credit & Collections team with any query or dispute  "+"\n" + 
+				"regarding late payment interest within seven days of the invoice date.  Customers located in Europe, the Middle East, or Africa:"+"\n" + 
+				"Please reference your Bill To number and invoice number in any     collections-EMEA@inmarsat.com"+"\n" + 
+				"correspondence."+"\n" + 
+				" \n" + 
+				"Customer located in Asia or the Pacific:"+"\n" + 
+				"    collections-APAC@inmarsat.com"+"\n" + 
+				"AR.inquiries@inmarsat.com\n" + 
+				"Payment information"+"\n" + 
+				"\n" + 
+				"Please contact the Accounts Receivable team for questions relating to how "+"\n" + 
+				"your payments are received and applied."+"\n" + 
+				"Enterprise, Aviation and Government customers:"+"\n" + 
+				"Technical support information"+"\n" + 
+				"    globalcustomersupport@inmarsat.com"+"\n" + 
+				"\n" + 
+				"Inmarsat is dedicated to delivering to you the best customer support possible    +44 (0) 207 728 1020"+"\n" + 
+				"by going beyond your expectations, no matter where you are or what time of  "+"\n" + 
+				"day it is.  Global Customer Operations operates 24-hours a day, 365-days a Maritime customers:"+"\n" + 
+				"year.    support.maritime@inmarsat.com"+"\n" + 
+				"   +47 (0) 70 17 24 00"+"\n" + 
+				"Enterprise, Aviation and Government customers:"+"\n" + 
+				"Sales support information"+"\n" + 
+				"   globalcustomersupport@inmarsat.com"+"\n" + 
+				"   +44 (0) 207 728 1020"+"\n" + 
+				" "+"\n" + 
+				"Maritime customers:"+"\n" + 
+				"   support.maritime@inmarsat.com"+"\n" + 
+				"   +47 (0) 70 17 24 00");
+
+		
+     	LastPageRowsMap.put("Glossary -","Glossary");
+				
+		LastPageRowsMap.put("Glossary - CF1","Call Forwarded. For example where a SIM has been configured so that an incoming call is");
+		LastPageRowsMap.put("Glossary - CF2","forwarded to another number, eg a corporate office.");
+				
+		LastPageRowsMap.put("Glossary - ICCID1","Integrated Circuit Card Identifier. Unique identifier, stored within and printed on a SIM");
+		LastPageRowsMap.put("Glossary - ICCID2","(Subscriber Identity Module) card.");
+		
+		LastPageRowsMap.put("Glossary - IMN1","Inmarsat Mobile Number.  The diallable number for a subscriber using an Inmarsat I-3");
+		LastPageRowsMap.put("Glossary - IMN2","terminal.");
+		
+		LastPageRowsMap.put("Glossary - IMSI1","International Mobile Subscriber Identity. A unique number, usually 15 digits, identifying a");
+		LastPageRowsMap.put("Glossary - IMSI2","subscriber in a mobile telecommunication network.");
+		
+		LastPageRowsMap.put("Glossary - ISN1","Inmarsat Serial Number.  The hardware ID on an Inmarsat I-3 terminal.  A single terminal");
+		LastPageRowsMap.put("Glossary - ISN2","may have several related IMNs.");
+		
+		LastPageRowsMap.put("Glossary - MB1","Megabyte.   Measurement unit for airtime.   Refer to the relevant commercial documentation");
+		LastPageRowsMap.put("Glossary - MB2"," for further details");
+		
+		LastPageRowsMap.put("Glossary - MO","Mobile Originated. Call is initiated on a user terminal. Also referred to as 'From Mobile' traffic.");
+					
+		LastPageRowsMap.put("Glossary - MSISDN1","Mobile Station International Subscriber Directory Number. A number used to route calls to");
+		LastPageRowsMap.put("Glossary - MSISDN2","and from a terminal in a mobile telecommunications network.");
+				
+		LastPageRowsMap.put("Glossary - MT","Mobile Terminated. Call is received by a user terminal. Also referred to as 'To Mobile' traffic.");
+				
+		LastPageRowsMap.put("Glossary -SCAP1","Shared Corporate Allowance Plan. A type of rate plan which allows many users to utilise a");
+		LastPageRowsMap.put("Glossary -SCAP2","single allowance.");
+		
+		LastPageRowsMap.put("Glossary - sqt1","Super Quiet Time. A commercial offer which provides advantageous rates for qualifying");
+		LastPageRowsMap.put("Glossary - sqt2","traffic. May have time-based restrictions.");
+		
+		LastPageRowsMap.put("Glossary -UoM1","Unit of Measure. Used to quantify the volume or amount of services or goods provided.");
+		LastPageRowsMap.put("Glossary -UoM2"," Eg Minute, Megabyte. Usually abbreviated.");
+		
+		
+		LastPageRowsMap.put("Glossary -utc1","Universal Coordinated Time. Equivalent to Greenwich Mean Time for most purposes. All");
+		LastPageRowsMap.put("Glossary -utc2","dates and times in this invoice/credit note are in UTC, unless otherwise stated.");
+		
+	
+		LastPageRowsMap.put("Glossary -last","Please be aware that for some airtime, a call setup charge, in additional to a volume based charge, may be applicable."
+				+"\n"+"Please refer to the relevant pricing documentation for further information.");
+		
+		
+		
+		return LastPageRowsMap;
+	
+	}
 }
   
