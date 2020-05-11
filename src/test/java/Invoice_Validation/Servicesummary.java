@@ -45,15 +45,19 @@ public class Servicesummary {
 	public static boolean q;
 	public static String SSRemarks;
 	public static String xmlpath;
-	//public static void main(String[] args) throws Exception {	 
-	public static void servicesummary(String filename, String xmlpath) throws Exception {
+	
+	public static void main(String[] args) throws Exception {	 
+	//public static void servicesummary(String filename, String xmlpath) throws Exception {
 		LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
 		 LinkedHashMap<String,String>XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 PDFHashMap.clear();
 			
 		//String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1590428_954226_202004.pdf";
 		//String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-
+		 String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_5448299_117921_202004.pdf";
+			
+		String xmlpath ="C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\QA_129171_117921_5448299_20200430.xml";
+		
 		PdfReader reader = new PdfReader(filename);  
 		
 		PDFHashMap.put("ServiceSummaryPDF"+"\n", getServiceSummary(reader));
@@ -371,8 +375,7 @@ public class Servicesummary {
       public static LinkedHashMap<String,String> readSSAllTotalXML(String xmlfilepath) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
+
         File xmlinputFile = new File(xmlfilepath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -444,6 +447,7 @@ public class Servicesummary {
         LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
         
         //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
+        
         File xmlinputFile = new File(xmlfilepath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -474,6 +478,7 @@ public class Servicesummary {
         LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
         
         //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
+       
         File xmlinputFile = new File(xmlfilepath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -507,11 +512,11 @@ public class Servicesummary {
         TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
         
        
-       // for (int i = 2; i <= reader.getNumberOfPages()-1; i++) {
+       for (int i = 2; i <= reader.getNumberOfPages()-1; i++) {
         	
-        	 PDFtext += (PdfTextExtractor.getTextFromPage(reader, 2, strategy));
+        	 PDFtext += (PdfTextExtractor.getTextFromPage(reader, i, strategy));
         
-        //}
+        }
         return PDFtext;
 	}
 	

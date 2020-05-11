@@ -77,19 +77,19 @@ public class WCust {
 			String key = PDFkeySetIterator.next();
 			//System.out.println(key + PDFHashMap.get(key));
 			PDFtext = PDFHashMap.get(key);
+			
 			//System.out.println(PDFtext);
 		}
 		
-		/*********FeeSummaryValidation*************
-		Compare(readFSGroupChargeXML(xmlpath));//Service Group - Fee Summary
-		Compare(readFeeSummaryLinesXML(xmlpath)); //Fees Summary Lines
-		Compare(readFSSubtotalXML(xmlpath));//Fees Summary Sub Total Lines
-		Compare(readFSProductGroupXML(xmlpath));//Fees Summary Product Group Lines
-		Compare(readFSChargeTotalXML(xmlpath));//Fees Summary Charge Totals
-		Compare(readFStotalXML(xmlpath));//Total Fees Summary 
-		*******/
-		//*********Compare(readAStotalXML(xmlpath));*************
-		Compare(readASGroupChargeXML(xmlpath));//Service Group - Airtime Summary
+		/*********FeeSummaryValidation*************/
+
+		//*********Compare(readASTrafficTypeXML(xmlpath));*************
+		
+		//Compare(readASGroupChargeXML(xmlpath));//Service Group - Airtime Summary
+		Compare(readASTrafficTypeXML(xmlpath,0));
+		Compare(readASTrafficTypeXML(xmlpath,1));
+		Compare(readASTrafficTypeXML(xmlpath,2));
+		Compare(readASTrafficTypeXML(xmlpath,3));
 		Compare(readAirtimeSummaryLinesXML(xmlpath));// Airtime Summary LineItems
 		Compare(readAStotalXML(xmlpath));
 	}
@@ -376,6 +376,37 @@ public class WCust {
 
 		}
     // Line Items having new Line values in the columns are identified as mismatch
+     public static LinkedHashMap<String,String> readASTrafficTypeXML(String xmlfilepath,int j) throws Exception{
+        
+        LinkedHashMap<String, String> ASTableRowsMap= new LinkedHashMap<>();
+       
+        File inputFile = new File(xmlfilepath);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        
+        Document doc1 = dBuilder.parse(inputFile);
+        doc1.getDocumentElement().normalize();
+        XPath xpath = XPathFactory.newInstance().newXPath();
+
+        XPathExpression exprAirtime = xpath.compile("//Airtime/ChargeDetails/ChargePerTransaction");
+        
+        NodeList PerChargeRows = (NodeList)exprAirtime.evaluate(doc1, XPathConstants.NODESET);
+        for (int i = 0; i < PerChargeRows.getLength(); i++) {
+                       
+            Element PerTransaction = (Element)PerChargeRows.item(i);
+            
+            try {
+            String[] TrafficType = PerTransaction.getElementsByTagName("TrafficType").item(0).getFirstChild().getTextContent().replace(","," ").split(" ");
+      
+            ASTableRowsMap.put("Line"+i+" ",TrafficType[j]);
+            }catch(Exception e){
+				
+			}
+        }
+            
+        return ASTableRowsMap;
+            
+	}
   public static LinkedHashMap<String,String> readAirtimeSummaryLinesXML(String xmlfilepath) throws Exception{
         
         LinkedHashMap<String, String> AirtimeSummaryTableRowsMap= new LinkedHashMap<>();
@@ -396,7 +427,7 @@ public class WCust {
             Element PerTransaction = (Element)PerChargeRows.item(i);
             
             try {
-            String TrafficType = PerTransaction.getElementsByTagName("TrafficType").item(0).getFirstChild().getTextContent();
+            //String TrafficType = PerTransaction.getElementsByTagName("TrafficType").item(0).getFirstChild().getTextContent();
             String IPGroup = PerTransaction.getElementsByTagName("IPGroup").item(0).getFirstChild().getTextContent();
             String[] BitRate = PerTransaction.getElementsByTagName("BitRate").item(0).getFirstChild().getTextContent().split(" ");
             String CallDestination = PerTransaction.getElementsByTagName("CallDestination").item(0).getFirstChild().getTextContent();
@@ -406,8 +437,8 @@ public class WCust {
             String Units = PerTransaction.getElementsByTagName("Units").item(0).getFirstChild().getTextContent();
             String UoM = PerTransaction.getElementsByTagName("UoM").item(0).getFirstChild().getTextContent();
             String TotalCharge = PerTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
-            
-            String  AirtimeSummaryTableRow = " "+TrafficType+" "+IPGroup+" "+BitRate[0]+" "+CallDestination
+            //" "+TrafficType+
+            String  AirtimeSummaryTableRow = " "+IPGroup+" "+BitRate[0]+" "+CallDestination
             		+" "+CallDir+" "+Allow+" "+Events+" "+Units+" "+UoM+" "+TotalCharge;
             AirtimeSummaryTableRowsMap.put("Line"+i+" ",AirtimeSummaryTableRow );
             }catch(Exception e){

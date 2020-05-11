@@ -8,7 +8,7 @@
 // Date         Test Analyst        Change
 // 28/04/20     Trishita Tadala     Written
 // 28/04/20     Trishita Tadala     Glossary Section
-// XX/XX/20     Trishita Tadala     
+// 08/05/20     Trishita Tadala     Support & Inquiries
 //======================================================
 
 
@@ -32,12 +32,12 @@ public class LastPage {
 	public static boolean q;
 	public static String LPRemarks;
 	public static String xmlSSrows;
-	//public static void main(String[] args) throws Exception {
-	public static void lastpage(String filename, String xmlpath) throws Exception {
+	public static void main(String[] args) throws Exception {
+	//public static void lastpage(String filename, String xmlpath) throws Exception {
 		LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
 		 LinkedHashMap<String,String>XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 PDFHashMap.clear();
-		// String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1590428_954226_202004.pdf";
+		 String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1590428_954226_202004.pdf";
 		 PdfReader reader = new PdfReader(filename);
 		 PDFHashMap.put("Support & Enquiries"+"\n",getLastpage(reader));
 		 Iterator<String> PDFkeySetIterator = PDFHashMap.keySet().iterator();

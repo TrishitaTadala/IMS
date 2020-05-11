@@ -36,6 +36,7 @@ public class Footer1  {
 	public static String FooterExtract;
 	public static String[] FooterExtract_PDF = new String[10000];
     public static boolean[] isFound = new boolean[10000];
+    //public static void main(String[] args) throws Exception {
 	public static void footer1() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException 
 	{
 		for(int k =0;k<ReadExcelFile.i;k++){	
@@ -49,7 +50,7 @@ public class Footer1  {
 			    FooterExtract_PDF[k] = FooterExtract;
 	//	    Ternary Operator
 			    isFound[k] = (FooterExtract_PDF[k].indexOf(inmarsatXML.Footer_XML[k])) !=-1? true: false; //true
-			 //System.out.println( "XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + FooterExtract_PDF[k]);
+			 System.out.println( "XML Footer Contents"+inmarsatXML.Footer_XML[k]+ "\n"+ " PDF Footer Contents" + FooterExtract_PDF[k]);
              }catch(Exception e){
 				
 			}
