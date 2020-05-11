@@ -36,47 +36,81 @@ public class CNT {
 	
 	public static void main(String[] args) throws Exception {
 
-		 LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
+		
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 
-		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504192_114251_202002.pdf";
+		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504942_1038204_202005.pdf";
+				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504192_114251_202002.pdf";
 			
-		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10000601_114251_1588607_20200220.xml";
-
-		PdfReader reader = new PdfReader(pdfpath); 
-        
-		PDFHashMap.put("middlepages", getCNTtext(reader));
+		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001503_1038204_1590891_20200507.xml";
+				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10000601_114251_1588607_20200220.xml";
 		
-		
-		Iterator<String> PDFkeySetIterator = PDFHashMap.keySet().iterator();
-		
-		while(PDFkeySetIterator.hasNext()) {
-			
-			String key = PDFkeySetIterator.next();
-			
-			PDFtext += PDFHashMap.get(key);
-			System.out.println(PDFtext);
-			
-			}	
+		System.out.println("*****************CreditNote Invoice Details_XML - FrontPage******************"); 
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"SLEName"));
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readCDtotalXML(xmlpath,"Number")); 
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"BillToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"SoldToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"InvoiceDate"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"Currency"));
+	
 			/*********SecondPageValidation Compare(readCDtotalXML(xmlpath));*************/
-			      	Compare(readCNTSLENameXML(xmlpath));
-			      	/*****Rework on Bill To**********/
-			 System.out.println("*****************CreditsDebits_XML******************");
-			      	Compare(readCNTLinesXML(xmlpath,"Credits/Debits"));
-			      	Compare(readCNTLinesXML(xmlpath,"InvoiceID"));
-			      	Compare(readCNTLinesXML(xmlpath,"Title"));
-			      	Compare(readCNTLinesXML(xmlpath,"Description"));
-			      	Compare(readCNTLinesXML(xmlpath,"ChargeType"));
-			      	Compare(readCDtotalXML(xmlpath));
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"SLEName"));
+			      	    	/*****Rework on Bill To**********/
+			      	
+			System.out.println("*****************CreditNote Invoice Details_XML - Page2******************"); 
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"Number"));  
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"BillToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"SoldToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"InvoiceDate"));
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"Currency"));
+			System.out.println("*****************Credits/Debits Section_XML******************");
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"Credits/Debits"));
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"InvoiceID"));
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"Title"));
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"Description"));
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"ChargeType"));
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"CDtotal"));
 		}
 		
-
+  public static String getCNTtextPDF(String pdfpath, String Page) throws Exception{
 	
-
-	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
-        
+	  LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
+	  
+	   PdfReader reader = new PdfReader(pdfpath); 
+	   
+	   switch (Page){
+    
+	   case "Front":
+	      PDFHashMap.put("FrontPage", getCNTfrontpage(reader));
+	     break;
+	     
+	   case "Last":
+		   //PDFHashMap.put("middlepages", getCNTtext(reader));
+		     break;
+		     
+		 default:
+			 PDFHashMap.put("middlepages", getCNTtext(reader));
+			 break;
+	   }
+	
+	Iterator<String> PDFkeySetIterator = PDFHashMap.keySet().iterator();
+	
+	while(PDFkeySetIterator.hasNext()) {
 		
-        
+		String key = PDFkeySetIterator.next();
+		
+		PDFtext += PDFHashMap.get(key);
+		//System.out.println(PDFtext);
+		
+		}
+	return PDFtext;
+	
+	
+  }
+	
+	
+	public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap){
+              
 		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
          while(XMLkeySetIterator.hasNext()) {
 			
@@ -97,10 +131,25 @@ public class CNT {
 				 CntRemarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 		     }
 		
-		
-         } 
+		 } 
 			
 	}
+
+	public static String getCNTfrontpage(PdfReader reader) throws Exception {
+		Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
+			
+	    RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
+	    TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);           
+	    
+	    strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
+	        
+	    PDFtext += "\n"+PdfTextExtractor.getTextFromPage(reader, 1, strategy);
+	        
+	    PDFtext = PDFtext.replace(",","");
+	            //System.out.println(PDFtext);
+	    return PDFtext;
+	}
+
 	
 	public static String getCNTtext(PdfReader reader) throws Exception {
 	Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
@@ -108,7 +157,7 @@ public class CNT {
     RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
     TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
             
-   for (int i = 1; i <= (reader.getNumberOfPages() -1); i++) {
+   for (int i = 2; i <= (reader.getNumberOfPages() -1); i++) {
     
         strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
         
@@ -121,7 +170,7 @@ public class CNT {
 }
 
 	
-	public static LinkedHashMap<String,String> readCNTSLENameXML(String xmlfilepath) throws Exception{
+	public static LinkedHashMap<String,String> readCNTSLENameXML(String xmlfilepath, String VarType) throws Exception{
 	        
 	        LinkedHashMap<String, String> CNTFrontPageMap= new LinkedHashMap<>();
 	          
@@ -132,11 +181,39 @@ public class CNT {
 	        Document doc1 = dBuilder.parse(inputFile);
 	        doc1.getDocumentElement().normalize();
      
-	    	
-	    		System.out.println("*****************SLEName_XML******************");
+            
+         switch (VarType){
+    	
+    	case "SLEName":
 	    		String SLEName = doc1.getElementsByTagName("SLEName").item(0).getTextContent();    
 	    		CNTFrontPageMap.put("sleLine",SLEName);
-	   	           
+	    		break;
+	    		
+    	case "BillToRef":
+    		
+    		String BillToRef = doc1.getElementsByTagName("BillingProfileID").item(0).getTextContent();    
+    		CNTFrontPageMap.put("BillToRef","Bill to reference "+BillToRef);
+    		break;	
+    		
+    	case "SoldToRef":
+    		
+    		String SoldToRef = doc1.getElementsByTagName("SAPAccountNumber").item(0).getTextContent();    
+    		CNTFrontPageMap.put("SoldToRef","Sold to reference "+SoldToRef);
+    		break;
+    		
+         case "InvoiceDate":
+    		
+    		String InvoiceDate = doc1.getElementsByTagName("InvoiceDate").item(0).getTextContent();    
+    		CNTFrontPageMap.put("InvoiceDate","Date "+InvoiceDate);
+    		break;  
+    		
+         case "Currency":
+     		
+     		String Currency = doc1.getElementsByTagName("CustomerInvoiceCurrency").item(0).getTextContent();    
+     		CNTFrontPageMap.put("Currency","Currency "+Currency);
+     		break;
+    		
+         }       
 	        return CNTFrontPageMap;
 	            
 		}
@@ -161,7 +238,9 @@ public class CNT {
         NodeList PerCNTTransRows = (NodeList)exprCNT.evaluate(doc1, XPathConstants.NODESET);
         for (int i = 0; i < PerCNTTransRows.getLength(); i++) {
                        
-            Element PerCNTTransaction = (Element)PerCNTTransRows.item(i);       
+            Element PerCNTTransaction = (Element)PerCNTTransRows.item(i);   
+            
+            
             
          switch (VarType){
     	
@@ -177,9 +256,14 @@ public class CNT {
     	    break;
     	
     	case "InvoiceID":
+    		try {
     		String InvoiceID = PerCNTTransaction.getElementsByTagName("InvoiceId").item(0).getFirstChild().getTextContent();  
+    		if (InvoiceID != null) {
     		CNTFrontPageMap.put("Line"+i+" ","Related Invoice ID: "+ InvoiceID);
+    		}
     		break;
+    		
+         }catch(Exception e){}  
     	
     	case "Title":
     		String Title = PerCNTTransaction.getElementsByTagName("Title").item(0).getFirstChild().getTextContent();  
@@ -198,12 +282,14 @@ public class CNT {
     		break;
     	}   
         
-        }     
+        }  
+        
         return CNTFrontPageMap;
-            
-	}
+
+	}         
+
     	
-    public static LinkedHashMap<String,String> readCDtotalXML(String xmlfilepath) throws Exception {
+    public static LinkedHashMap<String,String> readCDtotalXML(String xmlfilepath,String VarType) throws Exception {
         
         LinkedHashMap<String, String> CNTSecondPageMap= new LinkedHashMap<>();
         
@@ -218,20 +304,26 @@ public class CNT {
          XPathExpression exprCNT = xpath.compile("//CreditNote");
         
            NodeList PerCNTTransRows = (NodeList)exprCNT.evaluate(doc1, XPathConstants.NODESET);
-           Element PerTransaction = (Element)PerCNTTransRows.item(0);   
+           Element PerTransaction = (Element)PerCNTTransRows.item(0);  
+           
+           switch (VarType){
+       	
+         	case "CDtotal":
                 
             String SummaryTotal = PerTransaction.getElementsByTagName("TotalAmount").item(0).getFirstChild().getTextContent();
                 
-                String  CDSummaryTableRow = ("Total Credits / Debits "+SummaryTotal);
-                CNTSecondPageMap.put("CDTotal",CDSummaryTableRow);
-      
+               
+                CNTSecondPageMap.put("CDTotal",("Total Credits / Debits "+SummaryTotal));
+                break;  
+         	case "Number":
+                
+                String CNTNumber = PerTransaction.getElementsByTagName("ADJNumber").item(0).getFirstChild().getTextContent();
+                    
+                CNTSecondPageMap.put("Number",("Number "+CNTNumber));
+                    break;  
+           }
                 return CNTSecondPageMap;               
 
   	}
-            
-	
-	
-	
-
 }
-
+  
