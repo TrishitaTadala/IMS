@@ -32,19 +32,19 @@ public class CNT {
 	public static String textPDF;
 	public static String  xmlrows;
 	public static boolean q;
-	public static String CntRemarks ="";
+	public static String CntRemarks ;
 
 	
-	//public static void main(String[] args) throws Exception {
-		public static String CreditNote(String pdfpath,String xmlpath) throws Exception {
-		
+	public static void main(String[] args) throws Exception {
+    //public static String CreditNote(String pdfpath,String xmlpath) throws Exception {
+			CntRemarks ="";
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 
 
-		//String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504942_1038204_202005.pdf";
+		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504942_1038204_202005.pdf";
 				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504192_114251_202002.pdf";
 			
-		//String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001503_1038204_1590891_20200507.xml";
+		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001503_1038204_1590891_20200507.xml";
 				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10000601_114251_1588607_20200220.xml";
 		
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"SLEName"));
@@ -97,7 +97,7 @@ public class CNT {
 		    //System.out.println("*****************LastPage_Static Text******************");
 		            //Compare(getCNTtextPDF(pdfpath,"Last"),readLastPageStaticText());  
 			      	
-			      	return CntRemarks;
+			      	//return CntRemarks;
 		}
 		
     public static String getCNTtextPDF(String pdfpath, String Page) throws Exception{
@@ -135,8 +135,7 @@ public class CNT {
 	
 	
   }
-	
-	
+		
 	public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap){
 		
 		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
@@ -179,7 +178,7 @@ public class CNT {
 	   
 	}
 
-	 public static LinkedHashMap<String,String> readBillAddressXML(String xmlfilepath,String VarType) throws Exception {
+	public static LinkedHashMap<String,String> readBillAddressXML(String xmlfilepath,String VarType) throws Exception {
 	        
 	        LinkedHashMap<String, String> CNTFrontPageMap= new LinkedHashMap<>();
 	        
@@ -322,25 +321,33 @@ public class CNT {
      		 
         case "AccountNo":
      		try {
-     			CNTFrontPageMap.put("AccountNo",(doc1.getElementsByTagName("ARAccountNumber").item(0).getTextContent())+".");
+     			String AccNo = (doc1.getElementsByTagName("ARAccountNumber").item(0).getTextContent());
+     			if (AccNo!= null ||AccNo!= ""||AccNo!= " " ) {
+     			CNTFrontPageMap.put("AccountNo","Account Number "+AccNo+".");
+     		}
      		}catch(Exception e){}
             break; 
             
         case "BillingProfile":
      		try {
-     			CNTFrontPageMap.put("AccountNo","Billing Profile : "+doc1.getElementsByTagName("BillingProfileId").item(0).getTextContent()+".");
+     			CNTFrontPageMap.put("BillingProfile","Billing Profile : "+doc1.getElementsByTagName("BillingProfileId").item(0).getTextContent()+".");
      		}catch(Exception e){}
             break; 
             
         case "DpID":
      		try {
-     			CNTFrontPageMap.put("DP ID: ","DP ID: "+(doc1.getElementsByTagName("DPId").item(0).getTextContent())+".");
+     			CNTFrontPageMap.put("DpId","DP ID: "+(doc1.getElementsByTagName("DPId").item(0).getTextContent())+".");
      		}catch(Exception e){}
             break;
             
         case "ShipAccountID":
      		try {
-     			CNTFrontPageMap.put("Ship Account ID: ","Ship Acct ID: "+(doc1.getElementsByTagName("GWShipAccntId").item(0).getTextContent())+".");
+     			String shipacc = doc1.getElementsByTagName("GWShipAccntId").item(0).getTextContent();
+     			
+     			if (shipacc!= null||shipacc!= ""||shipacc!= " ") {
+     			CNTFrontPageMap.put("ShipAccId","Ship Acct ID: "+shipacc+".");
+     			}
+     			
      		}catch(Exception e){}
             break;
             
@@ -352,13 +359,20 @@ public class CNT {
             
         case "MIPS":
      		try {
-     			CNTFrontPageMap.put("MIPS","MIPS Master Acc ID: "+doc1.getElementsByTagName("MIPSMasterAccountId").item(0).getTextContent()+".");
+     			String mips = doc1.getElementsByTagName("MIPSMasterAccountId").item(0).getTextContent();    		
+     			if (mips!= null||mips!= ""||mips!= " ") {
+     			CNTFrontPageMap.put("MIPS","MIPS Master Acc ID: "+mips+".");
+     			}
      		}catch(Exception e){}
             break;
             
         case "DueDate":
      		try {
-     			CNTFrontPageMap.put("PDD","Payment due date "+doc1.getElementsByTagName("PaymentDueDate").item(0).getTextContent());
+     			String DueDate = doc1.getElementsByTagName("PaymentDueDate").item(0).getTextContent();
+     			
+     			if (DueDate!= null) {
+     			CNTFrontPageMap.put("PDD","Payment due date "+DueDate);
+     			}
      		}catch(Exception e){}
             break;
       		 
@@ -426,8 +440,10 @@ public class CNT {
     		break;	
     		
     	case "ChargeType":
+    		try {
     		String ChargeType = PerCNTTransaction.getElementsByTagName("ChargeType").item(0).getFirstChild().getTextContent();  
     		CNTFrontPageMap.put("Line"+i+" ","Charge Type: "+ ChargeType);
+         }catch(Exception e){}
     		break;
     	}   
         
@@ -474,103 +490,6 @@ public class CNT {
 
   	}
     
-    public static LinkedHashMap<String,String> readLastPageStaticText() throws Exception {
-		
-		LinkedHashMap<String, String> LastPageRowsMap= new LinkedHashMap<>();
-		
-		LastPageRowsMap.put("Support & Inquiries", "Enterprise, Aviation and Government customers:"+"\n" 
-				+"Billing enquiry (except LPI)"+"\n" + 
-				"   globalcustomersupport@inmarsat.com"+"\n" + 
-				"\n" + 
-				"Please contact Global Customer Operations with any query or dispute "+"\n" + 
-				"   +44 (0) 207 728 1020" +"\n" + 
-				"regarding this invoice within seven days of the invoice date.  Please  "+"\n" + 
-				"reference your Bill To number and invoice number in any correspondence. Maritime customers:"+"\n" + 
-				"   support.maritime@inmarsat.com"+"\n" + 
-				"   +47 (0) 70 17 24 00"+"\n" + 
-				"Customers located in North America:"+"\n" + 
-				"Late Payment Interest (LPI) Enquiry"+"\n" + 
-				"    collections-americas@inmarsat.com"+"\n" + 
-				"\n" + 
-				"Please contact the Credit & Collections team with any query or dispute  "+"\n" + 
-				"regarding late payment interest within seven days of the invoice date.  Customers located in Europe, the Middle East, or Africa:"+"\n" + 
-				"Please reference your Bill To number and invoice number in any     collections-EMEA@inmarsat.com"+"\n" + 
-				"correspondence."+"\n" + 
-				" \n" + 
-				"Customer located in Asia or the Pacific:"+"\n" + 
-				"    collections-APAC@inmarsat.com"+"\n" + 
-				"AR.inquiries@inmarsat.com\n" + 
-				"Payment information"+"\n" + 
-				"\n" + 
-				"Please contact the Accounts Receivable team for questions relating to how "+"\n" + 
-				"your payments are received and applied."+"\n" + 
-				"Enterprise, Aviation and Government customers:"+"\n" + 
-				"Technical support information"+"\n" + 
-				"    globalcustomersupport@inmarsat.com"+"\n" + 
-				"\n" + 
-				"Inmarsat is dedicated to delivering to you the best customer support possible    +44 (0) 207 728 1020"+"\n" + 
-				"by going beyond your expectations, no matter where you are or what time of  "+"\n" + 
-				"day it is.  Global Customer Operations operates 24-hours a day, 365-days a Maritime customers:"+"\n" + 
-				"year.    support.maritime@inmarsat.com"+"\n" + 
-				"   +47 (0) 70 17 24 00"+"\n" + 
-				"Enterprise, Aviation and Government customers:"+"\n" + 
-				"Sales support information"+"\n" + 
-				"   globalcustomersupport@inmarsat.com"+"\n" + 
-				"   +44 (0) 207 728 1020"+"\n" + 
-				" "+"\n" + 
-				"Maritime customers:"+"\n" + 
-				"   support.maritime@inmarsat.com"+"\n" + 
-				"   +47 (0) 70 17 24 00");
-
-		
-     	LastPageRowsMap.put("Glossary -","Glossary");
-				
-		LastPageRowsMap.put("Glossary - CF1","Call Forwarded. For example where a SIM has been configured so that an incoming call is");
-		LastPageRowsMap.put("Glossary - CF2","forwarded to another number, eg a corporate office.");
-				
-		LastPageRowsMap.put("Glossary - ICCID1","Integrated Circuit Card Identifier. Unique identifier, stored within and printed on a SIM");
-		LastPageRowsMap.put("Glossary - ICCID2","(Subscriber Identity Module) card.");
-		
-		LastPageRowsMap.put("Glossary - IMN1","Inmarsat Mobile Number.  The diallable number for a subscriber using an Inmarsat I-3");
-		LastPageRowsMap.put("Glossary - IMN2","terminal.");
-		
-		LastPageRowsMap.put("Glossary - IMSI1","International Mobile Subscriber Identity. A unique number, usually 15 digits, identifying a");
-		LastPageRowsMap.put("Glossary - IMSI2","subscriber in a mobile telecommunication network.");
-		
-		LastPageRowsMap.put("Glossary - ISN1","Inmarsat Serial Number.  The hardware ID on an Inmarsat I-3 terminal.  A single terminal");
-		LastPageRowsMap.put("Glossary - ISN2","may have several related IMNs.");
-		
-		LastPageRowsMap.put("Glossary - MB1","Megabyte.   Measurement unit for airtime.   Refer to the relevant commercial documentation");
-		LastPageRowsMap.put("Glossary - MB2"," for further details");
-		
-		LastPageRowsMap.put("Glossary - MO","Mobile Originated. Call is initiated on a user terminal. Also referred to as 'From Mobile' traffic.");
-					
-		LastPageRowsMap.put("Glossary - MSISDN1","Mobile Station International Subscriber Directory Number. A number used to route calls to");
-		LastPageRowsMap.put("Glossary - MSISDN2","and from a terminal in a mobile telecommunications network.");
-				
-		LastPageRowsMap.put("Glossary - MT","Mobile Terminated. Call is received by a user terminal. Also referred to as 'To Mobile' traffic.");
-				
-		LastPageRowsMap.put("Glossary -SCAP1","Shared Corporate Allowance Plan. A type of rate plan which allows many users to utilise a");
-		LastPageRowsMap.put("Glossary -SCAP2","single allowance.");
-		
-		LastPageRowsMap.put("Glossary - sqt1","Super Quiet Time. A commercial offer which provides advantageous rates for qualifying");
-		LastPageRowsMap.put("Glossary - sqt2","traffic. May have time-based restrictions.");
-		
-		LastPageRowsMap.put("Glossary -UoM1","Unit of Measure. Used to quantify the volume or amount of services or goods provided.");
-		LastPageRowsMap.put("Glossary -UoM2"," Eg Minute, Megabyte. Usually abbreviated.");
-		
-		
-		LastPageRowsMap.put("Glossary -utc1","Universal Coordinated Time. Equivalent to Greenwich Mean Time for most purposes. All");
-		LastPageRowsMap.put("Glossary -utc2","dates and times in this invoice/credit note are in UTC, unless otherwise stated.");
-		
-	
-		LastPageRowsMap.put("Glossary -last","Please be aware that for some airtime, a call setup charge, in additional to a volume based charge, may be applicable."
-				+"\n"+"Please refer to the relevant pricing documentation for further information.");
-		
-		
-		
-		return LastPageRowsMap;
-	
-	}
+   
 }
   

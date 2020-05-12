@@ -486,7 +486,7 @@ public static void main(String[] args) throws Exception{
 			System.out.println("**************************************");
 			System.out.println("Front Page of the "+ inmarsatXML.DisplayText_XML[k] + " ID : "+ inmarsatXML.ADJNmber_XML[k]);
 			System.out.println("**************************************");
-			CNT.CreditNote(PDFpath, XMLpath);
+			//CNT.CreditNote(PDFpath, XMLpath);
 			//System.out.println(CNT.CntRemarks);
 			
 					if (CNT.CntRemarks ==null){
