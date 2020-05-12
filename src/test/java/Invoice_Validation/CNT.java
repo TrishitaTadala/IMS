@@ -32,21 +32,24 @@ public class CNT {
 	public static String textPDF;
 	public static String  xmlrows;
 	public static boolean q;
-	public static String CntRemarks;
+	public static String CntRemarks ="";
 
 	
-	public static void main(String[] args) throws Exception {
-
+	//public static void main(String[] args) throws Exception {
+		public static String CreditNote(String pdfpath,String xmlpath) throws Exception {
 		
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
+		 
 
-		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504942_1038204_202005.pdf";
+		//String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504942_1038204_202005.pdf";
 				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504192_114251_202002.pdf";
 			
-		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001503_1038204_1590891_20200507.xml";
+		//String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001503_1038204_1590891_20200507.xml";
 				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10000601_114251_1588607_20200220.xml";
+		
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"SLEName"));
 		System.out.println("*****************CreditNote Billing Address_XML - FrontPage******************"); 
-		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"CustName"));	            
+		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"CustName"));	            
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"Line1"));
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"Line2"));
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"Suburb"));
@@ -56,25 +59,34 @@ public class CNT {
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readBillAddressXML(xmlpath,"PostCode"));
 		
 		System.out.println("*****************CreditNote Invoice Details_XML - FrontPage******************"); 
-		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"SLEName"));
+		            
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readCDtotalXML(xmlpath,"Number")); 
-			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"BillToRef"));
-			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"SoldToRef"));
-			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"InvoiceDate"));
-			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSLENameXML(xmlpath,"Currency"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"BillToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"SoldToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"InvoiceDate"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"DueDate"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"Currency"));
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"CDSummary"));
 			        
-			        
+	       
+			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"PricingID"));
+        System.out.println("*****************CreditNote Legacy IDs_XML - FrontPage******************");
+                    Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"AccountNo"));
+                    Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"BillingProfile"));
+                    Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"MIPS"));
+                    Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"ShipAccountID"));
+                    Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"DpID"));    
 	
-			/*********SecondPageValidation Compare(readCDtotalXML(xmlpath));*************/
-			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"SLEName"));
+        System.out.println("*****************Page2 onwards CreditNote Validation_XML ******************");
+			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSingleNodeXML(xmlpath,"SLEName"));
 			      	    	
 			      	
 			System.out.println("*****************CreditNote Invoice Details_XML - Page2******************"); 
 			        Compare(getCNTtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"Number"));  
-			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"BillToRef"));
-			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"SoldToRef"));
-			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"InvoiceDate"));
-			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSLENameXML(xmlpath,"Currency"));
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSingleNodeXML(xmlpath,"BillToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSingleNodeXML(xmlpath,"SoldToRef"));
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSingleNodeXML(xmlpath,"InvoiceDate"));
+			        Compare(getCNTtextPDF(pdfpath,"Default"),readCNTSingleNodeXML(xmlpath,"Currency"));
 			System.out.println("*****************Credits/Debits Section_XML******************");
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"Credits/Debits"));
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"InvoiceID"));
@@ -83,7 +95,9 @@ public class CNT {
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCNTLinesXML(xmlpath,"ChargeType"));
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"CDtotal"));
 		    //System.out.println("*****************LastPage_Static Text******************");
-		            //Compare(getCNTtextPDF(pdfpath,"Last"),readLastPageStaticText());       
+		            //Compare(getCNTtextPDF(pdfpath,"Last"),readLastPageStaticText());  
+			      	
+			      	return CntRemarks;
 		}
 		
     public static String getCNTtextPDF(String pdfpath, String Page) throws Exception{
@@ -124,7 +138,7 @@ public class CNT {
 	
 	
 	public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap){
-              
+		
 		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
          while(XMLkeySetIterator.hasNext()) {
 			
@@ -225,8 +239,8 @@ public class CNT {
 	         			CNTFrontPageMap.put("PostCode",(PerTransaction.getElementsByTagName("Postcode").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
 	         		}catch(Exception e){}
 	                break;
-	                
-	           }
+	         	
+	         		           }
 	                return CNTFrontPageMap;               
 
 	  	}
@@ -264,7 +278,7 @@ public class CNT {
     return PDFtext;
 }
 
-	public static LinkedHashMap<String,String> readCNTSLENameXML(String xmlfilepath, String VarType) throws Exception{
+	public static LinkedHashMap<String,String> readCNTSingleNodeXML(String xmlfilepath, String VarType) throws Exception{
 	        
 	        LinkedHashMap<String, String> CNTFrontPageMap= new LinkedHashMap<>();
 	          
@@ -300,8 +314,55 @@ public class CNT {
      		
         case "CustName":
       		 CNTFrontPageMap.put("CustName",doc1.getElementsByTagName("BillToCustomerName").item(0).getTextContent());
-      		 break;    		
-         }       
+      		 break; 
+      		 
+        case "CDSummary":
+     		 CNTFrontPageMap.put("CDSummary","Credits / Debits "+doc1.getElementsByTagName("TotalAmount").item(1).getTextContent());
+     		 break;
+     		 
+        case "AccountNo":
+     		try {
+     			CNTFrontPageMap.put("AccountNo",(doc1.getElementsByTagName("ARAccountNumber").item(0).getTextContent())+".");
+     		}catch(Exception e){}
+            break; 
+            
+        case "BillingProfile":
+     		try {
+     			CNTFrontPageMap.put("AccountNo","Billing Profile : "+doc1.getElementsByTagName("BillingProfileId").item(0).getTextContent()+".");
+     		}catch(Exception e){}
+            break; 
+            
+        case "DpID":
+     		try {
+     			CNTFrontPageMap.put("DP ID: ","DP ID: "+(doc1.getElementsByTagName("DPId").item(0).getTextContent())+".");
+     		}catch(Exception e){}
+            break;
+            
+        case "ShipAccountID":
+     		try {
+     			CNTFrontPageMap.put("Ship Account ID: ","Ship Acct ID: "+(doc1.getElementsByTagName("GWShipAccntId").item(0).getTextContent())+".");
+     		}catch(Exception e){}
+            break;
+            
+        case "PricingID":
+     		try {
+     			CNTFrontPageMap.put("Pricing Agreement ID: ","Pricing Agreement ID: "+(doc1.getElementsByTagName("PricingAgreementID").item(0).getTextContent()));
+     		}catch(Exception e){}
+            break;
+            
+        case "MIPS":
+     		try {
+     			CNTFrontPageMap.put("MIPS","MIPS Master Acc ID: "+doc1.getElementsByTagName("MIPSMasterAccountId").item(0).getTextContent()+".");
+     		}catch(Exception e){}
+            break;
+            
+        case "DueDate":
+     		try {
+     			CNTFrontPageMap.put("PDD","Payment due date "+doc1.getElementsByTagName("PaymentDueDate").item(0).getTextContent());
+     		}catch(Exception e){}
+            break;
+      		 
+      	    }       
 	        return CNTFrontPageMap;
 	            
 		}
