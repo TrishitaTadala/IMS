@@ -36,7 +36,8 @@ public class CarrierAirtime {
 
 	
 	public static void main(String[] args) throws Exception {
-    //public static String carrierAirtime(String pdfpath,String xmlpath) throws Exception {
+		
+   // public static String carrierAirtime(String pdfpath,String xmlpath) throws Exception {
 			CARemarks ="";
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 

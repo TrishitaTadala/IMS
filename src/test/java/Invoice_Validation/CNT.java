@@ -36,6 +36,7 @@ public class CNT {
 
 	
 	public static void main(String[] args) throws Exception {
+		//public static void setup() {
     //public static String CreditNote(String pdfpath,String xmlpath) throws Exception {
 			CntRemarks ="";
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
