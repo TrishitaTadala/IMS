@@ -1,181 +1,21 @@
-//All the variables should be declared
-//======================================================
-//Class      : WCust
-//Description: The WholesaleCustomer Invoice Validation 
-//             with exception to Front Page and Last Pagefrom other packages
-//======================================================
-//Changes----------------------------------------------
-//Date         Test Analyst        Change
-//23/04/20     Trishita Tadala     Written
-//24/04/20     Trishita Tadala     FeeSummary Section
-//04/05/20     Trishita Tadala     AirtimeSummary Section
-//======================================================
-
 package Invoice_Validation;
 
-import java.util.LinkedHashMap;
-import java.util.Iterator;
-
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.FilteredTextRenderListener;
-import com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-import com.itextpdf.text.pdf.parser.RegionTextRenderFilter;
-import com.itextpdf.text.pdf.parser.RenderFilter;
-import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
-
-import javax.xml.xpath.XPathConstants;
-
-import javax.xml.xpath.XPathFactory;
-
-
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-
 import java.io.File;
-
+import java.util.LinkedHashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import javax.xml.xpath.XPath;
-
+import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-public class WCust {
+import org.w3c.dom.NodeList;
 
-	public static String PDFtext;
-	public static String  xmlrows;
-	public static boolean q;
-	public static String WCustRemarks;
-	
-	
-	public static void main(String[] args) throws Exception {
-		
+public class getXMLText {
 
-		 LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
-		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
-
-		//String pdfpath ="C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_1590512_118014_202009.pdf";
-		String pdfpath ="C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Wholesale\\INVOICE_5448299_117921_202004.pdf";
-			   //INVOICE_5450013_118047_202004.pdf"
-	           //INVOICE_5450013_118047_202004.pdf";
-			
-		//String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\116111_118014_1590512_20200930.xml";
-		String xmlpath="C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\QA_129171_117921_5448299_20200430.xml";
-			    //QA_129171_118047_5450013_20200430.xml"
-		        //QA_129171_118047_5450013_20200430.xml";
-		
-		PdfReader reader = new PdfReader(pdfpath); 
-		
-		PDFHashMap.put("Front&Last Pages Excluded"+"\n", getPDFtext(reader));
-				
-		Iterator<String> PDFkeySetIterator = PDFHashMap.keySet().iterator();
-		
-		while(PDFkeySetIterator.hasNext()) {
-			
-			String key = PDFkeySetIterator.next();
-			//System.out.println(key + PDFHashMap.get(key));
-			PDFtext = PDFHashMap.get(key);
-			
-			//System.out.println(PDFtext);
-		}
-		
-		
-		Compare(getXMLText.readSingleNodeXML(xmlpath,"SLEName"));
-	    
-	    System.out.println("*****************Billing Address_XML - FrontPage******************");
-	    Compare(getXMLText.readSingleNodeXML(xmlpath,"CustName"));		    
-        Compare(getXMLText.readBillAddressXML(xmlpath,"Line1"));
-        Compare(getXMLText.readBillAddressXML(xmlpath,"Line2"));
-        Compare(getXMLText.readBillAddressXML(xmlpath,"Suburb"));
-        Compare(getXMLText.readBillAddressXML(xmlpath,"City"));
-        Compare(getXMLText.readBillAddressXML(xmlpath,"State"));
-        Compare(getXMLText.readBillAddressXML(xmlpath,"Country"));
-        Compare(getXMLText.readBillAddressXML(xmlpath,"PostCode"));
-        
-        System.out.println("*****************Invoice Details - FrontPage******************");
-        
-        Compare(getXMLText.readSingleNodeXML(xmlpath,"InvoiceNumber"));	
-       
-        Compare(getXMLText.readSingleNodeXML(xmlpath,"BillToRef"));
-        Compare(getXMLText.readSingleNodeXML(xmlpath,"SoldToRef"));
-        Compare(getXMLText.readSingleNodeXML(xmlpath,"InvoiceDate"));
-        Compare(getXMLText.readSingleNodeXML(xmlpath,"DueDate"));
-        Compare(getXMLText.readSingleNodeXML(xmlpath,"Currency"));
-        Compare(getXMLText.readSingleNodeXML(xmlpath,"CDSummary"));
-		
-		/*********FeeSummaryValidation*************/
-        System.out.println( "*************************FEE SUMMARY***********************************");
-		  Compare(readFSGroupChargeXML(xmlpath));//Service Group - Fee Summary
-		  Compare(readFeeSummaryLinesXML(xmlpath)); //Fees Summary Lines
-		  Compare(readFSSubtotalXML(xmlpath));//Fees Summary Sub Total Lines
-		  Compare(readFSProductGroupXML(xmlpath));//Fees Summary Product Group Lines
-		  Compare(readFSChargeTotalXML(xmlpath));//Fees Summary Charge Totals
-		  Compare(readFStotalXML(xmlpath));//Total Fees Summary
-
-		//*********Compare(readASTrafficTypeXML(xmlpath));*************
-		
-		//Compare(readASGroupChargeXML(xmlpath));//Service Group - Airtime Summary
-		  System.out.println( "******************************AIRTIME SUMMARY**************************");
-		Compare(readAirtimeSummaryLinesXML(xmlpath,"TrafficType"));// Airtime Summary LineItems
-		Compare(readAirtimeSummaryLinesXML(xmlpath,"any"));// Airtime Summary LineItems
-		Compare(readAStotalXML(xmlpath));
-	}
-	
-	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
-        
-		PDFtext = PDFtext.replaceAll(",", "");
-		   
-		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
-         while(XMLkeySetIterator.hasNext()) {
-			
-			String keyXML = XMLkeySetIterator.next();
-			
-			xmlrows = XMLHashMap.get(keyXML);
-			//System.out.println(xmlrows);
-		
-		if (PDFtext.indexOf(xmlrows)!=-1? true: false){
-			
-			System.out.println(xmlrows +" It's a Match!!!");
-			 q = true;
-					
-		    }
-		else{
-			System.out.println( xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~");
-				 q = false;	
-			WCustRemarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
-		     }
-		
-		
-         } 
-			
-	}
-
-	public static String getPDFtext(PdfReader reader) throws Exception {
-		//public static String getPDFtext(PdfReader reader) throws Exception {	
-		
-
-		Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
-			
-        RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
-        TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
-                
-       for (int i = 1; i <= (reader.getNumberOfPages() -1); i++) {
-        //for (int i = 3; i <= 5; i++) {
-            strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
-            //System.out.println(PdfTextExtractor.getTextFromPage(reader, i, strategy));
-            PDFtext += PdfTextExtractor.getTextFromPage(reader, i, strategy);
-            
-        }
-        PDFtext = PDFtext.replace(",","");
-                //System.out.println(PDFtext);
-        return PDFtext;
-	}
-	
-	/********************************FRONT PAGE*******************************************/	
 	public static LinkedHashMap<String,String> readSingleNodeXML(String xmlfilepath, String VarType) throws Exception{
         
         LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
@@ -377,7 +217,7 @@ public class WCust {
                 return FrontPageMap;               
 
   	}
-/********************************FEE SUMMARY WHOLESALE CUSTOMER*******************************************/
+	/********************************FEE SUMMARY WHOLESALE CUSTOMER*******************************************/
 	public static LinkedHashMap<String,String> readFSGroupChargeXML(String xmlfilepath) throws Exception {
 		      
 		      LinkedHashMap<String, String> FeeSummaryTableGCRowsMap= new LinkedHashMap<>();
@@ -549,145 +389,6 @@ public class WCust {
              return FeeSummaryTableProductsMap;               
 
   	}	
-    public static LinkedHashMap<String,String> readFStotalXML(String xmlfilepath) throws Exception {
-        
-        LinkedHashMap<String, String> FeeSummaryTableTotal= new LinkedHashMap<>();
-        
-        
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
-       
-                
-                String SummaryTotal = doc1.getElementsByTagName("FeeSumTotal").item(0).getTextContent();
-                
-                String  FeeSummaryTableRow = ("Total Fee Summary "+SummaryTotal);
-                FeeSummaryTableTotal.put("TFSTotal",FeeSummaryTableRow);
-      
-                return FeeSummaryTableTotal;               
+  
 
-  	}	   
-
-/********************************AIRTIME SUMMARY WHOLESALE CUSTOMER*******************************************/
-	public static LinkedHashMap<String,String> readASGroupChargeXML(String xmlfilepath) throws Exception {
-	      
-	      LinkedHashMap<String, String> AirtimeSummaryTableGCRowsMap= new LinkedHashMap<>();
-	      
-	      
-	      File xmlinputFile = new File(xmlfilepath);
-	      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	      
-	      Document doc1 = dBuilder.parse(xmlinputFile);
-	      doc1.getDocumentElement().normalize();
-	      XPath xpath = XPathFactory.newInstance().newXPath();
-
-	      
-	       XPathExpression exprasGC = xpath.compile("//Airtime/ChargeDetails");
-	      
-	      NodeList GroupChargeRows = (NodeList)exprasGC.evaluate(doc1, XPathConstants.NODESET);
-	      for (int i = 0; i < GroupChargeRows.getLength(); i++) {
-	                     
-	          Element GroupProductDetails = (Element)GroupChargeRows.item(i);
-	          
-	          try {
-	              
-	              //String ChargeType = GroupProductDetails.getElementsByTagName("TypeOfCharge").item(0).getFirstChild().getTextContent();
-	              String Prodgroup = GroupProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
-	              
-	              String  AirtimeSummaryTableRow = ("SERVICE GROUP: "+Prodgroup);
-	              AirtimeSummaryTableGCRowsMap.put("Set"+i,AirtimeSummaryTableRow);
-	              
-	          }  catch(Exception e){}  
-	          
-	      }       
-	           return AirtimeSummaryTableGCRowsMap;               
-
-		}
-  public static LinkedHashMap<String,String> readAirtimeSummaryLinesXML(String xmlfilepath,String VarType) throws Exception{
-        
-        LinkedHashMap<String, String> AirtimeSummaryTableRowsMap= new LinkedHashMap<>();
-       
-        File inputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(inputFile);
-        doc1.getDocumentElement().normalize();
-        XPath xpath = XPathFactory.newInstance().newXPath();
-
-        XPathExpression exprAirtime = xpath.compile("//Airtime/ChargeDetails/ChargePerTransaction");
-        
-        NodeList PerChargeRows = (NodeList)exprAirtime.evaluate(doc1, XPathConstants.NODESET);
-        for (int i = 0; i < PerChargeRows.getLength(); i++) {
-                       
-            Element PerTransaction = (Element)PerChargeRows.item(i);
-            
-            switch (VarType){
-           	
-         	case "TrafficType":
-         		
-         		try {
-                    String[] TrafficType = PerTransaction.getElementsByTagName("TrafficType").item(0).getFirstChild().getTextContent().replace (","," "
-                   		 ).split(" "); 
-                    int ln =0;
-                    do {
-                    	AirtimeSummaryTableRowsMap.put(ln+"Line"+i,TrafficType[ln]);
-               	
-                 	  ln++;
-                      }while (TrafficType[ln]!= "" ||TrafficType[ln]!= null);
-                    
-               	 }catch(Exception e){}
-               	 break;
-               	 
-               	 default:
-            
-            try {
-            //String TrafficType = PerTransaction.getElementsByTagName("TrafficType").item(0).getFirstChild().getTextContent();
-            String IPGroup = PerTransaction.getElementsByTagName("IPGroup").item(0).getFirstChild().getTextContent();
-            String[] BitRate = PerTransaction.getElementsByTagName("BitRate").item(0).getFirstChild().getTextContent().split(" ");
-            String CallDestination = PerTransaction.getElementsByTagName("CallDestination").item(0).getFirstChild().getTextContent();
-            String CallDir = PerTransaction.getElementsByTagName("CallDir").item(0).getFirstChild().getTextContent();
-            String Allow = PerTransaction.getElementsByTagName("Allow").item(0).getFirstChild().getTextContent();
-            String Events = PerTransaction.getElementsByTagName("Events").item(0).getFirstChild().getTextContent();
-            String Units = PerTransaction.getElementsByTagName("Units").item(0).getFirstChild().getTextContent();
-            String UoM = PerTransaction.getElementsByTagName("UoM").item(0).getFirstChild().getTextContent();
-            String TotalCharge = PerTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
-            //" "+TrafficType+
-            String  AirtimeSummaryTableRow = " "+IPGroup+" "+BitRate[0]+" "+CallDestination
-            		+" "+CallDir+" "+Allow+" "+Events+" "+Units+" "+UoM+" "+TotalCharge;
-            AirtimeSummaryTableRowsMap.put("Line"+i+" ",AirtimeSummaryTableRow );
-            }catch(Exception e){
-				
-			}
-        }
-        }
-            
-        return AirtimeSummaryTableRowsMap;
-            
-	}
-  public static LinkedHashMap<String,String> readAStotalXML(String xmlfilepath) throws Exception {
-      
-      LinkedHashMap<String, String> AirtimeSummaryTableTotal= new LinkedHashMap<>();
-      
-      
-      File xmlinputFile = new File(xmlfilepath);
-      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-      
-      Document doc1 = dBuilder.parse(xmlinputFile);
-      doc1.getDocumentElement().normalize();
-     
-              try {
-              String SummaryTotal = doc1.getElementsByTagName("AirtimeOverAllTotal").item(0).getTextContent();
-              
-              String  FeeSummaryTableRow = ("Total Airtime Summary "+SummaryTotal);
-              AirtimeSummaryTableTotal.put("TASTotal",FeeSummaryTableRow);
-              }catch(Exception e){}
-              return AirtimeSummaryTableTotal;               
-
-	}
 }
