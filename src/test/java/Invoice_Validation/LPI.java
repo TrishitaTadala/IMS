@@ -50,24 +50,39 @@ package Invoice_Validation;
 	        
 	        Document doc1 = dBuilder.parse(xmlinputFile);
 	        doc1.getDocumentElement().normalize();
+	        
+	            Compare(getLPItextPDF(pdfpath,"FrontPage"),readLPISingleNodeXML(doc1,"SLEName"));
+	            System.out.println("*****************FrontPage Late Payment Interest Validation_XML ******************");
+	            Compare(getLPItextPDF(pdfpath,"Address"),readLPISingleNodeXML(doc1,"CustName"));
+	            Compare(getLPItextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Line1"));
+	            Compare(getLPItextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Line2"));
+	            Compare(getLPItextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Suburb"));
+	            Compare(getLPItextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"City"));
+	            Compare(getLPItextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"State"));
+	            Compare(getLPItextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Country"));
+	            Compare(getLPItextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"PostCode"));
+	            
+	            System.out.println("*****************FrontPage Legacy IDs Validation_XML ******************");
+	            Compare(getLPItextPDF(pdfpath,"FrontPage"),readLPISingleNodeXML(doc1,"AccountNo"));
+	            Compare(getLPItextPDF(pdfpath,"FrontPage"),readLPISingleNodeXML(doc1,"BillingProfile"));
 
-			     System.out.println("*****************Page2 Late Payment Interest Validation_XML ******************");
-				      	Compare(getCAtextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"SLEName"));
+			    System.out.println("*****************Page2 Late Payment Interest Validation_XML ******************");
+				 Compare(getLPItextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"SLEName"));
 								      	
 				System.out.println("*****************Invoice Details_XML - Page2******************"); 
 				       // Compare(getCAtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"Number")); 
-				        Compare(getCAtextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"LPIInvoiceNo"));
-       			        Compare(getCAtextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"BillToRef"));
-				        Compare(getCAtextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"SoldToRef"));
-				        Compare(getCAtextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"InvoiceDate"));
-				        Compare(getCAtextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"Currency"));
+				 Compare(getLPItextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"LPIInvoiceNo"));
+       			 Compare(getLPItextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"BillToRef"));
+				 Compare(getLPItextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"SoldToRef"));
+				 Compare(getLPItextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"InvoiceDate"));
+				 Compare(getLPItextPDF(pdfpath,"Default"),readLPISingleNodeXML(doc1,"Currency"));
 				System.out.println("*****************LatePaymentInterest Section_XML******************");
 
-				        Compare(getCAtextPDF(pdfpath,"Default"),readLPILinesXML(doc1,"LinesItems"));
-				        Compare(getCAtextPDF(pdfpath,"Default"),readLPILinesXML(doc1,"LPITotal"));
+				 Compare(getLPItextPDF(pdfpath,"Default"),readLPILinesXML(doc1,"LinesItems"));
+				 Compare(getLPItextPDF(pdfpath,"Default"),readLPILinesXML(doc1,"LPITotal"));
 			}
 			
-	    public static String getCAtextPDF(String pdfpath, String Page) throws Exception{
+	    public static String getLPItextPDF(String pdfpath, String Page) throws Exception{
 		
 		  LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
 		  
@@ -75,9 +90,20 @@ package Invoice_Validation;
 		   
 		   switch (Page){
 	    
-		  
+		   case "FrontPage":
+			   
+			   PDFHashMap.put("frontpage", getPageText(reader,1));
+			   
+			   break;
+             
+		   case "Address":
+			  
+			   PDFHashMap.put("Address", getBillingAddress(reader));
+			   break;
+			   
+		
 		   default:
-				 PDFHashMap.put("middlepages", getText(reader));
+				 PDFHashMap.put("middlepages", getPageText(reader,2));
 				 break;
 		   }
 		
@@ -183,13 +209,13 @@ package Invoice_Validation;
 		  	}
 		    
 
-		public static String getText(PdfReader reader) throws Exception {
+		public static String getPageText(PdfReader reader,int Pg) throws Exception {
 		Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
 			
 	    RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
 	    TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
 	            
-	   for (int i = 2; i <= (reader.getNumberOfPages() -1); i++) {
+	   for (int i = Pg; i <= (reader.getNumberOfPages() -1); i++) {
 	    
 	        strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
 	        
@@ -200,8 +226,17 @@ package Invoice_Validation;
 	            //System.out.println(PDFtext);
 	    return PDFtext;
 	}
+		
+		public static String getBillingAddress(PdfReader reader) throws Exception {		    
+	        Rectangle billingAddressSection = new Rectangle(0, 620, 200, 750);
+	        RenderFilter filter = new RegionTextRenderFilter(billingAddressSection);
+	        TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
+	        //System.out.println(PdfTextExtractor.getTextFromPage(reader, 1, strategy));     
+	        return PdfTextExtractor.getTextFromPage(reader, 1, strategy);
+	          
+		}
 
-		public static LinkedHashMap<String,String> readLPISingleNodeXML(Document doc1, String VarType) throws Exception{
+	   public static LinkedHashMap<String,String> readLPISingleNodeXML(Document doc1, String VarType) throws Exception{
 		        
 		        LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
 		    
@@ -233,26 +268,37 @@ package Invoice_Validation;
 	     		 break;
 	     		
 	        case "CustName":
-	        	FrontPageMap.put("CustName",doc1.getElementsByTagName("BillToCustomerName").item(0).getTextContent());
-	      		 break; 
+	        		      		 
+	      		try {
+                    String[] CustName = doc1.getElementsByTagName("BillToCustomerName").item(0).getTextContent().replace (","," "
+                   		 ).split(" "); 
+                    int btcn =0;
+                    do {
+                    	FrontPageMap.put(btcn+"Line",CustName[btcn]);
+               	
+                    	btcn++;
+                      }while (CustName[btcn]!= "" ||CustName[btcn]!= null);
+                    
+               	 }catch(Exception e){}
+               	 break;
 	      		 
-	       /* case "CASummary":
-	     		 CAFrontPageMap.put("CASummary","Carrier Airtime "+doc1.getElementsByTagName("TotalAmount").item(1).getTextContent());
-	     		 break;*/
-	     		 
+
 	        case "AccountNo":
 	     		try {
 	     			String AccNo = (doc1.getElementsByTagName("ARAccountNumber").item(0).getTextContent());
 	     			if (AccNo!= null ||AccNo!= ""||AccNo!= " " ) {
-	     				FrontPageMap.put("AccountNo","Account Number "+AccNo+".");
+	     				FrontPageMap.put("AccountNo","Account Number: "+AccNo+".");
 	     		}
 	     		}catch(Exception e){}
 	            break; 
 	            
 	        case "BillingProfile":
-	     		try {
-	     			FrontPageMap.put("BillingProfile","Billing Profile : "+doc1.getElementsByTagName("BillingProfileId").item(0).getTextContent()+".");
-	     		}catch(Exception e){}
+	     	   			
+	     			String BPCode = doc1.getElementsByTagName("BillingProfileCode").item(0).getTextContent();
+	     			if (BPCode!= null ||BPCode!= ""||BPCode!= " " ) {
+	     			FrontPageMap.put("BillingProfile","Billing Profile: "+BPCode+".");
+	     			}
+	     		
 	            break; 
 	            
 	        case "DpID":
@@ -302,7 +348,7 @@ package Invoice_Validation;
 		            
 			}
 
-		/****************************************************************************/
+		/******************************************************************************************************************/
 	
 	    public static LinkedHashMap<String,String> readLPILinesXML(Document doc, String VarType) throws Exception{
 	    	LinkedHashMap<String, String> LPITableMap= new LinkedHashMap<>();      
