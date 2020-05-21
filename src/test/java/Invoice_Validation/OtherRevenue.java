@@ -1,6 +1,6 @@
 //All the variables should be declared
 //======================================================
-//Class      : Adjustment
+//Class      : Other Revenue
 //Description: The Adjustment section in the invoice
 //======================================================
 //Changes----------------------------------------------
@@ -48,22 +48,22 @@ import javax.xml.xpath.XPathExpression;
 
 import org.w3c.dom.Element;
 
-public class Adjustment {
+public class OtherRevenue {
 	
 	public static String PDFtext;
 	public static String  xmlrows;
 	public static boolean q;
-	public static String AdjRemarks;
+	public static String OtherRevenueRemarks;
 	
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		AdjRemarks ="";
+		OtherRevenueRemarks ="";
 		LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 
-		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1160171_108257_201901_Adj.pdf";
+		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1173684_945125_201906_OtherRevenue.pdf";
 				
-		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\112744_108257_1160171_20190201_Adj.xml";
+		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\114302_945125_1173684_20190618_OtherRevenue.xml";
 				
 		File inputFile = new File(xmlpath);
        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -84,11 +84,12 @@ public class Adjustment {
 		Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc,"InvoiceDate"));
 		Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc,"Currency"));
 
-		System.out.println("*****************Adjustments Section_XML******************");
-		Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc,"ServiceDetails"));
-		Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc,"LineItems"));
-		Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc,"TotalsAdj"));
-		Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc,"GrandTotal"));
+		System.out.println("*****************Other Revenue Section_XML******************");
+		
+		Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc,"LineItems"));
+		Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc,"ServiceDetails"));
+		Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc,"PONumber"));
+		Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc,"GrandTotal"));
 		
 		
 		
@@ -142,7 +143,7 @@ public class Adjustment {
 				 try {
 				 ExtentManager.test.log(LogStatus.FAIL," Expected: "+xmlrows+" Actual: "+ PDFtext);
 				 }catch(Exception e){}
-				 AdjRemarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
+				 OtherRevenueRemarks  += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 		     }
 		
 		 } 
@@ -317,65 +318,74 @@ public class Adjustment {
 	            
 		}
   
-	public static LinkedHashMap<String,String> readAdjustmentLinesXML(Document doc1, String VarType) throws Exception{
+	public static LinkedHashMap<String,String> readOtherRevenueLinesXML(Document doc1, String VarType) throws Exception{
        
-       LinkedHashMap<String, String> AdjustmentTableRowsMap= new LinkedHashMap<>();
-       String Discount;
+       LinkedHashMap<String, String> ORTableRowsMap= new LinkedHashMap<>();
+ 
        XPath xpath = XPathFactory.newInstance().newXPath();
 
        
            
-           switch (VarType) {         
+           switch (VarType) {    
            
-           case "ServiceDetails":
+       case "ServiceDetails":
         	   
-        	   XPathExpression exprAdj = xpath.compile("//Adjustment/AdjustmentsDetails");
+        	   XPathExpression exprOR1 = xpath.compile("//OtherRevenue/PerCharge");
                
-               NodeList PerAdjRows = (NodeList)exprAdj.evaluate(doc1, XPathConstants.NODESET);
+               NodeList PerOR1Rows = (NodeList)exprOR1.evaluate(doc1, XPathConstants.NODESET);
                
-               for (int j = 0; j < PerAdjRows.getLength(); j++) {
+               for (int i = 0; i < PerOR1Rows.getLength(); i++) {
                               
-                   Element PerAdjTransaction = (Element)PerAdjRows.item(j);
-        	   String ServiceDetails = PerAdjTransaction.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();   
-        		AdjustmentTableRowsMap.put("Line"+j+" ",ServiceDetails);
+                   Element PerOR1Transaction = (Element)PerOR1Rows.item(i);
+        	   String ServiceStartDate = PerOR1Transaction.getElementsByTagName("PeriodStartDate").item(0).getFirstChild().getTextContent(); 
+        	   String ServiceEndDate = PerOR1Transaction.getElementsByTagName("PeriodEndDate").item(0).getFirstChild().getTextContent();   
+        	   
+        	   
+        	   ORTableRowsMap.put("Line"+i+" ","Service Start:"+ServiceStartDate+" "+"Service End:"+ServiceEndDate);
                }
                break;
                
-         case "TotalsAdj":
-        	   
-        	   XPathExpression exprAdj3 = xpath.compile("//Adjustment/AdjustmentSubtotal/PerProductGroup");
-               
-               NodeList PerAdj3Rows = (NodeList)exprAdj3.evaluate(doc1, XPathConstants.NODESET);
-               
-               for (int j = 0; j < PerAdj3Rows.getLength(); j++) {
-                              
-                   Element PerAdj3Transaction = (Element)PerAdj3Rows.item(j);
-        	   String TotalsAdj = PerAdj3Transaction.getElementsByTagName("TotalChargePerProdGrp").item(0).getFirstChild().getTextContent();   
-        		AdjustmentTableRowsMap.put("Line"+j+" ","Total "+TotalsAdj);
-               }
-               break;
-               
+       case "PONumber":
+    	   
+    	   XPathExpression exprOR2 = xpath.compile("//OtherRevenue/PerCharge");
+           
+           NodeList PerOR2Rows = (NodeList)exprOR2.evaluate(doc1, XPathConstants.NODESET);
+           
+           for (int i = 0; i < PerOR2Rows.getLength(); i++) {
+                          
+               Element PerOR2Transaction = (Element)PerOR2Rows.item(i);
+    	   String PONumber = PerOR2Transaction.getElementsByTagName("PONumber").item(0).getFirstChild().getTextContent();    	   
+    	   
+    	   ORTableRowsMap.put("Line"+i+" ","PO Number: "+PONumber);
+           }
+           break;
+         
          case "GrandTotal":
 
-      	   String GrandTotalAdj = doc1.getElementsByTagName("TotalChargePerProdGrp").item(0).getFirstChild().getTextContent();   
-      		AdjustmentTableRowsMap.put("GrandTotalAdj","Total Adjustments "+GrandTotalAdj);
+      	   String GrandTotalAdj = doc1.getElementsByTagName("TotalOtherRevenue").item(0).getFirstChild().getTextContent();   
+      	 ORTableRowsMap.put("GrandTotalAdj","Total Other Revenue "+GrandTotalAdj);
            
              break;
                
                
        	 default:      		 
        	         
-       		 XPathExpression exprAdj2 = xpath.compile("//Adjustment/AdjustmentsDetails");
+       		 XPathExpression exprOR = xpath.compile("//OtherRevenue/PerCharge");
              
-             NodeList PerAdj2Rows = (NodeList)exprAdj2.evaluate(doc1, XPathConstants.NODESET);
+             NodeList PerOrRows = (NodeList)exprOR.evaluate(doc1, XPathConstants.NODESET);
              
-             for (int j = 0; j < PerAdj2Rows.getLength(); j++) {
+             for (int j = 0; j < PerOrRows.getLength(); j++) {
                             
-                 Element PerAdjTransaction = (Element)PerAdj2Rows.item(j);
-                
-                String AdditionalInfo = PerAdjTransaction.getElementsByTagName("AdditionalInfo").item(0).getFirstChild().getTextContent();
-                String AdjustmentAmount = PerAdjTransaction.getElementsByTagName("AdjustmentAmount").item(0).getFirstChild().getTextContent();             
-                AdjustmentTableRowsMap.put("Line"+j+" ",AdditionalInfo+" "+AdjustmentAmount);
+                 Element PerORTransaction = (Element)PerOrRows.item(j);
+                 
+                String ProductID = PerORTransaction.getElementsByTagName("ProductID").item(0).getFirstChild().getTextContent();
+                String Desc = PerORTransaction.getElementsByTagName("InvoiceTxt").item(0).getFirstChild().getTextContent();
+                String Units = PerORTransaction.getElementsByTagName("Units").item(0).getFirstChild().getTextContent();
+                String UoM = PerORTransaction.getElementsByTagName("UoM").item(0).getFirstChild().getTextContent();
+                String Rate = PerORTransaction.getElementsByTagName("Rate").item(0).getFirstChild().getTextContent();
+                String TotalCharge = PerORTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
+                //ProductID+" "+Desc+
+                ORTableRowsMap.put("Line"+j+" ",ProductID+" "+Desc+" "+Units+" "+UoM+" "+Rate+" "+TotalCharge);
              }
              
        		break;
@@ -385,7 +395,7 @@ public class Adjustment {
        
 
    
-       return AdjustmentTableRowsMap;
+       return ORTableRowsMap;
 	}
 	
 }
