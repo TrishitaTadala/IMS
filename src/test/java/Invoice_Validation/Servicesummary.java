@@ -80,7 +80,7 @@ public class Servicesummary {
 		   Compare(readSSCancellationXML(xmlpath));
 		   Compare(readSSEarlyTerminationXML(xmlpath));
 		   Compare(readSSUsageXML(xmlpath));
-		   //Compare(readSSOtherXML(/*xmlpath*/)); //Further Modification Required
+		   Compare(readSSOtherXML(xmlpath)); //Further Modification Required
 		   Compare(readSStotalXML(xmlpath));
 		   Compare(readSSSubtotalXML(xmlpath));
 		   Compare(readSSAllTotalXML(xmlpath));

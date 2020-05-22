@@ -120,7 +120,7 @@ public class Adjustment {
 	return textPDF;
  }
 		
-	public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap){
+	public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap) {
 		
 		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
         while(XMLkeySetIterator.hasNext()) {

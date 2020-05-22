@@ -39,8 +39,7 @@ public class AirtimePrepaid {
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 
 
-		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Prepay_GW\\INVOICE_1330369_1040039_201910.pdf";
-				
+		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\Prepay_GW\\INVOICE_1330369_1040039_201910.pdf";		
 			
 		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Prepay_GW\\117256_1040039_1330369_20191031.xml";
 				
