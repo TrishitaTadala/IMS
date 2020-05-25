@@ -61,7 +61,7 @@ public class Collab {
 		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"State"));
 		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Country"));
 		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"PostCode"));
-		      //Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"VAT"));
+		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"VAT"));
 		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"PricingID"));
 		       
 		       System.out.println("*****************Invoice Details_XML - FRONT PAGE "+k+" th***************\n"); 
@@ -81,13 +81,18 @@ public class Collab {
 		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"AccountNo"));
 		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"BillingProfile"));
 		       
-		       System.out.println("*****************Tax Information Section_XML"+k+" th**************\n");
+		       System.out.println("*****************SUMMARY Information Section_XML"+k+" th**************\n");
+		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Fees"));
+		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Airtime"));
+		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Voucher"));
+		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"LPI"));
+		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"AdjustSum"));
 		       
 		       /****************************************SECOND PAGE ONWARDS*************************************************************/		
 			    System.out.println("*****************Page2 Validation_XML "+k+" th***************");
 				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"SLEName"));
 								      	
-				System.out.println("*****************Page2 -Invoice Details_XML -  "+k+" th*************\n"); 
+				System.out.println("*****************PAGE2 onwards -Invoice Details_XML -  "+k+" th*************\n"); 
 				      
 				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"InvoiceNo"));
 				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"BillToRef"));
@@ -96,7 +101,7 @@ public class Collab {
 				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"InvoiceDate"));
 				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"Currency"));
 				
-				System.out.println("********************XML SERVICE SUMMARY Values**- "+k+" th********************\n");
+				System.out.println("********************SERVICE SUMMARY VALIDATION**- "+k+" th********************\n");
 				   Compare(gettextPDF(pdfpath,"Default"),readSSGroupXML(doc1,xmlpath));
 				   Compare(gettextPDF(pdfpath,"Default"),readSSProductXML(doc1,xmlpath));
 				   Compare(gettextPDF(pdfpath,"Default"),readSSActivationXML(doc1,xmlpath));
@@ -117,15 +122,15 @@ public class Collab {
 					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"TotalsAdj"));
 					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"GrandTotal"));
 					
-					System.out.println("*****************Prepaid Airtime Section_XML - "+k+" th*************");
+					System.out.println("*****************Prepaid Airtime Section_XML - "+k+" th*************\n");
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"ProductID")); 
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"ProdDesc"));
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"LinesItems"));
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo1"));
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo2"));
-			       
-			        Compare(gettextPDF(pdfpath,"Default"),readPAGrandTotalXML(doc1));
-					 System.out.println("*****************END of ITERATION of Each Invoice "+k+" th***************\n");
+			        Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"VoucherTotal"));
+					 
+			        System.out.println("*****************END of ITERATION of Each Invoice "+k+" th***************\n");
 			}
 	}
 			
@@ -432,17 +437,60 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		       break;
+		   case "VoucherTotal": 
+		       try {
+		           String Total = doc1.getElementsByTagName("VoucherTotal").item(0).getFirstChild().getTextContent();
+		           
+		           FrontPageMap.put("GrandTotal", "Total Prepaid Airtime "+Total);
+		           
+		           }catch(Exception e){}
+		       break;
 		       
 		   case "VAT":
 				try {
 					String vat = doc1.getElementsByTagName("VATRegistrationNumber").item(0).getTextContent();
 					
-					if (vat!= null) {
-						FrontPageMap.put("vat","Payment due date "+vat);
+					if (!(vat.isBlank())) {
+						FrontPageMap.put("vat","VAT Reg. Number: "+vat);
 					}
 				}catch(Exception e){}
 		      break;
-		 		 
+		   case "Fees":
+				try {
+					String Fees = doc1.getElementsByTagName("TotalFees").item(0).getTextContent();
+					
+					if (!(Fees.isBlank())) {
+						FrontPageMap.put("Fees","Fees "+Fees);
+					}
+				}catch(Exception e){}
+		      break;
+		   case "Airtime":
+				try {
+					String Airtime = doc1.getElementsByTagName("TotalAirtimeCharges").item(0).getTextContent();
+					
+					if (!(Airtime.isBlank())) {
+						FrontPageMap.put("Airtime","Airtime "+Airtime);
+					}
+				}catch(Exception e){}
+		      break;
+		   case "LPI":
+				try {
+					String lpi = doc1.getElementsByTagName("TotalLPIAmount").item(0).getTextContent();
+					
+					if (!(lpi.isBlank())) {
+						FrontPageMap.put("lpi","Late Payment Interest "+lpi);
+					}
+				}catch(Exception e){}
+		      break;
+		   case "AdjustSum":
+				try {
+					String Adj = doc1.getElementsByTagName("TotalAdjustment").item(0).getTextContent();
+					
+					if (!(Adj.isBlank())) {
+						FrontPageMap.put("Adj","Adjustment "+Adj);
+					}
+				}catch(Exception e){}
+		      break;
 		 	    }       
 		       return FrontPageMap;
 		           
@@ -928,25 +976,7 @@ public class Collab {
 
 		    }
 
-		 public static LinkedHashMap<String,String> readPAGrandTotalXML(Document doc) throws Exception {
-		        
-		        LinkedHashMap<String, String> PAPageMap= new LinkedHashMap<>();
-		        
-		        XPath xpath = XPathFactory.newInstance().newXPath();
-		         XPathExpression exprPA = xpath.compile("//Voucher");
-		        
-		           NodeList PerPATransRows = (NodeList)exprPA.evaluate(doc, XPathConstants.NODESET);
-		          
-		           Element PerTransaction = (Element)PerPATransRows.item(0); 
-		           try {
-		           String Total = PerTransaction.getElementsByTagName("VoucherTotal").item(0).getFirstChild().getTextContent();
-		           
-		           PAPageMap.put("GrandTotal", "Total Prepaid Airtime "+Total);
-		           
-		           }catch(Exception e){}		           
-		           	           
-		           return PAPageMap;
-		    }
+		
 }
 
 		/******************************************************************************************************************/

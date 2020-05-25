@@ -49,7 +49,7 @@ public class RCust {
 	public static String PDFtext;
 	public static String  xmlrows;
 	public static boolean q;
-	public static String WCustRemarks;
+	public static String RCustRemarks;
 	
 	
 	public static void main(String[] args) throws Exception {
@@ -61,9 +61,15 @@ public class RCust {
 		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\INVOICE_1590428_954226_202004.pdf";
 				
 		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-			    //QA_129171_118047_5450013_20200430.xml"
-		        //QA_129171_118047_5450013_20200430.xml";
+			    
 		
+        File inputFile = new File(xmlpath);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        
+        Document doc1 = dBuilder.parse(inputFile);
+        doc1.getDocumentElement().normalize();
+		/****************************************************************************/
 		PdfReader reader = new PdfReader(pdfpath); 
 		
 		PDFHashMap.put("Front&Last Pages Excluded"+"\n", getPDFtext(reader));
@@ -75,7 +81,7 @@ public class RCust {
 			String key = PDFkeySetIterator.next();
 			//System.out.println(key + PDFHashMap.get(key));
 			PDFtext = PDFHashMap.get(key);
-			//System.out.println(PDFtext);
+			System.out.println(PDFtext);
 		}
 		
 		//*********FeeDetailValidation Compare(readFDChargeTotalsXML(xmlpath));*************
@@ -90,15 +96,20 @@ public class RCust {
 		*/
 		
 		//*********AirtimeDetailValidation Compare(readADGeneralVariantLinesXML(xmlpath));*************
-		Compare(readADGeneralVariantLinesXML(xmlpath));
+		Compare(readADGeneralVariantLinesXML(doc1,xmlpath,"CallDateTime"));
+		Compare(readADGeneralVariantLinesXML(doc1,xmlpath,"DestinationCountry"));
+		Compare(readADGeneralVariantLinesXML(doc1,xmlpath,"AirtimeType"));
+		Compare(readADGeneralVariantLinesXML(doc1,xmlpath,"LineItems"));
+		
+		Compare(readADGeneralVariantTotalsXML(doc1,xmlpath,"AirtimeTotal"));
+		Compare(readADGeneralVariantTotalsXML(doc1,xmlpath,"SIMTotal"));
+		Compare(readADGeneralVariantTotalsXML(doc1,xmlpath,"GrandTotal"));
 		
 	}
 	
 	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
         
-		PDFtext = PDFtext.replaceAll(",", "");
-		
-		System.out.println("XML Contents ");    
+		PDFtext = PDFtext.replaceAll(",", ""); 
         
 		Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
          while(XMLkeySetIterator.hasNext()) {
@@ -117,7 +128,7 @@ public class RCust {
 		else{
 			System.out.println( xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~");
 				 q = false;	
-			WCustRemarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
+			RCustRemarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 		     }
 		
 		
@@ -142,7 +153,7 @@ public class RCust {
             
         }
         PDFtext = PDFtext.replace(",","");
-                System.out.println(PDFtext);
+               // System.out.println(PDFtext);
         return PDFtext;
 	}
 /********************************FEE DETAIL RETAIL CUSTOMER*******************************************/
@@ -314,44 +325,124 @@ public class RCust {
             
 	}
     
-/********************************AIRTIME SUMMARY WHOLESALE CUSTOMER*******************************************/
+/********************************AIRTIME DETAIL RETAIL CUSTOMER*******************************************/
     // Line Items having new Line values in the columns are identified as mismatch
-    public static LinkedHashMap<String,String> readADGeneralVariantLinesXML(String xmlfilepath) throws Exception{
+    public static LinkedHashMap<String,String> readADGeneralVariantLinesXML(Document doc,String xmlfilepath,String VarType) throws Exception{
         
         LinkedHashMap<String, String> AirtimeDetailTableRowsMap= new LinkedHashMap<>();
        
-        File inputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(inputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
 
         XPathExpression exprAirtimeD = xpath.compile("//CustomerNodeList/CustomerNode/Product/ProductDetails/ServiceDetails/ServiceCharges/UsageCharges/UsageDetails");
         
-        NodeList PerRows = (NodeList)exprAirtimeD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerRows = (NodeList)exprAirtimeD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerRows.getLength(); i++) {
                        
             Element PerTransAD = (Element)PerRows.item(i);
             
+            switch (VarType) {
+            
+            case "CallDateTime":   	
             try {
             String CallDateTimeAD = PerTransAD.getElementsByTagName("DateTime").item(0).getFirstChild().getTextContent();
-           /*String DestinationAD = PerTransAD.getElementsByTagName("DestinationCountry").item(0).getFirstChild().getTextContent();
-            String AirtimeTypeAD = PerTransAD.getElementsByTagName("AirtimeType").item(0).getFirstChild().getTextContent();
+          
+            AirtimeDetailTableRowsMap.put("Line"+i+" ",CallDateTimeAD+" ");
+            }catch(Exception e){}
+            break;            
+            case "DestinationCountry":         
+            try {
+		           String[] DestinationAD = PerTransAD.getElementsByTagName("DestinationCountry").item(0).getFirstChild().getTextContent().replace (",",""
+		          		 ).split(" "); 
+		           int desC =0;
+		           do {
+		        	   AirtimeDetailTableRowsMap.put(desC+"Line"+i,DestinationAD[desC]);
+		      	
+		        	   desC++;
+		             }while (DestinationAD[desC]!= "" ||DestinationAD[desC]!= null);
+		           
+		      	 }catch(Exception e){}
+		      	 break;
+		      	 
+            case "AirtimeType":          
+                try {
+    		           String[] AirtimeType = PerTransAD.getElementsByTagName("AirtimeType").item(0).getFirstChild().getTextContent().replace (",",""
+    		          		 ).split(" "); 
+    		           int atC =0;
+    		           do {
+    		        	   AirtimeDetailTableRowsMap.put(atC+"Line"+i,AirtimeType[atC]);
+    		        	   atC++;
+    		             }while (AirtimeType[atC]!= "" ||AirtimeType[atC]!= null);
+    		           
+    		      	 }catch(Exception e){}
+    		      	 break;           
+           default:
+        	   try {
+        	String UnitsAD ;
             String CalledNumberAD = PerTransAD.getElementsByTagName("DestinationNumber").item(0).getFirstChild().getTextContent();
             String AllowanceAD = PerTransAD.getElementsByTagName("Allowance").item(0).getFirstChild().getTextContent();
-            String UnitsAD = PerTransAD.getElementsByTagName("Volume").item(0).getFirstChild().getTextContent();
-            String UoMAD = PerTransAD.getElementsByTagName("UoM").item(0).getFirstChild().getTextContent();
+            String Volume =PerTransAD.getElementsByTagName("Volume").item(0).getFirstChild().getTextContent();
+            String Duration =PerTransAD.getElementsByTagName("Duration").item(0).getFirstChild().getTextContent();
+            if (Volume.equals("-")) {
+            UnitsAD = Duration;
+            }
+            else {UnitsAD = Volume;}
+            String UoMAD = PerTransAD.getElementsByTagName("UOM").item(0).getFirstChild().getTextContent();
             String RateAD = PerTransAD.getElementsByTagName("Rate").item(0).getFirstChild().getTextContent();
-            String TotalChargeAD = PerTransAD.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();*/
+            String TotalChargeAD = PerTransAD.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
             
-            //String  AirtimeDetailTableRow = CallDateTimeAD+" "+DestinationAD+" "+AirtimeTypeAD
-            	//	+" "+CalledNumberAD+" "+AllowanceAD+" "+UnitsAD+" "+UoMAD+" "+" "+RateAD+" "+TotalChargeAD;
-            AirtimeDetailTableRowsMap.put("Line"+i+" ",CallDateTimeAD );
-            }catch(Exception e){
-				
-			}
+            String  AirtimeDetailTableRow = " "+CalledNumberAD+" "+AllowanceAD+" "+UnitsAD+" "+UoMAD+" "+RateAD+" "+TotalChargeAD;
+            AirtimeDetailTableRowsMap.put("Line"+i,AirtimeDetailTableRow);
+        	   }catch(Exception e){} 
+           break; 
+            }
+        }
+            
+        return AirtimeDetailTableRowsMap;
+            
+	}
+
+    public static LinkedHashMap<String,String> readADGeneralVariantTotalsXML(Document doc,String xmlfilepath,String VarTotal) throws Exception{
+        
+        LinkedHashMap<String, String> AirtimeDetailTableRowsMap= new LinkedHashMap<>();
+        
+
+        switch (VarTotal) {
+
+        case "AirtimeTotal":
+        	
+        XPath xpath = XPathFactory.newInstance().newXPath();
+        XPathExpression exprAirtimeD = xpath.compile("//CustomerNodeList/CustomerNode/UsageChargesSubtotal/UsageChargesPerCaller/PerGroupType");
+        
+        NodeList PerRows = (NodeList)exprAirtimeD.evaluate(doc, XPathConstants.NODESET);
+        for (int a = 0; a < PerRows.getLength(); a++) {
+                       
+            Element PerTransAD = (Element)PerRows.item(a);
+      
+            String AirtimeTotal = PerTransAD.getElementsByTagName("TotalPerType").item(0).getFirstChild().getTextContent();
+          
+            AirtimeDetailTableRowsMap.put("AirtimeTotal"+a+" ","Total for Airtime Type "+AirtimeTotal);
+            
+            }   
+        case "SIMTotal":
+        	
+            XPath xpathSim = XPathFactory.newInstance().newXPath();
+            XPathExpression exprADSim = xpathSim.compile("//CustomerNodeList/CustomerNode/UsageChargesSubtotal/UsageChargesPerCaller");
+            
+            NodeList PerSimRows = (NodeList)exprADSim.evaluate(doc, XPathConstants.NODESET);
+            for (int b = 0; b < PerSimRows.getLength(); b++) {
+                           
+                Element PerTransAD = (Element)PerSimRows.item(b);
+          
+                String AirtimeTotal = PerTransAD.getElementsByTagName("TotalChargePerSIM").item(0).getFirstChild().getTextContent();
+              
+                AirtimeDetailTableRowsMap.put("SIMTotal"+b+" ","Total for SIM/Terminal "+AirtimeTotal);
+                
+                } 
+            default:
+            	
+            	AirtimeDetailTableRowsMap.put("GrandTotalAD","Total for Airtime Detail "+doc.getElementsByTagName("TotalUsagesConsolidated").item(0).getFirstChild().getTextContent());
+            
         }
             
         return AirtimeDetailTableRowsMap;
