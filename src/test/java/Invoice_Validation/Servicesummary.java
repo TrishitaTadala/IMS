@@ -58,6 +58,13 @@ public class Servicesummary {
 			
 		String xmlpath ="C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\Wholesale\\QA_129171_117921_5448299_20200430.xml";
 		
+        File xmlinputFile = new File(xmlpath);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        
+        Document doc1 = dBuilder.parse(xmlinputFile);
+        doc1.getDocumentElement().normalize();
+        
 		PdfReader reader = new PdfReader(filename);  
 		
 		PDFHashMap.put("ServiceSummaryPDF"+"\n", getServiceSummary(reader));
@@ -73,39 +80,34 @@ public class Servicesummary {
 		}
 		
 		System.out.println("********************XML SERVICE SUMMARY Values*************************\n");
-		   Compare(readSSGroupXML(xmlpath));
-		   Compare(readSSProductXML(xmlpath));
-		   Compare(readSSActivationXML(xmlpath));
-		   Compare(readSSSubscriptionsXML(xmlpath));
-		   Compare(readSSCancellationXML(xmlpath));
-		   Compare(readSSEarlyTerminationXML(xmlpath));
-		   Compare(readSSUsageXML(xmlpath));
-		   Compare(readSSOtherXML(xmlpath)); //Further Modification Required
-		   Compare(readSStotalXML(xmlpath));
-		   Compare(readSSSubtotalXML(xmlpath));
-		   Compare(readSSAllTotalXML(xmlpath));
-		   Compare(readSSGrandTotalXML(xmlpath));
+		   Compare(readSSGroupXML(doc1));
+		   Compare(readSSProductXML(doc1));
+		   Compare(readSSActivationXML(doc1));
+		   Compare(readSSSubscriptionsXML(doc1));
+		   Compare(readSSCancellationXML(doc1));
+		   Compare(readSSEarlyTerminationXML(doc1));
+		   Compare(readSSUsageXML(doc1));
+		   Compare(readSSOtherXML(doc1)); //Further Modification Required
+		   Compare(readSStotalXML(doc1));
+		   Compare(readSSSubtotalXML(doc1));
+		   Compare(readSSAllTotalXML(doc1));
+		   Compare(readSSGrandTotalXML(doc1));
 		   //return q;
        	}
 	
 
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readSSActivationXML(String xmlfilepath) throws Exception {
+	public static LinkedHashMap<String,String> readSSActivationXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
         
         //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -126,22 +128,15 @@ public class Servicesummary {
 	
 	
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readSSSubscriptionsXML(String xmlfilepath) throws Exception {
+	public static LinkedHashMap<String,String> readSSSubscriptionsXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -161,22 +156,15 @@ public class Servicesummary {
 
 	
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readSSCancellationXML(String xmlfilepath) throws Exception {
+	public static LinkedHashMap<String,String> readSSCancellationXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -196,22 +184,15 @@ public class Servicesummary {
 	}
 
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readSSEarlyTerminationXML(String xmlfilepath) throws Exception {
+	public static LinkedHashMap<String,String> readSSEarlyTerminationXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -231,22 +212,15 @@ public class Servicesummary {
 	}
 
 	/****************************************************************************/   
-    public static LinkedHashMap<String,String> readSSUsageXML(String xmlfilepath) throws Exception {
+    public static LinkedHashMap<String,String> readSSUsageXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -266,22 +240,15 @@ public class Servicesummary {
 	}
       
       /****************************************************************************/   
-      public static LinkedHashMap<String,String> readSSOtherXML(String xmlfilepath) throws Exception {
+      public static LinkedHashMap<String,String> readSSOtherXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -302,22 +269,15 @@ public class Servicesummary {
       
       
   	/****************************************************************************/   
-      public static LinkedHashMap<String,String> readSStotalXML(String xmlfilepath) throws Exception {
+      public static LinkedHashMap<String,String> readSStotalXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -337,22 +297,15 @@ public class Servicesummary {
 	}
       
     /****************************************************************************/   
-      public static LinkedHashMap<String,String> readSSSubtotalXML(String xmlfilepath) throws Exception {
+      public static LinkedHashMap<String,String> readSSSubtotalXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/Subtotal");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -372,21 +325,15 @@ public class Servicesummary {
 	}
       
   	/****************************************************************************/   
-      public static LinkedHashMap<String,String> readSSAllTotalXML(String xmlfilepath) throws Exception {
+      public static LinkedHashMap<String,String> readSSAllTotalXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/TotalOfAllProductGroups");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -407,22 +354,15 @@ public class Servicesummary {
       
       
    	/****************************************************************************/   
-      public static LinkedHashMap<String,String> readSSGrandTotalXML(String xmlfilepath) throws Exception {
+      public static LinkedHashMap<String,String> readSSGrandTotalXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//TotalForServiceSummary");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -432,7 +372,8 @@ public class Servicesummary {
                 String GrandTotal = PerProductDetails.getElementsByTagName("GrandTotal").item(0).getFirstChild().getTextContent();
                 
                 String  ServiceSummaryTableRow = ("Total Service Summary "+GrandTotal);
-                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
+                if (ServiceSummaryTableRow!= "0.00") {
+                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);}
                 
             }  catch(Exception e){}  
             
@@ -442,23 +383,15 @@ public class Servicesummary {
 	}
 
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readSSProductXML(String xmlfilepath) throws Exception {
+	public static LinkedHashMap<String,String> readSSProductXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
         
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-        
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -473,23 +406,15 @@ public class Servicesummary {
 	}
 		
 	/****************************************************************************/
-	public static LinkedHashMap<String,String> readSSGroupXML(String xmlfilepath) throws Exception {
+	public static LinkedHashMap<String,String> readSSGroupXML(Document doc) throws Exception {
         
         LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
-        
-        //String xmlfilepath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001327_954226_1590428_20200430.xml";
-       
-        File xmlinputFile = new File(xmlfilepath);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
-        Document doc1 = dBuilder.parse(xmlinputFile);
-        doc1.getDocumentElement().normalize();
+
         XPath xpath = XPathFactory.newInstance().newXPath();
         
          XPathExpression exprSSPD = xpath.compile("//ServiceSummary/ProductDetails");
         
-        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
         for (int i = 0; i < PerProdRows.getLength(); i++) {
                        
             Element PerProductDetails = (Element)PerProdRows.item(i);
@@ -519,8 +444,7 @@ public class Servicesummary {
         }
         return PDFtext;
 	}
-	
-	
+		
 	public static void Compare(LinkedHashMap<String,String> XMLHashMap){
 
         //System.out.println("XML Contents ");    

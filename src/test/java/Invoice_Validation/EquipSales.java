@@ -48,6 +48,13 @@ public class EquipSales {
         Document doc = dBuilder.parse(inputFile);
         doc.getDocumentElement().normalize();
 		
+        
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Name"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Street1"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Street2"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"City"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Country"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"PostalCode"));
             System.out.println("*****************Page2 onwards Validation_XML ******************");
 			Compare(getSAPtextPDF(pdfpath,"Default"),readSingleNodeXML(doc,"SLEName"));
 			
@@ -79,9 +86,12 @@ public class EquipSales {
 	   
 	   switch (Page){
     
-	  
+	   case "FrontPage":
+		   PDFHashMap.put("Frontpage", getText(reader,1));
+			 break; 
+	   
 	   default:
-			 PDFHashMap.put("middlepages", getText(reader));
+			 PDFHashMap.put("middlepages", getText(reader,2));
 			 break;
 	   }
 	
@@ -126,13 +136,13 @@ public class EquipSales {
 			
 	}
 
-	public static String getText(PdfReader reader) throws Exception {
+	public static String getText(PdfReader reader,int pg) throws Exception {
 	Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
 		
     RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
     TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
             
-   for (int i = 2; i <= (reader.getNumberOfPages() -1); i++) {
+   for (int i = pg; i <= (reader.getNumberOfPages() -1); i++) {
     
         strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
         
@@ -144,7 +154,59 @@ public class EquipSales {
     return PDFtext;
 }
 
-	public static LinkedHashMap<String,String> readSingleNodeXML(Document doc1, String VarType) throws Exception{
+	public static LinkedHashMap<String,String> readShipAddressXML(Document doc1,String VarType) throws Exception {
+	       
+	       LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
+	      
+	       XPath xpath = XPathFactory.newInstance().newXPath();
+	        XPathExpression exprCAAdd = xpath.compile("//ShipToAddress");
+	       
+	          NodeList PerCATransRows = (NodeList)exprCAAdd.evaluate(doc1, XPathConstants.NODESET);
+	          Element PerTransaction = (Element)PerCATransRows.item(0);  
+	          
+	          switch (VarType){
+	      	
+	        			               
+	        	case "Name":
+	        		try {
+	        			FrontPageMap.put("Name",(PerTransaction.getElementsByTagName("Name").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	        	
+	        	case "Street1":
+	        		try {
+	        			FrontPageMap.put("Street1",(PerTransaction.getElementsByTagName("Street1").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "City":
+	        		try {
+	        			FrontPageMap.put("City",(PerTransaction.getElementsByTagName("City").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "Street2":
+	        		try {
+	        			FrontPageMap.put("State",(PerTransaction.getElementsByTagName("Street2").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "Country":
+	        		try {
+	        			FrontPageMap.put("Country",(PerTransaction.getElementsByTagName("Country").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "PostalCode":
+	        		try {
+	        			FrontPageMap.put("PostalCode",(PerTransaction.getElementsByTagName("PostalCode").item(0).getFirstChild().getTextContent()));
+	        		}catch(Exception e){}
+	               break;
+	        	
+	         }
+	               return FrontPageMap;
+	 	}	
+public static LinkedHashMap<String,String> readSingleNodeXML(Document doc1, String VarType) throws Exception{
 	        
 	        LinkedHashMap<String, String> CAFrontPageMap= new LinkedHashMap<>();              
          

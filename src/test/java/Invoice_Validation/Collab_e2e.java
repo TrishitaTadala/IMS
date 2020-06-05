@@ -1,12 +1,18 @@
-package Invoice_Validation;
+//package billing;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.ResultSet;
-//import java.sql.Statement;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.OutputStreamWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,6 +25,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.FilteredTextRenderListener;
@@ -28,194 +36,261 @@ import com.itextpdf.text.pdf.parser.RegionTextRenderFilter;
 import com.itextpdf.text.pdf.parser.RenderFilter;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
-public class Collab {
+import core.BasicConfigurator;
+import utilities.ExcelReader;
+
+public class Collab_e2e {
 	
 	public static String PDFtext;
 	public static String  xmlrows;
 	public static boolean q;
 	public static String Remarks;
-	public static String BillRun;
-	
-//public void collab (String testcasename)throws Exception
-	public static void main(String[] args) throws Exception{
+	public static void collab (String testCaseName,ExtentTest test)throws Exception {
+//	public static void main(String[] args) throws Exception{
 /***********************************************************************************************************/		
 
-		ReadExcelFile.readExcelFile(); // Reading the Contents of the Excel file containing the path to access the Invoice PDF and the Single view XML
-			for(int k =0;k<ReadExcelFile.i;k++){
-				System.out.println("*****************ITERATION of Each Invoice "+k+" th***************\n"); 	
-				String xmlpath = ReadExcelFile.XMLFILENAME[k];
-				String pdfpath = ReadExcelFile.PDFFILENAME[k];
+	HashMap<String, HashMap<String, String>> data = ExcelReader.readExcel("BGAN Regression.xlsx",
+			"SV DataSheet");
+	String va = data.get("Single View").get("Invoice Id");
+	System.out.println("Va Value before while: " + va);
+	String filename = System.getProperty("user.dir") + "/src/test/resources/testData/";
+	File file = new File(filename);
+	String[] files = file.list();
+	/***********************************************************************************************************/
+;
+			String afilename = System.getProperty("user.dir") + "/src/test/resources/testData/";
+			File afile1 = new File(afilename);
+			String[] afiles = afile1.list();
+			String pdfFile=null;
+
+			int i=0;
+            do {
+                  Thread.sleep(12000);
+              
+            for (String fileNa : files) {
+                  //System.out.println("PDF file: " + fileNa );
+                  
+                  if (fileNa.contains("INVOICE_" +va+"_")) {
+                                                                  
+                        System.out.println("PDF file:  " + fileNa);
+                        pdfFile=fileNa;
+                              break;
+                        }
+                        
+                  }
+            i++;
+            System.out.println("while loop exit"+i);
+            }while (i<=10 && pdfFile==null);
+
+
 			
+			
+				//String[] filepaths = ReadExcelFile.PDFFILENAME; //File location of the PDF 
+				String pdfpath = System.getProperty("user.dir") + "/src/test/resources/testData/"+pdfFile;
+	
 				
+				
+
+				String filexml=null;
+				int j=0;
+	            do {
+	                  Thread.sleep(200);
+				for (String fileNa : files) {
+					System.out.println("Filename: " + fileNa );
+
+					if (fileNa.contains( va+"_")) {
+						System.out.println("XML file: " + fileNa);
+						filexml=fileNa;
+						break;
+					}
+				}
+				
+				 j++;
+		            System.out.println("while loop exit"+j);
+		            }while (j<=10 && pdfFile==null);
+				String xmlpath=System.getProperty("user.dir") + "/src/test/resources/testData/"+filexml;
+				
+				File fXmlFile = new File(xmlpath);
+				 FileReader reader = new FileReader(xmlpath);
+		         String newString;
+		         BufferedReader br = new BufferedReader(reader);
+		         StringBuilder strTotale = new StringBuilder();
+		         
+		         while((newString=br.readLine())!= null){
+		               strTotale.append(newString);
+		     }
+		                  
+		           BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fXmlFile),"UTF8"));
+		           
+		           out.write(strTotale.toString().replaceAll("\\<\\?xml(.+?)\\?\\>", "").trim());
+		           out.close();
+		           br.close();
+
 				File inputFile = new File(xmlpath);
 		       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		       
 		       Document doc1 = dBuilder.parse(inputFile);
 		       doc1.getDocumentElement().normalize();
-		       
-		        BillRun =doc1.getElementsByTagName("BillRunType").item(0).getTextContent();
 
+		       
 /****************************************FRONT PAGE*************************************************************/		
 		       
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"SLEName"));
-		      System.out.println("*****************FrontPage Validation_XML *****************\n");
-		       Compare(gettextPDF(pdfpath,"Address"),readSingleNodeXML(doc1,"CustName"));
-		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Line1"));
-		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Line2"));
-		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Suburb"));
-		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"City"));
-		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"State"));
-		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Country"));
-		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"PostCode"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"VAT"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"PricingID"));
-		       
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Name"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Street1"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Street2"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"City"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Country"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"PostalCode"));
-		       
-		     System.out.println("*****************Invoice Details_XML - FRONT PAGE ***************\n"); 
-		       
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"InvoiceNo"));
-			   Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"BillToRef"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"SoldToRef"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"InvoiceDate"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"YourRef"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"YourRef2"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"BPED"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"DueDate"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Currency"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"PONumber"));
-		      
-		      System.out.println("*****************FrontPage Legacy IDs Validation_XML**************\n");
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"AccountNo"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"BillingProfile"));
-		       
-		      System.out.println("*****************SUMMARY Information Section_XML**************\n");
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Fees"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Airtime"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Voucher"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"LPI"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"AdjustSum"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"ORSum"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"CarrierAirtime"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"CDSummary"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"TotalAmtExcl"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Tax"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"USFfee"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"TotalAmtIncl"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"TaxInfo"));
-		       
-		       /****************************************SECOND PAGE ONWARDS*************************************************************/		
-			   System.out.println("*****************Page2 Validation_XML **************");
-				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"SLEName"));
-								      	
-			   System.out.println("*****************PAGE2 onwards -Invoice Details_XML*************\n"); 
-				      
-				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"InvoiceNo"));
-				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"BillToRef"));
-				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"SoldToRef"));
-				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"YourRef"));
-				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"InvoiceDate"));
-				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"Currency"));
-				
-			   System.out.println("********************SERVICE SUMMARY VALIDATION**********************\n");
-				   Compare(gettextPDF(pdfpath,"Default"),readSSGroupXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSProductXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSActivationXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSSubscriptionsXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSCancellationXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSEarlyTerminationXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSUsageXML(doc1,xmlpath));
-				   //Compare(gettextPDF(pdfpath,"Default"),readSSOtherXML(doc1,xmlpath)); //Further Modification Required
-				   Compare(gettextPDF(pdfpath,"Default"),readSStotalXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSSubtotalXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSAllTotalXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSGrandTotalXML(doc1,xmlpath));
-				   
-				   if (BillRun.equals("Standard Bill Run")) {
-				System.out.println("***********************FEE DETAIL VALIDATION*************************\n");	   
-				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ServiceGroup"));//Fee Detail ServiceGroup
-				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ProductGroup"));//Fee Detail ServiceGroup
-				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"RatePlan"));//Fee Detail RatePlan
-				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"SiteInfo")); 
-				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"SiteRef"));
-				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"any"));//Fee Detail Recurring Lines
-				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1,"SiteInfo")); 
-				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1,"SiteRef"));//Fee Detail OneOff Lines
-				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1,"any"));
-				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"TotalFD")); //Fee Detail Totals
-				   Compare(gettextPDF(pdfpath,"Default"),readFDChargeTotalsXML(doc1));//Fee Detail Charge Totals
-				System.out.println("***********************AIRTIME DETAIL VALIDATION************************\n");	   
-				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"CallDateTime"));
-				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"DestinationCountry"));
-				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"AirtimeType"));
-				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"LineItems"));
-				   //Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantCLinesXML(doc1,"MsgRefNo"));
-				   //Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantCLinesXML(doc1,"AddInfo"));
-				  // Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantCLinesXML(doc1,"LineItems"));
-				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"AirtimeTotal"));
-				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"SIMTotal"));
-				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"GrandTotal"));
-				   
-			     System.out.println( "*************************FEE SUMMARY VALIDATION******************************\n");
-			       Compare(gettextPDF(pdfpath,"Default"),readFSGroupChargeXML(doc1));//Service Group - Fee Summary
-			       Compare(gettextPDF(pdfpath,"Default"),readFeeSummaryLinesXML(doc1)); //Fees Summary Lines
-				   Compare(gettextPDF(pdfpath,"Default"),readFSSubtotalXML(doc1));//Fees Summary Sub Total Lines
-				   Compare(gettextPDF(pdfpath,"Default"),readFSProductGroupXML(doc1));//Fees Summary Product Group Lines
-				   Compare(gettextPDF(pdfpath,"Default"),readFSChargeTotalXML(doc1));//Fees Summary Charge Totals
-				   Compare(gettextPDF(pdfpath,"Default"),readFStotalXML(doc1));//Total Fees Summary
-				 System.out.println( "******************************AIRTIME SUMMARY********************************\n");
-				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"TrafficType"));// Airtime Summary LineItems
-				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"any"));// Airtime Summary LineItems
-				   Compare(gettextPDF(pdfpath,"Default"),readAStotalXML(doc1));
-				   
-				 System.out.println("********************ADJUSTMENT SECTION ********************\n");
-					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"ServiceDetails"));
-					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"LineItems"));
-					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"TotalsAdj"));
-					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"GrandTotal"));
+		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"SLEName"),test);
+		      System.out.println("*****************FrontPage Validation_XML*****************\n");
+		       Compare(gettextPDF(pdfpath,"Address"),readSingleNodeXML(doc1,"CustName"),test);
+		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Line1"),test);
+		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Line2"),test);
+		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Suburb"),test);
+		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"City"),test);
+		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"State"),test);
+				Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"Country"),test);
+			       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"PostCode"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"VAT"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"PricingID"),test);
+			       
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Name"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Street1"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Street2"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"City"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Country"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"PostalCode"),test);
+			       
+			     System.out.println("*****************Invoice Details_XML - FRONT PAGE *************\n"); 
+			       
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"InvoiceNo"),test);
+				   Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"BillToRef"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"SoldToRef"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"InvoiceDate"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"YourRef"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"YourRef2"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"BPED"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"DueDate"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Currency"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"PONumber"),test);
+			      
+			      System.out.println("*****************FrontPage Legacy IDs Validation_XML *************\n");
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"AccountNo"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"BillingProfile"),test);
+			       
+			      System.out.println("*****************SUMMARY Information Section_XML th**************\n");
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Fees"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Airtime"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Voucher"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"LPI"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"AdjustSum"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"ORSum"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"CarrierAirtime"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"CDSummary"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"TotalAmtExcl"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"Tax"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"USFfee"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"TotalAmtIncl"),test);
+			       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"TaxInfo"),test);
+			       
+			       /****************************************SECOND PAGE ONWARDS*************************************************************/		
+				   System.out.println("*****************Page2 Validation_XML **************");
+					 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"SLEName"),test);
+									      	
+				   System.out.println("*****************PAGE2 onwards -Invoice Details_XML ************\n"); 
+					      
+					 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"InvoiceNo"),test);
+					 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"BillToRef"),test);
+					 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"SoldToRef"),test);
+					 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"YourRef"),test);
+					 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"InvoiceDate"),test);
+					 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"Currency"),test);
 					
-			     System.out.println("*****************Prepaid Airtime Section_XML *************\n");
-			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"ProductID")); 
-			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"ProdDesc"));
-			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"LinesItems"));
-			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo1"));
-			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo2"));
-			        Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"VoucherTotal"));
+				   System.out.println("********************SERVICE SUMMARY VALIDATION**-*******************\n");
+					   Compare(gettextPDF(pdfpath,"Default"),readSSGroupXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSProductXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSActivationXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSSubscriptionsXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSCancellationXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSEarlyTerminationXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSUsageXML(doc1,xmlpath),test);
+					   //Compare(gettextPDF(pdfpath,"Default"),readSSOtherXML(doc1,xmlpath)); //Further Modification Required
+					   Compare(gettextPDF(pdfpath,"Default"),readSStotalXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSSubtotalXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSAllTotalXML(doc1,xmlpath),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readSSGrandTotalXML(doc1,xmlpath),test);
+					System.out.println("***********************FEE DETAIL VALIDATION************************\n");	   
+					   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ServiceGroup"),test);//Fee Detail ServiceGroup
+					   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ProductGroup"),test);//Fee Detail ServiceGroup
+					   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"RatePlan"),test);//Fee Detail RatePlan
+					   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"SiteInfo"),test); //Fee Detail Recurring Lines
+					   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"any"),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1),test); //Fee Detail OneOff Lines
+					   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"TotalFD"),test); //Fee Detail Totals
+					   Compare(gettextPDF(pdfpath,"Default"),readFDChargeTotalsXML(doc1),test);//Fee Detail Charge Totals
+					System.out.println("***********************AIRTIME DETAIL VALIDATION**- *********************\n");	   
+					   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"CallDateTime"),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"DestinationCountry"),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"AirtimeType"),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"LineItems"),test);
+					   //Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantCLinesXML(doc1,"MsgRefNo"),test);
+					   //Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantCLinesXML(doc1,"AddInfo"),test);
+					  // Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantCLinesXML(doc1,"LineItems"),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"AirtimeTotal"),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"SIMTotal"),test);
+					   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"GrandTotal"),test);
+				    System.out.println( "*************************FEE SUMMARY VALIDATION******************************\n");
+				       Compare(gettextPDF(pdfpath,"Default"),readFSGroupChargeXML(doc1),test);//Service Group - Fee Summary
+				       Compare(gettextPDF(pdfpath,"Default"),readFeeSummaryLinesXML(doc1),test); //Fees Summary Lines
+					   Compare(gettextPDF(pdfpath,"Default"),readFSSubtotalXML(doc1),test);//Fees Summary Sub Total Lines
+					   Compare(gettextPDF(pdfpath,"Default"),readFSProductGroupXML(doc1),test);//Fees Summary Product Group Lines
+					   Compare(gettextPDF(pdfpath,"Default"),readFSChargeTotalXML(doc1),test);//Fees Summary Charge Totals
+					   Compare(gettextPDF(pdfpath,"Default"),readFStotalXML(doc1),test);//Total Fees Summary
+					 System.out.println( "******************************AIRTIME SUMMARY*********************************\n");
+					   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"TrafficType"),test);// Airtime Summary LineItems
+					   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"any"),test);// Airtime Summary LineItems
+					   Compare(gettextPDF(pdfpath,"Default"),readAStotalXML(doc1),test);
+					   
+					   
+					   
+					   /****************************************Adjustments Section*************************************************************/			
+					 System.out.println("********************ADJUSTMENT SECTION********************\n");
+						Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"ServiceDetails"),test);
+						Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"LineItems"),test);
+						Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"TotalsAdj"),test);
+						Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"GrandTotal"),test);
+						
+				     System.out.println("*****************Prepaid Airtime Section_XML ************\n");
+				        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"ProductID"),test); 
+				        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"ProdDesc"),test);
+				        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"LinesItems"),test);
+				        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo1"),test);
+				        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo2"),test);
+				        Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"VoucherTotal"),test);
+				        
+				     System.out.println("*****************Carrier Airtime Section_XML***********\n");
+				        
+				        Compare(gettextPDF(pdfpath,"Default"),readCarrierAirtimeLinesXML(doc1),test);
+				        Compare(gettextPDF(pdfpath,"Default"),readCAtotalsXML(doc1),test);
+				        Compare(gettextPDF(pdfpath,"Default"),readCAGrandTotalXML(doc1),test);
+				        
+				     System.out.println("****************Other Revenue Section_XML *************\n");
+				        Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"LineItems"),test);
+						Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"ServiceDetails"),test);
+						Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"PONumber"),test);
+						Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"GrandTotal"),test);
 			        
-			     System.out.println("*****************Carrier Airtime Section_XML*************\n");
-			        Compare(gettextPDF(pdfpath,"Default"),readCarrierAirtimeLinesXML(doc1));
-			        Compare(gettextPDF(pdfpath,"Default"),readCAtotalsXML(doc1));
-			        Compare(gettextPDF(pdfpath,"Default"),readCAGrandTotalXML(doc1));
-			        
-			     System.out.println("****************Other Revenue Section_XML****************\n");
-			        Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"LineItems"));
-					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"ServiceDetails"));
-					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"PONumber"));
-					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"GrandTotal"));
-				   }
-				   else {
-				System.out.println("*****************Credits/Debits Section_XML******************");
-			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"Credits/Debits"));
-			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"InvoiceID"));
-			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"Title"));
-			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"Description"));
-			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"ChargeType"));
-			      	Compare(gettextPDF(pdfpath,"Default"),readCDtotalXML(doc1,"CDtotal"));	 
-				   }
+					System.out.println("*****************Credits/Debits Section_XML******************");
+				      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"Credits/Debits"),test);
+				      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"InvoiceID"),test);
+				      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"Title"),test);
+				      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"Description"),test);
+				      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"ChargeType"),test);
+				      	Compare(gettextPDF(pdfpath,"Default"),readCDtotalXML(doc1,"CDtotal"),test);	 
+			     
 			      	System.out.println("*****************Footer Section_XML******************");
-			      	Compare(gettextPDF(pdfpath,"Footer"),readSingleNodeXML(doc1,"footer"));
+			      	Compare(gettextPDF(pdfpath,"Footer"),readSingleNodeXML(doc1,"footer"),test);
 			      	
-			     System.out.println("*****************END of ITERATION of Each Invoice***************\n");
-			}     
+			     System.out.println("*****************END of ITERATION of Each Invoice**************\n");
+			     
 			
 			}
-	
+
 			
 		public static String gettextPDF(String pdfpath, String Page) throws Exception{
 
@@ -295,13 +370,12 @@ public class Collab {
 			   //for (int i = 1; i <= (reader.getNumberOfPages()); i++) {
 				   
 			   FooterText= PdfTextExtractor.getTextFromPage(reader, 1, strategy);
-			  // System.out.println(FooterText);
 			  // }
 			 return FooterText;   
 			}
 		
 		/******************************************************************************************************************/			
-		public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap){
+		public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap,ExtentTest test){
 			
 			Iterator<String> XMLkeySetIterator = XMLHashMap.keySet().iterator();
 		    while(XMLkeySetIterator.hasNext()) {
@@ -311,13 +385,14 @@ public class Collab {
 				xmlrows = XMLHashMap.get(keyXML).replaceAll("\n", "");
 							
 			if (PDFtext.indexOf(xmlrows)!=-1? true: false){
-				
-				System.out.println(xmlrows +" It's a Match!!!");
+				test.log(Status.PASS, "Matched for parameter "+keyXML);
+				//System.out.println(xmlrows +" It's a Match!!!");
 				 q = true;
 						
 			    }
 			else{
 				System.out.println( xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~");
+				test.log(Status.FAIL, "Failed at parameter "+keyXML);
 					 q = false;	
 					 Remarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 			     }			
@@ -339,7 +414,7 @@ public class Collab {
 		        	case "Line1":
 		         		 
 		         		try {
-		                   String Line1[] = doc1.getElementsByTagName("Line1").item(0).getTextContent().replace (",",""
+		                   String[] Line1 = doc1.getElementsByTagName("Line1").item(0).getTextContent().replace (",",""
 		                  		 ).split(" "); 
 		                   int btcn =0;
 		                   do {
@@ -446,44 +521,44 @@ public class Collab {
 		/**********************************SINGLENODE ELEMENTS******************************************/
 		public static LinkedHashMap<String,String> readSingleNodeXML(Document doc1, String VarType) throws Exception{
 		       
-		     LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
-		     String TotalTaxes = "0.00";
+		       LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
+		  
+		       String BillRun =doc1.getElementsByTagName("BillRunType").item(0).getTextContent();
+		       String TotalTaxes = "0.00";
 		       
 		    switch (VarType){
 			
 			case "SLEName":  
-				    FrontPageMap.put("sleLine",doc1.getElementsByTagName("SLEName").item(0).getTextContent());
+				FrontPageMap.put("sleLine",doc1.getElementsByTagName("SLEName").item(0).getTextContent());
 		        break;
 		        
 			case "InvoiceNo":  
 				
 				if (BillRun.equals("Standard Bill Run")) {
-				    FrontPageMap.put("InvoiceNo","Number "+doc1.getElementsByTagName("InvoiceNumber").item(0).getTextContent());
+				FrontPageMap.put("InvoiceNo","Number "+doc1.getElementsByTagName("InvoiceNumber").item(0).getTextContent());
 				}
+				
 				else {
 					try {
 					FrontPageMap.put("InvoiceNo","Number "+doc1.getElementsByTagName("ADJNumber").item(0).getTextContent());
-				        }catch(Exception e){}
+				}catch(Exception e){}
 				}
 		        break;
 		   		
 			case "BillToRef":   
-				    FrontPageMap.put("BillToRef","Bill to reference "+doc1.getElementsByTagName("BillingProfileId").item(0).getTextContent());
+				FrontPageMap.put("BillToRef","Bill to reference "+doc1.getElementsByTagName("BillingProfileID").item(0).getTextContent());
 				 break;	
 				
 			case "SoldToRef":  
-				    FrontPageMap.put("SoldToRef","Sold to reference "+doc1.getElementsByTagName("SAPAccountNumber").item(0).getTextContent());
+				FrontPageMap.put("SoldToRef","Sold to reference "+doc1.getElementsByTagName("SAPAccountNumber").item(0).getTextContent());
 				 break;
 			
 			case "YourRef":  
 				String YourRef = doc1.getElementsByTagName("YourReference").item(0).getTextContent().replace(",", "");
 				
-			   	if (YourRef.isEmpty()) {}
-			   	else {
-			   		FrontPageMap.put("YourRef","Your reference "+YourRef);
-			   		 }
+			   	if (YourRef.isEmpty()  ) {}
+			   	else {FrontPageMap.put("YourRef","Your reference "+YourRef);}
 				 break;
-				 
 			case "YourRef2":  
 				FrontPageMap.put("YourRef2","Your additional info "+doc1.getElementsByTagName("YourReference2").item(0).getTextContent());
 				 break;
@@ -506,10 +581,9 @@ public class Collab {
 			   	String PONumber = (doc1.getElementsByTagName("OrderNumber").item(0).getTextContent());
 					
 			   	if (PONumber.isEmpty()  ) {}
-			   	else {FrontPageMap.put("PONumber","PO number: "+PONumber);}
+			   	else {FrontPageMap.put("PONumber","PO Number: "+PONumber);}
 		    }catch(Exception e){}
 		      break; 
-		   
 		   case "CustName":
 		   		      		 
 		 		try {
@@ -587,7 +661,6 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		       break;
-		   
 		   case "VoucherTotal": 
 		       try {
 		           String Total = doc1.getElementsByTagName("VoucherTotal").item(0).getFirstChild().getTextContent();
@@ -596,12 +669,11 @@ public class Collab {
 		           
 		           }catch(Exception e){}
 		       break;
-		   
 		   case "Voucher": 
 		       try {
 		           String Vou = doc1.getElementsByTagName("VoucherTotal").item(0).getFirstChild().getTextContent();
 		           
-		           FrontPageMap.put("GrandTotalVoucher","Prepaid Airtime "+Vou);
+		           FrontPageMap.put("GrandTotal","Prepaid Airtime "+Vou);
 		           
 		           }catch(Exception e){}
 		       break;
@@ -615,7 +687,6 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		      break;
-		  
 		   case "Fees":
 				try {
 					String Fees = doc1.getElementsByTagName("TotalFees").item(0).getTextContent();
@@ -625,7 +696,6 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		      break;
-		   
 		   case "Airtime":
 				try {
 					String Airtime = doc1.getElementsByTagName("TotalAirtimeCharges").item(0).getTextContent();
@@ -635,7 +705,6 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		      break;
-		  
 		   case "LPI":
 				try {
 					String lpi = doc1.getElementsByTagName("TotalLPIAmount").item(0).getTextContent();
@@ -645,7 +714,6 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		      break;
-		  
 		   case "AdjustSum":
 				try {
 					String Adj = doc1.getElementsByTagName("TotalAdjustment").item(0).getTextContent();
@@ -655,7 +723,6 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		      break;
-		  
 		   case "ORSum":
 				try {
 					String ORsum = doc1.getElementsByTagName("TotalOtherRevenue").item(0).getTextContent();
@@ -685,42 +752,43 @@ public class Collab {
 					}
 				}catch(Exception e){}
 		      break;
-		   
 		   case "CDSummary":
 			   try {
 			   FrontPageMap.put("CDSummary","Credits / Debits "+doc1.getElementsByTagName("TotalAmount").item(1).getTextContent());
 			   }catch(Exception e){} 
 			   break;   
-		   
 		   case "Tax":
-			    XPath xPath = XPathFactory.newInstance().newXPath();
+			   
+			   XPath xPath = XPathFactory.newInstance().newXPath();
 				String pertaxtype ="//PerTaxType/TaxType";
 				NodeList taxtype = (NodeList) xPath.compile(pertaxtype).evaluate(doc1, XPathConstants.NODESET);
 		        NodeList taxnode = (NodeList) taxtype;
-		        
+		        //int m = taxnode.getLength();
 		        for (int i = 0; i < taxnode.getLength(); i++) {
 		        	try{
 		        		String TaxType = (taxnode.item(i).getFirstChild().getNodeValue());
-
+		        		//System.out.println(doc.getElementsByTagName("TotalTaxAmount").item(i).getTextContent());
 		        		if(TaxType.equals("USF Fee")) {
+		        			
 		        			 TotalTaxes = doc1.getElementsByTagName("TaxesWithOutUSF").item(0).getTextContent();
 		        		}
+		        		
 	                    else 
+	                    
 	                    {
-	                    	 if (BillRun.equals("Standard Bill Run")) {
 	                    	TotalTaxes = doc1.getElementsByTagName("GrandTotalTaxAmtAC").item(0).getTextContent(); 
-	                    	 }
-	                    	 else {
-	     						try {
-	     							TotalTaxes = doc1.getElementsByTagName("CNGrandTotalTax").item(0).getTextContent(); 
-	     					        }catch(Exception e){}	 
-		                           }	
-		        	     }
-				     }catch(Exception e){}
-		      }
+	                    	
+		                }
+		        		
+		        		
+		        	}
+		        		catch(Exception e){}
+		        	
+				}
 		        FrontPageMap.put("Taxonly","Taxes "+TotalTaxes);
 		        break;
-		                
+		        
+		        
 		   case "USFfee":
 			   XPath xpath = XPathFactory.newInstance().newXPath();
 			   String pertaxtype1 ="//PerTaxType/TaxType";
@@ -734,11 +802,13 @@ public class Collab {
 		        		if(TaxType1.equals("USF Fee")) {
 		        		String	USFFee = doc1.getElementsByTagName("TotalTaxAmount").item(i+1).getTextContent();
 		        		FrontPageMap.put("usfonly","USF Fee "+USFFee);	
-		        		}   		        			
-		        	}catch(Exception e){}
+		        		}   		        		
+		        		
+		        	}
+		        		catch(Exception e){}
 		        }
 		      break;
-		        
+		      
 		   case "TotalAmtIncl":
 				try {
 					String TotalAmtIncl = doc1.getElementsByTagName("TotalAmountDue").item(0).getTextContent();
@@ -772,27 +842,21 @@ public class Collab {
 		      
 		   case "footer":
 			   
-			 String footer  ="Sold by: "+doc1.getElementsByTagName("SLEName").item(0).getTextContent()
+			 String footer  ="Soldby:"+doc1.getElementsByTagName("SLEName").item(0).getTextContent()
 				+" "+doc1.getElementsByTagName("SLEAddress").item(0).getTextContent()
-				+" | "+" "+doc1.getElementsByTagName("TaxRegNoDescription").item(0).getTextContent()
+				+"|"+doc1.getElementsByTagName("TaxRegNoDescription").item(0).getTextContent()
 				+" "+doc1.getElementsByTagName("TaxRegistrationNumber").item(0).getTextContent()
-				+" |"+" "+"www.inmarsat.com";
+				+"|"+"www.inmarsat.com";
 			 
-			 try {
-		           String[] Footer = footer.split(" "); 
-		           int ft =0;
-		           do {
-		           	FrontPageMap.put(ft+"Line",Footer[ft]);
-		      	
-		           	ft++;
-		             }while (Footer[ft]!= "" ||Footer[ft]!= null);
-		           
-		      	 }catch(Exception e){}
-		      	 break;
+			 
+			 FrontPageMap.put("footer",footer); 
+			   break;
+		   		
+		 	    
 		    }
 		       return FrontPageMap;
 		           
-	}
+			}
 		/**********************************TAX INFORMATION******************************************/
 		
 		/**********************************SERVICE SUMMARY******************************************/
@@ -1027,7 +1091,7 @@ public class Collab {
 	             return ServiceSummaryTableRowsMap;               
 	  
 		}
-	      public static LinkedHashMap<String,String> readSSGrandTotalXML(Document doc,String xmlfilepath) throws Exception {
+ 	      public static LinkedHashMap<String,String> readSSGrandTotalXML(Document doc,String xmlfilepath) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 
@@ -1118,27 +1182,18 @@ public class Collab {
 		        	case "SiteInfo":
 		        		try{
 		        		String SiteInfo = PerTransaction.getElementsByTagName("SiteInformation").item(0).getFirstChild().getTextContent();
-		        		 if (SiteInfo!= null  ) {
-		        		FeeDetailTableRowsMap.put("Line"+i+" ",SiteInfo);
-		        		 }
-		        		}  catch(Exception e){} 
-		        	break;
-		        	
-		        	case "SiteRef":
-		        		try{
-		        		
-		        		 String SiteRef = PerTransaction.getElementsByTagName("SiteReference").item(0).getFirstChild().getTextContent();
-		            		//.replaceAll(null,"");
-		        		 if (SiteRef!= null  ) {
-		        		FeeDetailTableRowsMap.put("Line"+i," "+SiteRef );
-		        		 }
-		        		
+		        		FeeDetailTableRowsMap.put("Line"+i+" ",SiteInfo );
 		        		 }  catch(Exception e){} 
-		        	break;
-		        	
 		        	default:
+		        
+		            
 		            try {
+		            
+		            String SiteRef = PerTransaction.getElementsByTagName("SiteReference").item(0).getFirstChild().getTextContent();
+		            		//.replaceAll(null,"");
 		            String MSISDN = PerTransaction.getElementsByTagName("MSISDN").item(0).getFirstChild().getTextContent();
+		            //String ChargeGroup = PerTransaction.getElementsByTagName("ChargeGroup").item(0).getFirstChild().getTextContent();
+		            //String ServiceGroup = PerTransaction.getElementsByTagName("ServiceGroup").item(0).getFirstChild().getTextContent();
 		            String PeriodStartDate = PerTransaction.getElementsByTagName("PeriodStartDate").item(0).getFirstChild().getTextContent();
 		            String PeriodEndDate = PerTransaction.getElementsByTagName("PeriodEndDate").item(0).getFirstChild().getTextContent();
 		            String Units = PerTransaction.getElementsByTagName("Quantity").item(0).getFirstChild().getTextContent();
@@ -1146,15 +1201,18 @@ public class Collab {
 		            String Rate = PerTransaction.getElementsByTagName("UnitPrice").item(0).getFirstChild().getTextContent();
 		            String TotalCharge = PerTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
 		            
-		            String  FeeDetailTableRow = " "+MSISDN+ " " +PeriodStartDate+" " +PeriodEndDate
+		            String  FeeDetailTableRow = " " +SiteRef+" "+MSISDN+ " " +PeriodStartDate+" " +PeriodEndDate
 		            		                    +" "+Units+" "+UOM+" "+Rate+" "+TotalCharge;
 		            FeeDetailTableRowsMap.put("Line"+i+" ",FeeDetailTableRow );
-		            }catch(Exception e){} 
+		            }  catch(Exception e){} 
 		            break;  
 		        }
-			        }	
+			        }
+		        
+		        	
 		        }      
-		        return FeeDetailTableRowsMap;        
+		        return FeeDetailTableRowsMap;
+		            
 			}
 		    public static LinkedHashMap<String,String> readFDTotalsXML(Document doc,String VarType) throws Exception{
 		        
@@ -1199,7 +1257,7 @@ public class Collab {
 		        return FeeDetailTableTotalMap;
 		            
 			}
-		    public static LinkedHashMap<String,String> readFeeDetailOneoffLinesXML(Document doc,String VarType) throws Exception{
+		    public static LinkedHashMap<String,String> readFeeDetailOneoffLinesXML(Document doc) throws Exception{
 		        
 		        LinkedHashMap<String, String> OFeeDetailTableRowsMap= new LinkedHashMap<>();
 		        String CustomerInvoicePreference = doc.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
@@ -1214,29 +1272,15 @@ public class Collab {
 		                       
 		            Element PerTrans = (Element)PerTranRows.item(j);
 		            
-                   switch (VarType) {
-		        	
-		        	case "SiteInfo":
-		        		try{
-		        		String SiteInfo = PerTrans.getElementsByTagName("SiteInformation").item(0).getFirstChild().getTextContent();
-		        		
-		        		 if (SiteInfo!= null  ) {
-		        			 OFeeDetailTableRowsMap.put("Line"+j+" ",SiteInfo );
-		        		 }
-		        		 }  catch(Exception e){} 
-		        	break;
-		        	case "SiteRef":
-		        		try{
-		        		
-		        		String SiteRef =  PerTrans.getElementsByTagName("SiteReference").item(0).getFirstChild().getTextContent();
+		            
+		            String[] OSiteInfo = PerTrans.getElementsByTagName("SiteInformation").item(0).getFirstChild().getTextContent().split(" ");
+		            
+		            try {
+		            String OSiteRef = PerTrans.getElementsByTagName("SiteReference").item(0).getFirstChild().getTextContent();
+		            if (OSiteRef != null) {}
+		            else {OSiteRef ="";}
 		            		//.replaceAll(null,"");
-		        		 if (SiteRef!= null  ) {
-		        			 OFeeDetailTableRowsMap.put("Line"+j+" "," "+SiteRef );
-		        		 }
-		        		}  catch(Exception e){} 
-		        	break;
-		        	
-		        	default:
+		            }  catch(Exception e){} 
 		            String OMSISDN = PerTrans.getElementsByTagName("MSISDN").item(0).getFirstChild().getTextContent();
 
 		            String OPeriodStartDate = PerTrans.getElementsByTagName("PeriodStartDate").item(0).getFirstChild().getTextContent();
@@ -1246,12 +1290,11 @@ public class Collab {
 		            String ORate = PerTrans.getElementsByTagName("UnitPrice").item(0).getFirstChild().getTextContent();
 		            String OTotalCharge = PerTrans.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
 		            
-		            String  OFeeDetailTableRow = (OMSISDN+ " " +OPeriodStartDate+" " +OPeriodEndDate
+		            String  OFeeDetailTableRow = (OSiteInfo[0]+" "+OMSISDN+ " " +OPeriodStartDate+" " +OPeriodEndDate
 		            		                    +" "+OUnits+" "+OUOM+" "+ORate+" "+OTotalCharge);
-		            //OSiteInfo[0]+" "+OSiteRef+" "+   ****************** OFeeDetailTableRow =OFeeDetailTableRow.replace(null, "");
+		            //OSiteRef+" "+   ****************** OFeeDetailTableRow =OFeeDetailTableRow.replace(null, "");
 		            OFeeDetailTableRowsMap.put("Line"+j+" ",OFeeDetailTableRow );
-		            break;
-                   }  
+		            
 		        }
 		            
 		        
@@ -1368,7 +1411,7 @@ public class Collab {
 	        public static LinkedHashMap<String,String> readADGeneralVariantCLinesXML(Document doc,String VarType) throws Exception{
 		        
 		        LinkedHashMap<String, String> AirtimeDetailTableRowsMap= new LinkedHashMap<>();
-		      
+		       
 
 		        XPath xpath = XPathFactory.newInstance().newXPath();
 
@@ -1512,7 +1555,7 @@ public class Collab {
 				          
 				      }       
 				           return FeeSummaryTableGCRowsMap;               
-                 }
+                    }
 		  public static LinkedHashMap<String,String> readFeeSummaryLinesXML(Document doc) throws Exception{
 		        
 		        LinkedHashMap<String, String> FeeSummaryTableRowsMap= new LinkedHashMap<>();
@@ -1613,7 +1656,7 @@ public class Collab {
 		        
 		        LinkedHashMap<String, String> FeeSummaryTableTotal= new LinkedHashMap<>();
 		        try {
-
+ 
 		                String SummaryTotal = doc.getElementsByTagName("FeeSumTotal").item(0).getTextContent();
 		                
 		                String  FeeSummaryTableRow = ("Total Fee Summary "+SummaryTotal);
@@ -1719,7 +1762,7 @@ public class Collab {
 		              }catch(Exception e){}
 		              return AirtimeSummaryTableTotal;
 		  }		    
- /************************************ADJUSTMENTS SECTION********************************************/
+    /************************************ADJUSTMENTS SECTION********************************************/
 		 public static LinkedHashMap<String,String> readAdjustmentLinesXML(Document doc1, String VarType) throws Exception{
 		       
 		       LinkedHashMap<String, String> AdjustmentTableRowsMap= new LinkedHashMap<>();
@@ -1759,7 +1802,7 @@ public class Collab {
 		               break;
 		               
 		         case "GrandTotal":
-            try {
+               try {
 		      	   String GrandTotalAdj = doc1.getElementsByTagName("TotalChargePerProdGrp").item(0).getFirstChild().getTextContent();   
 		      		AdjustmentTableRowsMap.put("GrandTotalAdj","Total Adjustments "+GrandTotalAdj);
 		           }  catch(Exception e){} 
@@ -1928,7 +1971,7 @@ public class Collab {
 	           }
 	           return CAPageMap;
 	    }
-      public static LinkedHashMap<String,String> readCAGrandTotalXML(Document doc) throws Exception {
+         public static LinkedHashMap<String,String> readCAGrandTotalXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> CAPageMap= new LinkedHashMap<>();
 	        
@@ -2030,7 +2073,7 @@ public class Collab {
 	   
 	       return ORTableRowsMap;
 		}	
-	     /***********************************CREDITS/DEBITS SECTION*******************************************/	
+	     /***********************************CREDITS?DEBITS SECTION*******************************************/	
 	     public static LinkedHashMap<String,String> readCNTLinesXML(Document doc,String VarType) throws Exception{
 	         
 	         LinkedHashMap<String, String> CNTFrontPageMap= new LinkedHashMap<>();
@@ -2114,6 +2157,9 @@ public class Collab {
 
 	   	}
 }		
+
+
+		/******************************************************************************************************************/
 
 
 

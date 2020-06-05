@@ -1,12 +1,14 @@
 package Invoice_Validation;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.*;
 import java.io.File;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.ResultSet;
-//import java.sql.Statement;
+import java.io.FileReader;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Scanner;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,7 +30,10 @@ import com.itextpdf.text.pdf.parser.RegionTextRenderFilter;
 import com.itextpdf.text.pdf.parser.RenderFilter;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
-public class Collab {
+//import core.BasicConfigurator;
+//import utilities.ExcelReader;
+
+public class DebugCollab {
 	
 	public static String PDFtext;
 	public static String  xmlrows;
@@ -36,18 +41,89 @@ public class Collab {
 	public static String Remarks;
 	public static String BillRun;
 	
-//public void collab (String testcasename)throws Exception
+//public static void collab (/*String testCaseName*/)throws Exception {
 	public static void main(String[] args) throws Exception{
 /***********************************************************************************************************/		
-
-		ReadExcelFile.readExcelFile(); // Reading the Contents of the Excel file containing the path to access the Invoice PDF and the Single view XML
-			for(int k =0;k<ReadExcelFile.i;k++){
-				System.out.println("*****************ITERATION of Each Invoice "+k+" th***************\n"); 	
-				String xmlpath = ReadExcelFile.XMLFILENAME[k];
-				String pdfpath = ReadExcelFile.PDFFILENAME[k];
-			
+		System.out.println("Enter the Invoice Id to Debug"); 
+		Scanner sc = new Scanner(System.in); 
+		//String va = "1591430";
+		String va = sc.next();
+		sc.close();
+		/***********************************************************************************************************/		
+		  
+				String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\";
+				File file = new File(filename);
+				String[] files = file.list();
+				String filepdf=null;
 				
-				File inputFile = new File(xmlpath);
+				int i=0;
+				do {
+					Thread.sleep(200);
+				  
+				for (String fileNa : files) {
+										
+					if (fileNa.contains("INVOICE_" +va+"_")) {
+													
+						System.out.println("PDF file:  " + fileNa);
+							filepdf=fileNa;
+							break;
+						}	
+					}
+				i++;
+				System.out.println("while loop exit pdf"+i);
+				}while ((i<=10 & filepdf== null));
+				
+				String pdfpath = filename+filepdf;
+	/***********************************************************************************************************/						
+		String afilename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\";
+		File afile1 = new File(afilename);
+		String[] afiles = afile1.list();
+		String xmlFile=null;
+		
+		int j=0;
+		do {
+			Thread.sleep(200);
+		for (String fileNa : afiles) {
+			//System.out.println("Filename: " + fileNa );
+
+			if (fileNa.contains( va+"_")) {
+				
+				System.out.println("XML File: " + fileNa);
+				xmlFile=fileNa;
+				
+				break;
+			}
+		}
+		j++;
+		System.out.println("while loop exit xml"+j);
+		}while ((j<=10 & xmlFile== null));
+			 
+     String xmlpath = afilename+xmlFile;
+  /***********************************************************************************************************/						
+     File fXmlFile = new File(xmlpath);
+     
+     FileReader reader = new FileReader(xmlpath);
+     String newString;
+     BufferedReader br = new BufferedReader(reader);
+     StringBuilder strTotale = new StringBuilder();
+     
+     while((newString=br.readLine())!= null){
+           strTotale.append(newString);
+ }
+       BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fXmlFile),"UTF8"));
+       
+       out.write(strTotale.toString().replaceAll("\\<\\?xml(.+?)\\?\\>", "").trim());
+       out.close();
+       br.close();
+
+   
+	 
+	//String pdfpath ="C:\\Users\\Dhana.K\\Documents\\new2\\E2EBillingAutomation1\\src\\test\\resources\\testData\\INVOICE_1591430_961190_202005.pdf";
+	//String xmlpath ="C:\\Users\\Dhana.K\\Documents\\new2\\E2EBillingAutomation1\\src\\test\\resources\\testData\\10001861_961190_1591430_20200531.xml";
+
+		
+		  
+			File inputFile = new File(xmlpath);
 		       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		       
@@ -56,6 +132,7 @@ public class Collab {
 		       
 		        BillRun =doc1.getElementsByTagName("BillRunType").item(0).getTextContent();
 
+		       
 /****************************************FRONT PAGE*************************************************************/		
 		       
 		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"SLEName"));
@@ -142,14 +219,17 @@ public class Collab {
 				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ServiceGroup"));//Fee Detail ServiceGroup
 				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ProductGroup"));//Fee Detail ServiceGroup
 				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"RatePlan"));//Fee Detail RatePlan
+				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"ProdDesc"));
 				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"SiteInfo")); 
 				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"SiteRef"));
 				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailRecurringLinesXML(doc1,"any"));//Fee Detail Recurring Lines
+				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1,"ProdDesc")); 
 				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1,"SiteInfo")); 
 				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1,"SiteRef"));//Fee Detail OneOff Lines
 				   Compare(gettextPDF(pdfpath,"Default"),readFeeDetailOneoffLinesXML(doc1,"any"));
-				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"TotalFD")); //Fee Detail Totals
+				   Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"TotalFD")); //Fee Detail Totals
 				   Compare(gettextPDF(pdfpath,"Default"),readFDChargeTotalsXML(doc1));//Fee Detail Charge Totals
+				   Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"TFDTotal"));//Fee Detail Charge Totals
 				System.out.println("***********************AIRTIME DETAIL VALIDATION************************\n");	   
 				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"CallDateTime"));
 				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantLinesXML(doc1,"DestinationCountry"));
@@ -162,18 +242,17 @@ public class Collab {
 				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"SIMTotal"));
 				   Compare(gettextPDF(pdfpath,"Default"),readADGeneralVariantTotalsXML(doc1,"GrandTotal"));
 				   
-			     System.out.println( "*************************FEE SUMMARY VALIDATION******************************\n");
+			    System.out.println( "*************************FEE SUMMARY VALIDATION******************************\n");
 			       Compare(gettextPDF(pdfpath,"Default"),readFSGroupChargeXML(doc1));//Service Group - Fee Summary
+			       Compare(gettextPDF(pdfpath,"Default"),readFSProductGroupXML(doc1));//Fees Summary Product Group Lines
 			       Compare(gettextPDF(pdfpath,"Default"),readFeeSummaryLinesXML(doc1)); //Fees Summary Lines
 				   Compare(gettextPDF(pdfpath,"Default"),readFSSubtotalXML(doc1));//Fees Summary Sub Total Lines
-				   Compare(gettextPDF(pdfpath,"Default"),readFSProductGroupXML(doc1));//Fees Summary Product Group Lines
 				   Compare(gettextPDF(pdfpath,"Default"),readFSChargeTotalXML(doc1));//Fees Summary Charge Totals
 				   Compare(gettextPDF(pdfpath,"Default"),readFStotalXML(doc1));//Total Fees Summary
 				 System.out.println( "******************************AIRTIME SUMMARY********************************\n");
 				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"TrafficType"));// Airtime Summary LineItems
 				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"any"));// Airtime Summary LineItems
-				   Compare(gettextPDF(pdfpath,"Default"),readAStotalXML(doc1));
-				   
+				   Compare(gettextPDF(pdfpath,"Default"),readAStotalXML(doc1));		
 				 System.out.println("********************ADJUSTMENT SECTION ********************\n");
 					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"ServiceDetails"));
 					Compare(gettextPDF(pdfpath,"Default"),readAdjustmentLinesXML(doc1,"LineItems"));
@@ -189,17 +268,22 @@ public class Collab {
 			        Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"VoucherTotal"));
 			        
 			     System.out.println("*****************Carrier Airtime Section_XML*************\n");
+			        
 			        Compare(gettextPDF(pdfpath,"Default"),readCarrierAirtimeLinesXML(doc1));
 			        Compare(gettextPDF(pdfpath,"Default"),readCAtotalsXML(doc1));
 			        Compare(gettextPDF(pdfpath,"Default"),readCAGrandTotalXML(doc1));
 			        
-			     System.out.println("****************Other Revenue Section_XML****************\n");
+			     System.out.println("****************Other Revenue Section_XML*************\n");
 			        Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"LineItems"));
 					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"ServiceDetails"));
 					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"PONumber"));
 					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"GrandTotal"));
 				   }
+				  
+				   
 				   else {
+					
+		        
 				System.out.println("*****************Credits/Debits Section_XML******************");
 			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"Credits/Debits"));
 			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"InvoiceID"));
@@ -212,7 +296,7 @@ public class Collab {
 			      	Compare(gettextPDF(pdfpath,"Footer"),readSingleNodeXML(doc1,"footer"));
 			      	
 			     System.out.println("*****************END of ITERATION of Each Invoice***************\n");
-			}     
+			     
 			
 			}
 	
@@ -262,7 +346,7 @@ public class Collab {
 
 		}
 		public static String getPageText(PdfReader reader,int Pg) throws Exception {
-		Rectangle serviceSummary = new Rectangle(0, 950, 900, 20);
+		Rectangle serviceSummary = new Rectangle(0, 1050, 1000, 20);
 			
 		RenderFilter filter = new RegionTextRenderFilter(serviceSummary);
 		TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
@@ -448,6 +532,7 @@ public class Collab {
 		       
 		     LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
 		     String TotalTaxes = "0.00";
+		     
 		       
 		    switch (VarType){
 			
@@ -770,6 +855,35 @@ public class Collab {
 		        }
 		      break;
 		      
+		   case "TFDTotal":
+			   
+			   String CustomerInvoicePreference = doc1.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
+			   if (CustomerInvoicePreference.equals("DETAIL")) { 
+			   try {
+			   FrontPageMap.put("TFDTotal","Total Fee Detail "+doc1.getElementsByTagName("FeeDetailGrandSum").item(0).getTextContent());
+			   }catch(Exception e){} 
+			   }
+			   break;    
+		  
+		   case "TotalFD":
+			   
+			   String CustomerInvoicePreference1 = doc1.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
+			   if (CustomerInvoicePreference1.equals("DETAIL")) { 
+			   XPath xpath2 = XPathFactory.newInstance().newXPath();
+	    		  XPathExpression exprSSPD = xpath2.compile("//CustomerNodeList/CustomerNode/FeeDetailsSubtotal/PerChargeGroup/FeeDetailTotalAmount");
+	  	        
+	  	        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc1, XPathConstants.NODESET);
+	  	
+	  	                 for (int i = 0; i < PerProdRows.getLength(); i++) {
+	  	                	Element PerProductDetails = (Element)PerProdRows.item(i);
+
+	  	                String  ServiceSummaryTableRow = ("Total "+PerProductDetails.getTextContent());
+	  	              FrontPageMap.put("Set"+i,ServiceSummaryTableRow);   
+	  	            }	
+			   }
+	       break;
+	    		
+	    		   
 		   case "footer":
 			   
 			 String footer  ="Sold by: "+doc1.getElementsByTagName("SLEName").item(0).getTextContent()
@@ -793,7 +907,6 @@ public class Collab {
 		       return FrontPageMap;
 		           
 	}
-		/**********************************TAX INFORMATION******************************************/
 		
 		/**********************************SERVICE SUMMARY******************************************/
 		  public static LinkedHashMap<String,String> readSSActivationXML(Document doc,String xmlfilepath) throws Exception {
@@ -972,33 +1085,28 @@ public class Collab {
 	        }       
 	             return ServiceSummaryTableRowsMap;               
 	  
-		}  
+		} 
+	      // Modifed 06/05
 	      public static LinkedHashMap<String,String> readSSSubtotalXML(Document doc,String xmlfilepath) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 	        
 	        XPath xpath = XPathFactory.newInstance().newXPath();
 	        
-	         XPathExpression exprSSPD = xpath.compile("//ServiceSummary/Subtotal");
+	         XPathExpression exprSSPD = xpath.compile("//ServiceSummary/Subtotal/ProductGroupTotalSum");
 	        
 	        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
-	        for (int i = 0; i < PerProdRows.getLength(); i++) {
-	                       
-	            Element PerProductDetails = (Element)PerProdRows.item(i);
-	            
-	            try {
-	                
-	                String SubTotal = PerProductDetails.getElementsByTagName("ProductGroupTotalSum").item(0).getFirstChild().getTextContent();
-	                
-	                String  ServiceSummaryTableRow = ("Total for Service Group "+SubTotal);
-	                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
-	                
-	            }  catch(Exception e){}  
-	            
+	
+	                 for (int i = 0; i < PerProdRows.getLength(); i++) {
+	                	Element PerProductDetails = (Element)PerProdRows.item(i);
+
+	                String  ServiceSummaryTableRow = ("Total for Service Group "+PerProductDetails.getTextContent());
+	                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);   
+	            }	
+  
+	            return ServiceSummaryTableRowsMap;  
 	        }       
-	             return ServiceSummaryTableRowsMap;               
-	  
-		}
+
 	      public static LinkedHashMap<String,String> readSSAllTotalXML(Document doc,String xmlfilepath) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
@@ -1067,11 +1175,11 @@ public class Collab {
 	        for (int i = 0; i < PerProdRows.getLength(); i++) {
 	                       
 	            Element PerProductDetails = (Element)PerProdRows.item(i);
+	            try {
 	            
-	            //String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
 	            String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();         
 	            ServiceSummaryGroupRowsMap.put("ProductOnly"+i,Product);
-	            
+	        }  catch(Exception e){}  
 	        }       
 	             return ServiceSummaryGroupRowsMap;               
 	  
@@ -1088,11 +1196,11 @@ public class Collab {
 	        for (int i = 0; i < PerProdRows.getLength(); i++) {
 	                       
 	            Element PerProductDetails = (Element)PerProdRows.item(i);
-	            
+	            try {
 	            String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
 	            //String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();         
 	            ServiceSummaryGroupRowsMap.put("ServiceGroupOnly"+i,ServiceGroup);
-	            
+	        }  catch(Exception e){}
 	        }       
 	             return ServiceSummaryGroupRowsMap;               
 	  
@@ -1102,7 +1210,7 @@ public class Collab {
 		        
 		        LinkedHashMap<String, String> FeeDetailTableRowsMap= new LinkedHashMap<>();
 		        String CustomerInvoicePreference = doc.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
-		        
+		        String SaleOrg = doc.getElementsByTagName("SalesOrg").item(0).getTextContent();
 		        if (CustomerInvoicePreference.equals("DETAIL")) { 
 		        	
 		        	XPath xpath = XPathFactory.newInstance().newXPath();
@@ -1114,14 +1222,29 @@ public class Collab {
 			                       
 			            Element PerTransaction = (Element)PerTransRows.item(i);
 		        	switch (VarType) {
+		        
+		        	 case "ProdDesc":
+		        		 
+		        		 if(SaleOrg.contentEquals("6720")){
+		   		    		try {
+		   		    		String RatePlan = PerTransaction.getElementsByTagName("ProductDescription").item(0).getFirstChild().getTextContent(); 
+		   		    		FeeDetailTableRowsMap.put("ProdDesc"+i+" ",RatePlan );
+		   		         }  catch(Exception e){}
+		        		 }
+		   		    		break;
 		        	
 		        	case "SiteInfo":
 		        		try{
 		        		String SiteInfo = PerTransaction.getElementsByTagName("SiteInformation").item(0).getFirstChild().getTextContent();
 		        		 if (SiteInfo!= null  ) {
-		        		FeeDetailTableRowsMap.put("Line"+i+" ",SiteInfo);
+		  		           String[] info = SiteInfo.split(" "); 
+		  		           int in =0;
+		  		           do {
+		  		        	 FeeDetailTableRowsMap.put(in+"Line",info[in]);
+		  		        	in++;
+		  		             }while (info[in]!= "" ||info[in]!= null);
 		        		 }
-		        		}  catch(Exception e){} 
+		        		}  catch(Exception e){}
 		        	break;
 		        	
 		        	case "SiteRef":
@@ -1160,7 +1283,7 @@ public class Collab {
 		        
 		        LinkedHashMap<String, String> FeeDetailTableTotalMap= new LinkedHashMap<>();
 		        String CustomerInvoicePreference = doc.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
-		        
+		        String SaleOrg = doc.getElementsByTagName("SalesOrg").item(0).getTextContent();
 		        if (CustomerInvoicePreference.equals("DETAIL")) {       
 		        XPath xpath = XPathFactory.newInstance().newXPath();
 
@@ -1173,37 +1296,40 @@ public class Collab {
 		            
 		         switch (VarType){
 		    	
-		    	case "TotalFD":
-		    		String TotalFD = PerTransaction.getElementsByTagName("FeeDetailTotalAmount").item(0).getFirstChild().getTextContent();
-		    		FeeDetailTableTotalMap.put("Line"+i+" ","Total "+TotalFD );
-		    	    break;
 		    	
 		    	case "ServiceGroup":
+		    		try {
 		    		String ServiceGroup = PerTransaction.getElementsByTagName("ServiceGroup").item(0).getFirstChild().getTextContent();    
-		    		FeeDetailTableTotalMap.put("Line"+i+" ","SERVICE GROUP: "+ServiceGroup );
+		    		FeeDetailTableTotalMap.put("ServiceGroup"+i+" ","SERVICE GROUP: "+ServiceGroup );
+		         }  catch(Exception e){}
 		    		break;
 		        	
 		    	case "ProductGroup":
+		    		try {
 		    		String ProductGroup = PerTransaction.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent(); 
-		    		FeeDetailTableTotalMap.put("Line"+i+" ",ProductGroup );
+		    		FeeDetailTableTotalMap.put("ProductGroup"+i+" ",ProductGroup );
+		         }  catch(Exception e){}
 		    		break;
 
 		    	case "RatePlan":
+		    		
+		    		 if(!(SaleOrg.contentEquals("6720"))){
+		    		try {
 		    		String RatePlan = PerTransaction.getElementsByTagName("RatePlan").item(0).getFirstChild().getTextContent(); 
-		    		FeeDetailTableTotalMap.put("Line"+i+" ",RatePlan );
-		    		break;	        	
+		    		FeeDetailTableTotalMap.put("RatePlan"+i+" ",RatePlan );
+		         }  catch(Exception e){}
+		    		}
+		    		 break;	
+		         }	
 		    	}   
-		        
-		        } 
-		        }
+		      } 
 		        return FeeDetailTableTotalMap;
-		            
-			}
+	        }		          
 		    public static LinkedHashMap<String,String> readFeeDetailOneoffLinesXML(Document doc,String VarType) throws Exception{
 		        
 		        LinkedHashMap<String, String> OFeeDetailTableRowsMap= new LinkedHashMap<>();
 		        String CustomerInvoicePreference = doc.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
-		        
+		        String SaleOrg = doc.getElementsByTagName("SalesOrg").item(0).getTextContent();
 		        if (CustomerInvoicePreference.equals("DETAIL")) {
 		        XPath xpath = XPathFactory.newInstance().newXPath();
 
@@ -1215,6 +1341,17 @@ public class Collab {
 		            Element PerTrans = (Element)PerTranRows.item(j);
 		            
                    switch (VarType) {
+                   
+                   
+                   case "ProdDesc":
+                	   
+                	   if(SaleOrg.contentEquals("6720")){
+   		    		try {
+   		    		String RatePlan = PerTrans.getElementsByTagName("ProductDescription").item(0).getFirstChild().getTextContent(); 
+   		    		OFeeDetailTableRowsMap.put("ProdDesc"+j+" ",RatePlan );
+   		         }  catch(Exception e){}
+                	   }
+   		    		break;
 		        	
 		        	case "SiteInfo":
 		        		try{
@@ -1263,7 +1400,9 @@ public class Collab {
 		        LinkedHashMap<String, String> FeeDetailTableTotalMap= new LinkedHashMap<>();
 		        String CustomerInvoicePreference = doc.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
 		        
-		        if (CustomerInvoicePreference.equals("DETAIL")) {      
+		        if (CustomerInvoicePreference.equals("DETAIL")) { 
+		        	
+		        	
 		        XPath xpath = XPathFactory.newInstance().newXPath();
 
 		        XPathExpression exprRecurring = xpath.compile("//CustomerNodeList/CustomerNode/ChargeTypeTotal");
@@ -1280,7 +1419,8 @@ public class Collab {
 		            FeeDetailTableTotalMap.put("Line"+i+" ","Total "+ChargeType+" "+ChargeTotalsFD );
 		                      
 		        }
-		        }    
+		         
+		        }
 		        return FeeDetailTableTotalMap;
 		            
 			}		    
@@ -1612,6 +1752,7 @@ public class Collab {
 		  public static LinkedHashMap<String,String> readFStotalXML(Document doc) throws Exception {
 		        
 		        LinkedHashMap<String, String> FeeSummaryTableTotal= new LinkedHashMap<>();
+		        
 		        try {
 
 		                String SummaryTotal = doc.getElementsByTagName("FeeSumTotal").item(0).getTextContent();
@@ -1619,6 +1760,8 @@ public class Collab {
 		                String  FeeSummaryTableRow = ("Total Fee Summary "+SummaryTotal);
 		                FeeSummaryTableTotal.put("TFSTotal",FeeSummaryTableRow);
 		        }catch (Exception e) {}
+		        
+		        
 		                return FeeSummaryTableTotal;
 		    }
 		/********************************AIRTIME SUMMARY WHOLESALE CUSTOMER*******************************************/  
@@ -2024,10 +2167,7 @@ public class Collab {
 	             }
 	             
 	       		break;
-				}
-	       
-
-	   
+		      }
 	       return ORTableRowsMap;
 		}	
 	     /***********************************CREDITS/DEBITS SECTION*******************************************/	
@@ -2114,7 +2254,6 @@ public class Collab {
 
 	   	}
 }		
-
 
 
 		

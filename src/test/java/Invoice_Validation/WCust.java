@@ -572,7 +572,7 @@ public class WCust {
   	}	   
 
 /********************************AIRTIME SUMMARY WHOLESALE CUSTOMER*******************************************/
-	public static LinkedHashMap<String,String> readASGroupChargeXML(String xmlfilepath) throws Exception {
+    public static LinkedHashMap<String,String> readASGroupChargeXML(String xmlfilepath) throws Exception {
 	      
 	      LinkedHashMap<String, String> AirtimeSummaryTableGCRowsMap= new LinkedHashMap<>();
 	      
@@ -607,7 +607,7 @@ public class WCust {
 	           return AirtimeSummaryTableGCRowsMap;               
 
 		}
-  public static LinkedHashMap<String,String> readAirtimeSummaryLinesXML(String xmlfilepath,String VarType) throws Exception{
+    public static LinkedHashMap<String,String> readAirtimeSummaryLinesXML(String xmlfilepath,String VarType) throws Exception{
         
         LinkedHashMap<String, String> AirtimeSummaryTableRowsMap= new LinkedHashMap<>();
        
@@ -669,7 +669,7 @@ public class WCust {
         return AirtimeSummaryTableRowsMap;
             
 	}
-  public static LinkedHashMap<String,String> readAStotalXML(String xmlfilepath) throws Exception {
+    public static LinkedHashMap<String,String> readAStotalXML(String xmlfilepath) throws Exception {
       
       LinkedHashMap<String, String> AirtimeSummaryTableTotal= new LinkedHashMap<>();
       
