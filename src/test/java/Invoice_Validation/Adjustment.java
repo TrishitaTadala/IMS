@@ -139,9 +139,7 @@ public class Adjustment {
 		else{
 			System.out.println( xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~");
 				 q = false;	
-				 try {
-				 ExtentManager.test.log(LogStatus.FAIL," Expected: "+xmlrows+" Actual: "+ PDFtext);
-				 }catch(Exception e){}
+				 
 				 AdjRemarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 		     }
 		

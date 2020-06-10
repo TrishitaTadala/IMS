@@ -46,10 +46,9 @@ public class DebugCollab {
 /***********************************************************************************************************/		
 		System.out.println("Enter the Invoice Id to Debug"); 
 		Scanner sc = new Scanner(System.in); 
-		//String va = "1591430";
 		String va = sc.next();
 		sc.close();
-		/***********************************************************************************************************/		
+/***********************************************************************************************************/		
 		  
 				String filename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\";
 				File file = new File(filename);
@@ -73,7 +72,7 @@ public class DebugCollab {
 				System.out.println("while loop exit pdf"+i);
 				}while ((i<=10 & filepdf== null));
 				
-				String pdfpath = filename+filepdf;
+	  String pdfpath = filename+filepdf;//PDF
 	/***********************************************************************************************************/						
 		String afilename = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\";
 		File afile1 = new File(afilename);
@@ -98,7 +97,7 @@ public class DebugCollab {
 		System.out.println("while loop exit xml"+j);
 		}while ((j<=10 & xmlFile== null));
 			 
-     String xmlpath = afilename+xmlFile;
+     String xmlpath = afilename+xmlFile; //XML
   /***********************************************************************************************************/						
      File fXmlFile = new File(xmlpath);
      
@@ -116,13 +115,6 @@ public class DebugCollab {
        out.close();
        br.close();
 
-   
-	 
-	//String pdfpath ="C:\\Users\\Dhana.K\\Documents\\new2\\E2EBillingAutomation1\\src\\test\\resources\\testData\\INVOICE_1591430_961190_202005.pdf";
-	//String xmlpath ="C:\\Users\\Dhana.K\\Documents\\new2\\E2EBillingAutomation1\\src\\test\\resources\\testData\\10001861_961190_1591430_20200531.xml";
-
-		
-		  
 			File inputFile = new File(xmlpath);
 		       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -131,8 +123,7 @@ public class DebugCollab {
 		       doc1.getDocumentElement().normalize();
 		       
 		        BillRun =doc1.getElementsByTagName("BillRunType").item(0).getTextContent();
-
-		       
+	       
 /****************************************FRONT PAGE*************************************************************/		
 		       
 		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"SLEName"));
@@ -147,13 +138,7 @@ public class DebugCollab {
 		       Compare(gettextPDF(pdfpath,"Address"),readBillAddressXML(doc1,"PostCode"));
 		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"VAT"));
 		       Compare(gettextPDF(pdfpath,"FrontPage"),readSingleNodeXML(doc1,"PricingID"));
-		       
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Name"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Street1"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Street2"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"City"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"Country"));
-		       Compare(gettextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc1,"PostalCode"));
+
 		       
 		     System.out.println("*****************Invoice Details_XML - FRONT PAGE ***************\n"); 
 		       
@@ -201,20 +186,23 @@ public class DebugCollab {
 				 Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"Currency"));
 				
 			   System.out.println("********************SERVICE SUMMARY VALIDATION**********************\n");
-				   Compare(gettextPDF(pdfpath,"Default"),readSSGroupXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSProductXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSActivationXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSSubscriptionsXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSCancellationXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSEarlyTerminationXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSUsageXML(doc1,xmlpath));
-				   //Compare(gettextPDF(pdfpath,"Default"),readSSOtherXML(doc1,xmlpath)); //Further Modification Required
+				   Compare(gettextPDF(pdfpath,"Default"),readSSGroupXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSProductXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSActivationXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSSubscriptionsXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSCancellationXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSEarlyTerminationXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSUsageXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"AdjustSum"));
+				   Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"Voucher"));
+				   Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"CarrierAirtime"));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSOtherXML(doc1)); //Further Modification Required
 				   Compare(gettextPDF(pdfpath,"Default"),readSStotalXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSSubtotalXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSAllTotalXML(doc1,xmlpath));
-				   Compare(gettextPDF(pdfpath,"Default"),readSSGrandTotalXML(doc1,xmlpath));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSSubtotalXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSAllTotalXML(doc1));
+				   Compare(gettextPDF(pdfpath,"Default"),readSSGrandTotalXML(doc1));
 				   
-				   if (BillRun.equals("Standard Bill Run")) {
+				   if (BillRun.equals("Standard Bill Run")||!(BillRun.equals("Immediate Bill Run"))) {
 				System.out.println("***********************FEE DETAIL VALIDATION*************************\n");	   
 				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ServiceGroup"));//Fee Detail ServiceGroup
 				   Compare(gettextPDF(pdfpath,"Default"),readFDTotalsXML(doc1,"ProductGroup"));//Fee Detail ServiceGroup
@@ -251,6 +239,8 @@ public class DebugCollab {
 				   Compare(gettextPDF(pdfpath,"Default"),readFStotalXML(doc1));//Total Fees Summary
 				 System.out.println( "******************************AIRTIME SUMMARY********************************\n");
 				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"TrafficType"));// Airtime Summary LineItems
+				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"ASfields"));
+				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"CallDestination"));
 				   Compare(gettextPDF(pdfpath,"Default"),readAirtimeSummaryLinesXML(doc1,"any"));// Airtime Summary LineItems
 				   Compare(gettextPDF(pdfpath,"Default"),readAStotalXML(doc1));		
 				 System.out.println("********************ADJUSTMENT SECTION ********************\n");
@@ -265,6 +255,7 @@ public class DebugCollab {
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"LinesItems"));
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo1"));
 			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"AdditionalInfo2"));
+			        Compare(gettextPDF(pdfpath,"Default"),readPALinesXML(doc1,"UserRef"));
 			        Compare(gettextPDF(pdfpath,"Default"),readSingleNodeXML(doc1,"VoucherTotal"));
 			        
 			     System.out.println("*****************Carrier Airtime Section_XML*************\n");
@@ -280,7 +271,6 @@ public class DebugCollab {
 					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"GrandTotal"));
 				   }
 				  
-				   
 				   else {
 					
 		        
@@ -295,12 +285,9 @@ public class DebugCollab {
 			      	System.out.println("*****************Footer Section_XML******************");
 			      	Compare(gettextPDF(pdfpath,"Footer"),readSingleNodeXML(doc1,"footer"));
 			      	
-			     System.out.println("*****************END of ITERATION of Each Invoice***************\n");
-			     
-			
+			     System.out.println("*****************END of ITERATION of Each Invoice***************\n");   
 			}
-	
-			
+		
 		public static String gettextPDF(String pdfpath, String Page) throws Exception{
 
 		 LinkedHashMap<String,String> PDFHashMap  = new LinkedHashMap(); //PDF Contents
@@ -342,8 +329,6 @@ public class DebugCollab {
 			
 			}
 		return textPDF;
-
-
 		}
 		public static String getPageText(PdfReader reader,int Pg) throws Exception {
 		Rectangle serviceSummary = new Rectangle(0, 1050, 1000, 20);
@@ -383,7 +368,6 @@ public class DebugCollab {
 			  // }
 			 return FooterText;   
 			}
-		
 		/******************************************************************************************************************/			
 		public static void Compare(String PDFtext,LinkedHashMap<String,String> XMLHashMap){
 			
@@ -396,12 +380,12 @@ public class DebugCollab {
 							
 			if (PDFtext.indexOf(xmlrows)!=-1? true: false){
 				
-				System.out.println(xmlrows +" It's a Match!!!");
+				//System.out.println(keyXML+"-> "+xmlrows +" It's a Match!!!");
 				 q = true;
 						
 			    }
 			else{
-				System.out.println( xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~");
+				System.out.println(keyXML+"-> "+xmlrows +"/*************************~~~~~~ Mismatch It is ~~~~~~~*************************/");
 					 q = false;	
 					 Remarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 			     }			
@@ -427,19 +411,25 @@ public class DebugCollab {
 		                  		 ).split(" "); 
 		                   int btcn =0;
 		                   do {
-		                   	FrontPageMap.put(btcn+"Line",Line1[btcn]);
+		                   	FrontPageMap.put(btcn+"Address_1stLine",Line1[btcn]);
 		              	
 		                   	btcn++;
 		                     }while (Line1[btcn]!= "" ||Line1[btcn]!= null);
-		                   
 		              	 }catch(Exception e){}
 		              	 break;  
 		               
 		        	case "Line2":
 		        		try {
-		        			FrontPageMap.put("Line2",(PerTransaction.getElementsByTagName("Line2").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
-		        		}catch(Exception e){}
-		               break;
+			                   String Line2[] = doc1.getElementsByTagName("Line2").item(0).getTextContent().replace (",",""
+			                  		 ).split(" "); 
+			                   int btcn =0;
+			                   do {
+			                   	FrontPageMap.put(btcn+"Address_2ndLine",Line2[btcn]);
+			              	
+			                   	btcn++;
+			                     }while (Line2[btcn]!= "" ||Line2[btcn]!= null);
+			              	 }catch(Exception e){}
+			              	 break;  
 		        	
 		        	case "Suburb":
 		        		try {
@@ -470,84 +460,30 @@ public class DebugCollab {
 		        			FrontPageMap.put("PostCode",(PerTransaction.getElementsByTagName("Postcode").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
 		        		}catch(Exception e){}
 		               break;
-		        	
-		         }
-		               return FrontPageMap;
-		 	}
-		
-		public static LinkedHashMap<String,String> readShipAddressXML(Document doc1,String VarType) throws Exception {
-		       
-		       LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
-		      
-		       XPath xpath = XPathFactory.newInstance().newXPath();
-		        XPathExpression exprCAAdd = xpath.compile("//ShipToAddress");
-		       
-		          NodeList PerCATransRows = (NodeList)exprCAAdd.evaluate(doc1, XPathConstants.NODESET);
-		          Element PerTransaction = (Element)PerCATransRows.item(0);  
-		          
-		          switch (VarType){
-		      	
-		        			               
-		        	case "Name":
-		        		try {
-		        			FrontPageMap.put("Name",(PerTransaction.getElementsByTagName("Name").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
-		        		}catch(Exception e){}
-		               break;
-		        	
-		        	case "Street1":
-		        		try {
-		        			FrontPageMap.put("Street1",(PerTransaction.getElementsByTagName("Street1").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
-		        		}catch(Exception e){}
-		               break;
-		               
-		        	case "City":
-		        		try {
-		        			FrontPageMap.put("City",(PerTransaction.getElementsByTagName("City").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
-		        		}catch(Exception e){}
-		               break;
-		               
-		        	case "Street2":
-		        		try {
-		        			FrontPageMap.put("State",(PerTransaction.getElementsByTagName("Street2").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
-		        		}catch(Exception e){}
-		               break;
-		               
-		        	case "Country":
-		        		try {
-		        			FrontPageMap.put("Country",(PerTransaction.getElementsByTagName("Country").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
-		        		}catch(Exception e){}
-		               break;
-		               
-		        	case "PostalCode":
-		        		try {
-		        			FrontPageMap.put("PostalCode",(PerTransaction.getElementsByTagName("PostalCode").item(0).getFirstChild().getTextContent()));
-		        		}catch(Exception e){}
-		               break;
-		        	
 		         }
 		               return FrontPageMap;
 		 	}
 		/**********************************SINGLENODE ELEMENTS******************************************/
 		public static LinkedHashMap<String,String> readSingleNodeXML(Document doc1, String VarType) throws Exception{
 		       
-		     LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
-		     String TotalTaxes = "0.00";
+		    LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
+		    String TotalTaxes = "0.00";
 		     
 		       
 		    switch (VarType){
 			
 			case "SLEName":  
-				    FrontPageMap.put("sleLine",doc1.getElementsByTagName("SLEName").item(0).getTextContent());
+				    FrontPageMap.put("SLEName",doc1.getElementsByTagName("SLEName").item(0).getTextContent());
 		        break;
 		        
 			case "InvoiceNo":  
 				
 				if (BillRun.equals("Standard Bill Run")) {
-				    FrontPageMap.put("InvoiceNo","Number "+doc1.getElementsByTagName("InvoiceNumber").item(0).getTextContent());
+				    FrontPageMap.put("InvoiceNo-Standard","Number "+doc1.getElementsByTagName("InvoiceNumber").item(0).getTextContent());
 				}
 				else {
 					try {
-					FrontPageMap.put("InvoiceNo","Number "+doc1.getElementsByTagName("ADJNumber").item(0).getTextContent());
+					FrontPageMap.put("InvoiceNo-CNT","Number "+doc1.getElementsByTagName("ADJNumber").item(0).getTextContent());
 				        }catch(Exception e){}
 				}
 		        break;
@@ -565,34 +501,39 @@ public class DebugCollab {
 				
 			   	if (YourRef.isEmpty()) {}
 			   	else {
-			   		FrontPageMap.put("YourRef","Your reference "+YourRef);
+			   		FrontPageMap.put("YourReference","Your reference "+YourRef);
 			   		 }
 				 break;
 				 
 			case "YourRef2":  
-				FrontPageMap.put("YourRef2","Your additional info "+doc1.getElementsByTagName("YourReference2").item(0).getTextContent());
+               String YourRef2 = doc1.getElementsByTagName("YourReference2").item(0).getTextContent().replace(",", "");
+				
+			   	if (YourRef2.isEmpty()) {
+			   		FrontPageMap.put("YourAdditionalInfo_FrontPage","Your additional info "+"-");
+			   	}
+			   	else {
+			   		FrontPageMap.put("YourAdditionalInfo_FrontPage","Your additional info "+YourRef2);
+			   		 }
 				 break;
 				 
 			case "BPED":  
-				FrontPageMap.put("BPED","Billing period end date "+doc1.getElementsByTagName("ChargePeriodEndDate").item(0).getTextContent());
+				    FrontPageMap.put("BillingPeriodEndDate","Billing period end date "+doc1.getElementsByTagName("ChargePeriodEndDate").item(0).getTextContent());
 				 break;
 				
 		   case "InvoiceDate":   
-		   	FrontPageMap.put("InvoiceDate","Date "+doc1.getElementsByTagName("InvoiceDate").item(0).getTextContent());
+		   	        FrontPageMap.put("InvoiceDate","Date "+doc1.getElementsByTagName("InvoiceDate").item(0).getTextContent());
 				 break;  
 				
 		   case "Currency":   
-		   	FrontPageMap.put("Currency","Currency "+doc1.getElementsByTagName("CustomerInvoiceCurrency").item(0).getTextContent());
+		   	        FrontPageMap.put("Currency","Currency "+doc1.getElementsByTagName("CustomerInvoiceCurrency").item(0).getTextContent());
 				 break;
 			
 		   case "PONumber":
 			   try {
-			   
-			   	String PONumber = (doc1.getElementsByTagName("OrderNumber").item(0).getTextContent());
-					
-			   	if (PONumber.isEmpty()  ) {}
+			   	String PONumber = (doc1.getElementsByTagName("OrderNumber").item(0).getTextContent());	
+			   	if (PONumber.isEmpty()) {}
 			   	else {FrontPageMap.put("PONumber","PO number: "+PONumber);}
-		    }catch(Exception e){}
+		           }catch(Exception e){}
 		      break; 
 		   
 		   case "CustName":
@@ -602,7 +543,7 @@ public class DebugCollab {
 		          		 ).split(" "); 
 		           int btcn =0;
 		           do {
-		           	FrontPageMap.put(btcn+"Line",CustName[btcn]);
+		           	FrontPageMap.put(btcn+"CustomerName",CustName[btcn]);
 		      	
 		           	btcn++;
 		             }while (CustName[btcn]!= "" ||CustName[btcn]!= null);
@@ -610,31 +551,29 @@ public class DebugCollab {
 		      	 }catch(Exception e){}
 		      	 break;
 		 		 
-
 		   case "AccountNo":
 			   try {
 				String AccountNo = doc1.getElementsByTagName("ARAccountNumber").item(0).getTextContent();
-				
 			   	if (AccountNo.isEmpty()  ) {}
 			   	else {FrontPageMap.put("AccountNo","Account Number: "+AccountNo+".");}
 			   }catch(Exception e){}
 			   	break;
 		       
-		   case "BillingProfile":
-			   			
-					String BPCode = doc1.getElementsByTagName("BillingProfileCode").item(0).getTextContent();
-					if (BPCode.isEmpty()  ) {}
-				   	else {FrontPageMap.put("BPCode","Billing Profile: "+BPCode+".");}
-					 break;
+		   case "BillingProfile":	
+				String BPCode = doc1.getElementsByTagName("BillingProfileCode").item(0).getTextContent();
+				
+			    if (BPCode.isEmpty()  ) {}
+			    
+				else {FrontPageMap.put("BPCode","Billing Profile: "+BPCode+".");}
+			    
+				break;
 					 
 		   case "DpID":
-			   
 			   String DpID = doc1.getElementsByTagName("DPId").item(0).getTextContent();
 				if (DpID.isEmpty()  ) {}
-			   	else {FrontPageMap.put("BPCode","DP ID: "+DpID+".");}
-				 break;
-				
-		       
+			   	else {FrontPageMap.put("DpID","DP ID: "+DpID+".");}
+				break;
+				    
 		   case "ShipAccountID":
 				try {
 					String shipacc = doc1.getElementsByTagName("GWShipAcCAId").item(0).getTextContent();
@@ -642,15 +581,17 @@ public class DebugCollab {
 					if (shipacc!= null||shipacc!= ""||shipacc!= " ") {
 						FrontPageMap.put("ShipAccId","Ship Acct ID: "+shipacc+".");
 					}
-					
 				}catch(Exception e){}
 		       break;
 		       
 		   case "PricingID":
 			   try {
 			   String PricingID = doc1.getElementsByTagName("PricingAgreementID").item(0).getTextContent();
-				if (PricingID.isEmpty()  ) {}
-			   	else {FrontPageMap.put("Pricing Agreement ID: ","Pricing Agreement ID: "+PricingID);}
+				
+			   if (PricingID.isEmpty()  ) {}
+			   	
+			   else {FrontPageMap.put("Pricing Agreement ID: ","Pricing Agreement ID: "+PricingID);}
+			   
 			   }catch(Exception e){}
 		       break;
 		       
@@ -658,7 +599,7 @@ public class DebugCollab {
 				try {
 					String mips = doc1.getElementsByTagName("MIPSMasterAccountId").item(0).getTextContent();    		
 					if (mips!= null||mips!= ""||mips!= " ") {
-						FrontPageMap.put("MIPS","MIPS Master Acc ID: "+mips+".");
+						FrontPageMap.put("MIPSMasterAccountId","MIPS Master Acc ID: "+mips+".");
 					}
 				}catch(Exception e){}
 		       break;
@@ -668,7 +609,7 @@ public class DebugCollab {
 					String DueDate = doc1.getElementsByTagName("PaymentDueDate").item(0).getTextContent();
 					
 					if (DueDate!= null) {
-						FrontPageMap.put("PDD","Payment due date "+DueDate);
+						FrontPageMap.put("PaymentDueDate","Payment due date "+DueDate);
 					}
 				}catch(Exception e){}
 		       break;
@@ -677,7 +618,7 @@ public class DebugCollab {
 		       try {
 		           String Total = doc1.getElementsByTagName("VoucherTotal").item(0).getFirstChild().getTextContent();
 		           
-		           FrontPageMap.put("GrandTotal", "Total Prepaid Airtime "+Total);
+		           FrontPageMap.put("VoucherTotal", "Total Prepaid Airtime "+Total);
 		           
 		           }catch(Exception e){}
 		       break;
@@ -716,7 +657,7 @@ public class DebugCollab {
 					String Airtime = doc1.getElementsByTagName("TotalAirtimeCharges").item(0).getTextContent();
 					
 					if (!(Airtime.isBlank())) {
-						FrontPageMap.put("Airtime","Airtime "+Airtime);
+						FrontPageMap.put("airtime","Airtime "+Airtime);
 					}
 				}catch(Exception e){}
 		      break;
@@ -736,7 +677,7 @@ public class DebugCollab {
 					String Adj = doc1.getElementsByTagName("TotalAdjustment").item(0).getTextContent();
 					
 					if (!(Adj.isBlank())) {
-						FrontPageMap.put("Adj","Adjustments "+Adj);
+						FrontPageMap.put("adjustment","Adjustments "+Adj);
 					}
 				}catch(Exception e){}
 		      break;
@@ -746,7 +687,7 @@ public class DebugCollab {
 					String ORsum = doc1.getElementsByTagName("TotalOtherRevenue").item(0).getTextContent();
 					
 					if (!(ORsum.isBlank())) {
-						FrontPageMap.put("ORsum","Other Revenue "+ORsum);
+						FrontPageMap.put("otherrevenue","Other Revenue "+ORsum);
 					}
 				}catch(Exception e){}
 		      break;
@@ -756,7 +697,7 @@ public class DebugCollab {
 					String CarrierAirtime = doc1.getElementsByTagName("TotalInUSD").item(0).getTextContent();
 					
 					if (!(CarrierAirtime.isBlank())) {
-						FrontPageMap.put("CA","Carrier Airtime "+CarrierAirtime);
+						FrontPageMap.put("carrierairtime","Carrier Airtime "+CarrierAirtime);
 					}
 				}catch(Exception e){}
 		      break;
@@ -773,7 +714,7 @@ public class DebugCollab {
 		   
 		   case "CDSummary":
 			   try {
-			   FrontPageMap.put("CDSummary","Credits / Debits "+doc1.getElementsByTagName("TotalAmount").item(1).getTextContent());
+			   FrontPageMap.put("CreditDebitTotalAmt","Credits / Debits "+doc1.getElementsByTagName("TotalAmount").item(1).getTextContent());
 			   }catch(Exception e){} 
 			   break;   
 		   
@@ -803,7 +744,7 @@ public class DebugCollab {
 		        	     }
 				     }catch(Exception e){}
 		      }
-		        FrontPageMap.put("Taxonly","Taxes "+TotalTaxes);
+		                     FrontPageMap.put("Taxonly","Taxes "+TotalTaxes);
 		        break;
 		                
 		   case "USFfee":
@@ -843,13 +784,20 @@ public class DebugCollab {
 		        for (int i = 0; i < taxnode2.getLength(); i++) {
 		        	try{
 		        	String TaxType2= (taxnode2.item(i).getFirstChild().getNodeValue());
+		        	
 		        		//System.out.println(doc.getElementsByTagName("TotalTaxAmount").item(i).getTextContent());
 		        		if(!(TaxType2.equals("USF Fee"))) {
 		        		
 		        			String	TaxAmt = doc1.getElementsByTagName("TotalTaxAmount").item(i+1).getTextContent();
-		        		FrontPageMap.put("usfonly",TaxType2+" "+TaxAmt);	
-		        		}   		        		
-		        		
+		        			String TaxPercent = doc1.getElementsByTagName("TaxPercentage").item(0).getTextContent();
+		        			//FrontPageMap.put("TaxUsf",TaxType2+" "+TaxPercent+" "+TaxAmt);
+		        			if (TaxPercent==null) {
+		        			FrontPageMap.put("Taxinfo",TaxType2+" "+TaxAmt);
+		        		    }   
+		        			else {
+		        				FrontPageMap.put("Taxinfo",TaxType2+" @ "+TaxPercent+" "+TaxAmt);
+		        			}
+		        		}	
 		        	}
 		        		catch(Exception e){}
 		        }
@@ -860,8 +808,8 @@ public class DebugCollab {
 			   String CustomerInvoicePreference = doc1.getElementsByTagName("CustomerInvoicePreference").item(0).getTextContent();
 			   if (CustomerInvoicePreference.equals("DETAIL")) { 
 			   try {
-			   FrontPageMap.put("TFDTotal","Total Fee Detail "+doc1.getElementsByTagName("FeeDetailGrandSum").item(0).getTextContent());
-			   }catch(Exception e){} 
+			         FrontPageMap.put("TotalFeeDetailTotal","Total Fee Detail "+doc1.getElementsByTagName("FeeDetailGrandSum").item(0).getTextContent());
+			       }catch(Exception e){} 
 			   }
 			   break;    
 		  
@@ -878,7 +826,7 @@ public class DebugCollab {
 	  	                	Element PerProductDetails = (Element)PerProdRows.item(i);
 
 	  	                String  ServiceSummaryTableRow = ("Total "+PerProductDetails.getTextContent());
-	  	              FrontPageMap.put("Set"+i,ServiceSummaryTableRow);   
+	  	              FrontPageMap.put("FeeDetailTotals"+i,ServiceSummaryTableRow);   
 	  	            }	
 			   }
 	       break;
@@ -896,7 +844,7 @@ public class DebugCollab {
 		           String[] Footer = footer.split(" "); 
 		           int ft =0;
 		           do {
-		           	FrontPageMap.put(ft+"Line",Footer[ft]);
+		           	FrontPageMap.put(ft+"footer",Footer[ft]);
 		      	
 		           	ft++;
 		             }while (Footer[ft]!= "" ||Footer[ft]!= null);
@@ -904,12 +852,10 @@ public class DebugCollab {
 		      	 }catch(Exception e){}
 		      	 break;
 		    }
-		       return FrontPageMap;
-		           
-	}
-		
+		       return FrontPageMap;	           
+	}	
 		/**********************************SERVICE SUMMARY******************************************/
-		  public static LinkedHashMap<String,String> readSSActivationXML(Document doc,String xmlfilepath) throws Exception {
+		  public static LinkedHashMap<String,String> readSSActivationXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 	      
@@ -926,16 +872,14 @@ public class DebugCollab {
 	                
 	                String Activation = PerProductDetails.getElementsByTagName("Activation").item(0).getFirstChild().getTextContent();
 	                              
-	                String  ServiceSummaryTableRow = ("Fee - Activations "+Activation);
-	                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
+	                ServiceSummaryTableRowsMap.put("Activation"+i,"Fee - Activations "+Activation);
 	                
 	            }  catch(Exception e){}  
 	            
 	        }       
 	             return ServiceSummaryTableRowsMap;               
-	  
 		}
-		  public static LinkedHashMap<String,String> readSSSubscriptionsXML(Document doc,String xmlfilepath) throws Exception {
+		  public static LinkedHashMap<String,String> readSSSubscriptionsXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 	      
@@ -951,15 +895,14 @@ public class DebugCollab {
 	            try {
 	           
 	            String Subscription = PerProductDetails.getElementsByTagName("Subscription").item(0).getFirstChild().getTextContent(); //String Total = PerProductDetails.getElementsByTagName("Total").item(0).getFirstChild().getTextContent();
-	           
-	            String  ServiceSummaryTableRow = ("Fee - Subscriptions "+Subscription);
-	            ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
+
+	            ServiceSummaryTableRowsMap.put("Subscription"+i,"Fee - Subscriptions "+Subscription);
 	            
 	        }  catch(Exception e){}    
-	        }
+	      }
 	             return ServiceSummaryTableRowsMap;
 		}
-		  public static LinkedHashMap<String,String> readSSCancellationXML(Document doc,String xmlfilepath) throws Exception {
+		  public static LinkedHashMap<String,String> readSSCancellationXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 	       
@@ -975,16 +918,15 @@ public class DebugCollab {
 	            try {
 	                
 	                String Cancellation = PerProductDetails.getElementsByTagName("Cancellation").item(0).getFirstChild().getTextContent();
-	               
-	                String  ServiceSummaryTableRow = ("Fee - Cancellations "+Cancellation);
-	                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
+
+	                ServiceSummaryTableRowsMap.put("Cancellation"+i,"Fee - Cancellations "+Cancellation);
 	                
 	            }  catch(Exception e){}  
 	            
 	        }       
 	             return ServiceSummaryTableRowsMap;	  
 		}
-		  public static LinkedHashMap<String,String> readSSEarlyTerminationXML(Document doc,String xmlfilepath) throws Exception {
+		  public static LinkedHashMap<String,String> readSSEarlyTerminationXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 	        
@@ -1010,7 +952,7 @@ public class DebugCollab {
 	             return ServiceSummaryTableRowsMap;               
 	  
 		}  
-	      public static LinkedHashMap<String,String> readSSUsageXML(Document doc,String xmlfilepath) throws Exception {
+	      public static LinkedHashMap<String,String> readSSUsageXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 
@@ -1026,22 +968,21 @@ public class DebugCollab {
 	            try {
 	                
 	                String Usage = PerProductDetails.getElementsByTagName("Usage").item(0).getFirstChild().getTextContent();
-	                
-	                String  ServiceSummaryTableRow = ("Airtime "+Usage);
-	                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
+
+	                ServiceSummaryTableRowsMap.put("ServiceSummary_Airtime"+i,"Airtime "+Usage);
 	                
 	            }  catch(Exception e){}  
 	            
 	        }       
 	             return ServiceSummaryTableRowsMap;
 		}   
-	      public static LinkedHashMap<String,String> readSSOtherXML(Document doc,String xmlfilepath) throws Exception {
+	      public static LinkedHashMap<String,String> readSSOtherXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 
 	        XPath xpath = XPathFactory.newInstance().newXPath();
 	        
-	         XPathExpression exprSSPD = xpath.compile("//OtherRevenue/PerCharge");
+	         XPathExpression exprSSPD = xpath.compile("//OtherItems");
 	        
 	        NodeList PerProdRows = (NodeList)exprSSPD.evaluate(doc, XPathConstants.NODESET);
 	        for (int i = 0; i < PerProdRows.getLength(); i++) {
@@ -1050,11 +991,10 @@ public class DebugCollab {
 	            
 	            try {
 	                
-	                String Other = PerProductDetails.getElementsByTagName("TotalOtherRevenue").item(0).getFirstChild().getTextContent();
-	                
-	                String  ServiceSummaryTableRow = ("Other Revenue "+Other);
-	                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);
-	                
+	                String Other = PerProductDetails.getElementsByTagName("OtherItemsTotal").item(0).getFirstChild().getTextContent();
+	                 if (!(Other.equals("0.00"))) {
+	                ServiceSummaryTableRowsMap.put("Other Items"+i,"Total Other Items "+Other);
+	                 }
 	            }  catch(Exception e){}  
 	            
 	        }       
@@ -1086,8 +1026,7 @@ public class DebugCollab {
 	             return ServiceSummaryTableRowsMap;               
 	  
 		} 
-	      // Modifed 06/05
-	      public static LinkedHashMap<String,String> readSSSubtotalXML(Document doc,String xmlfilepath) throws Exception {
+	      public static LinkedHashMap<String,String> readSSSubtotalXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 	        
@@ -1100,14 +1039,11 @@ public class DebugCollab {
 	                 for (int i = 0; i < PerProdRows.getLength(); i++) {
 	                	Element PerProductDetails = (Element)PerProdRows.item(i);
 
-	                String  ServiceSummaryTableRow = ("Total for Service Group "+PerProductDetails.getTextContent());
-	                ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);   
-	            }	
-  
+	                ServiceSummaryTableRowsMap.put("TotalforServiceGroup"+i,"Total for Service Group "+PerProductDetails.getTextContent());   
+	            }
 	            return ServiceSummaryTableRowsMap;  
 	        }       
-
-	      public static LinkedHashMap<String,String> readSSAllTotalXML(Document doc,String xmlfilepath) throws Exception {
+          public static LinkedHashMap<String,String> readSSAllTotalXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 
@@ -1126,16 +1062,16 @@ public class DebugCollab {
 	                String SubTotal = PerProductDetails.getElementsByTagName("Total").item(0).getFirstChild().getTextContent();
 	                
 	                if (!(SubTotal.equals("0.00"))) {
-	                	String  ServiceSummaryTableRow = ("Total All Service Groups "+SubTotal);
-	                    ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);}
-	                
+	                	
+	                    ServiceSummaryTableRowsMap.put("TotalforAllServiceGroups"+i,"Total All Service Groups "+SubTotal);
+	                }  
 	            }  catch(Exception e){}  
 	            
 	        }       
 	             return ServiceSummaryTableRowsMap;               
 	  
 		}
-	      public static LinkedHashMap<String,String> readSSGrandTotalXML(Document doc,String xmlfilepath) throws Exception {
+	      public static LinkedHashMap<String,String> readSSGrandTotalXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryTableRowsMap= new LinkedHashMap<>();
 
@@ -1154,16 +1090,16 @@ public class DebugCollab {
 	                
 	                
 	                if (!(GrandTotal.equals("0.00"))) {
-	                	String  ServiceSummaryTableRow = ("Total Service Summary "+GrandTotal);
-	                    ServiceSummaryTableRowsMap.put("Set"+i,ServiceSummaryTableRow);}
+	                	
+	                    ServiceSummaryTableRowsMap.put("TotalServiceSummary"+i,"Total Service Summary "+GrandTotal);
+	                    }
 	                
 	            }  catch(Exception e){}  
 	            
 	        }       
 	             return ServiceSummaryTableRowsMap;               
-	  
 		}
-		  public static LinkedHashMap<String,String> readSSProductXML(Document doc,String xmlfilepath) throws Exception {
+		  public static LinkedHashMap<String,String> readSSProductXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
 	       
@@ -1182,9 +1118,8 @@ public class DebugCollab {
 	        }  catch(Exception e){}  
 	        }       
 	             return ServiceSummaryGroupRowsMap;               
-	  
 		}
-		  public static LinkedHashMap<String,String> readSSGroupXML(Document doc,String xmlfilepath) throws Exception {
+		  public static LinkedHashMap<String,String> readSSGroupXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> ServiceSummaryGroupRowsMap= new LinkedHashMap<>();
 
@@ -1198,12 +1133,11 @@ public class DebugCollab {
 	            Element PerProductDetails = (Element)PerProdRows.item(i);
 	            try {
 	            String ServiceGroup = PerProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
-	            //String Product = PerProductDetails.getElementsByTagName("Product").item(0).getFirstChild().getTextContent();         
+	            
 	            ServiceSummaryGroupRowsMap.put("ServiceGroupOnly"+i,ServiceGroup);
 	        }  catch(Exception e){}
 	        }       
 	             return ServiceSummaryGroupRowsMap;               
-	  
 		}	
 		  /********************************FEE DETAIL RETAIL CUSTOMER*******************************************/			
 		    public static LinkedHashMap<String,String> readFeeDetailRecurringLinesXML(Document doc, String VarType) throws Exception{
@@ -1227,8 +1161,8 @@ public class DebugCollab {
 		        		 
 		        		 if(SaleOrg.contentEquals("6720")){
 		   		    		try {
-		   		    		String RatePlan = PerTransaction.getElementsByTagName("ProductDescription").item(0).getFirstChild().getTextContent(); 
-		   		    		FeeDetailTableRowsMap.put("ProdDesc"+i+" ",RatePlan );
+		   		    		
+		   		    		FeeDetailTableRowsMap.put("FeeDetail_ProdDesc"+i+" ",PerTransaction.getElementsByTagName("ProductDescription").item(0).getFirstChild().getTextContent() );
 		   		         }  catch(Exception e){}
 		        		 }
 		   		    		break;
@@ -1240,7 +1174,7 @@ public class DebugCollab {
 		  		           String[] info = SiteInfo.split(" "); 
 		  		           int in =0;
 		  		           do {
-		  		        	 FeeDetailTableRowsMap.put(in+"Line",info[in]);
+		  		        	 FeeDetailTableRowsMap.put(in+"FeeDetail_SiteInfo",info[in]);
 		  		        	in++;
 		  		             }while (info[in]!= "" ||info[in]!= null);
 		        		 }
@@ -1253,7 +1187,7 @@ public class DebugCollab {
 		        		 String SiteRef = PerTransaction.getElementsByTagName("SiteReference").item(0).getFirstChild().getTextContent();
 		            		//.replaceAll(null,"");
 		        		 if (SiteRef!= null  ) {
-		        		FeeDetailTableRowsMap.put("Line"+i," "+SiteRef );
+		        		FeeDetailTableRowsMap.put("FeeDetail_SiteRef"+i," "+SiteRef );
 		        		 }
 		        		
 		        		 }  catch(Exception e){} 
@@ -1271,7 +1205,7 @@ public class DebugCollab {
 		            
 		            String  FeeDetailTableRow = " "+MSISDN+ " " +PeriodStartDate+" " +PeriodEndDate
 		            		                    +" "+Units+" "+UOM+" "+Rate+" "+TotalCharge;
-		            FeeDetailTableRowsMap.put("Line"+i+" ",FeeDetailTableRow );
+		            FeeDetailTableRowsMap.put("FeeDetail_Line"+i+" ",FeeDetailTableRow );
 		            }catch(Exception e){} 
 		            break;  
 		        }
@@ -1348,7 +1282,7 @@ public class DebugCollab {
                 	   if(SaleOrg.contentEquals("6720")){
    		    		try {
    		    		String RatePlan = PerTrans.getElementsByTagName("ProductDescription").item(0).getFirstChild().getTextContent(); 
-   		    		OFeeDetailTableRowsMap.put("ProdDesc"+j+" ",RatePlan );
+   		    		OFeeDetailTableRowsMap.put("Oneoff_ProdDesc"+j+" ",RatePlan );
    		         }  catch(Exception e){}
                 	   }
    		    		break;
@@ -1358,7 +1292,7 @@ public class DebugCollab {
 		        		String SiteInfo = PerTrans.getElementsByTagName("SiteInformation").item(0).getFirstChild().getTextContent();
 		        		
 		        		 if (SiteInfo!= null  ) {
-		        			 OFeeDetailTableRowsMap.put("Line"+j+" ",SiteInfo );
+		        			 OFeeDetailTableRowsMap.put("Oneoff_Siteinfo"+j+" ",SiteInfo );
 		        		 }
 		        		 }  catch(Exception e){} 
 		        	break;
@@ -1368,7 +1302,7 @@ public class DebugCollab {
 		        		String SiteRef =  PerTrans.getElementsByTagName("SiteReference").item(0).getFirstChild().getTextContent();
 		            		//.replaceAll(null,"");
 		        		 if (SiteRef!= null  ) {
-		        			 OFeeDetailTableRowsMap.put("Line"+j+" "," "+SiteRef );
+		        			 OFeeDetailTableRowsMap.put("Oneoff_Siteref"+j+" "," "+SiteRef );
 		        		 }
 		        		}  catch(Exception e){} 
 		        	break;
@@ -1386,7 +1320,7 @@ public class DebugCollab {
 		            String  OFeeDetailTableRow = (OMSISDN+ " " +OPeriodStartDate+" " +OPeriodEndDate
 		            		                    +" "+OUnits+" "+OUOM+" "+ORate+" "+OTotalCharge);
 		            //OSiteInfo[0]+" "+OSiteRef+" "+   ****************** OFeeDetailTableRow =OFeeDetailTableRow.replace(null, "");
-		            OFeeDetailTableRowsMap.put("Line"+j+" ",OFeeDetailTableRow );
+		            OFeeDetailTableRowsMap.put("Oneoff_Line"+j+" ",OFeeDetailTableRow );
 		            break;
                    }  
 		        }
@@ -1416,7 +1350,7 @@ public class DebugCollab {
 		            String ChargeTotalsFD = PerTransaction.getElementsByTagName("ChargeTypeTolAmt").item(0).getFirstChild().getTextContent();
 		            String ChargeType = PerTransaction.getElementsByTagName("ChargeType").item(0).getFirstChild().getTextContent();
 		            
-		            FeeDetailTableTotalMap.put("Line"+i+" ","Total "+ChargeType+" "+ChargeTotalsFD );
+		            FeeDetailTableTotalMap.put("FeeDetailTotals_"+i+" ","Total "+ChargeType+" "+ChargeTotalsFD );
 		                      
 		        }
 		         
@@ -1448,17 +1382,17 @@ public class DebugCollab {
 		            case "CallDateTime":   	
 		            try {
 		            String CallDateTimeAD = PerTransAD.getElementsByTagName("DateTime").item(0).getFirstChild().getTextContent();
-		          
-		            AirtimeDetailTableRowsMap.put("Line"+i+" ",CallDateTimeAD+" ");
+		            AirtimeDetailTableRowsMap.put("ADCallDateTime"+i+" ",CallDateTimeAD+" ");
 		            }catch(Exception e){}
 		            break;            
+		            
 		            case "DestinationCountry":         
 		            try {
 				           String[] DestinationAD = PerTransAD.getElementsByTagName("DestinationCountry").item(0).getFirstChild().getTextContent().replace (",",""
 				          		 ).split(" "); 
 				           int desC =0;
 				           do {
-				        	   AirtimeDetailTableRowsMap.put(desC+"Line"+i,DestinationAD[desC]);
+				        	   AirtimeDetailTableRowsMap.put(desC+"DestinationAD"+i,DestinationAD[desC]);
 				      	
 				        	   desC++;
 				             }while (DestinationAD[desC]!= "" ||DestinationAD[desC]!= null);
@@ -1472,7 +1406,7 @@ public class DebugCollab {
 		    		          		 ).split(" "); 
 		    		           int atC =0;
 		    		           do {
-		    		        	   AirtimeDetailTableRowsMap.put(atC+"Line"+i,AirtimeType[atC]);
+		    		        	   AirtimeDetailTableRowsMap.put(atC+"ADAirtimeType"+i,AirtimeType[atC]);
 		    		        	   atC++;
 		    		             }while (AirtimeType[atC]!= "" ||AirtimeType[atC]!= null);
 		    		           
@@ -1495,23 +1429,18 @@ public class DebugCollab {
 		            String TotalChargeAD = PerTransAD.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
 		            
 		            String  AirtimeDetailTableRow = " "+CalledNumberAD+" "+AllowanceAD+" "+UnitsAD+" "+UoMAD+" "+RateAD+" "+TotalChargeAD;
-		            AirtimeDetailTableRowsMap.put("Line"+i,AirtimeDetailTableRow);
+		            AirtimeDetailTableRowsMap.put("AD_Lines"+i,AirtimeDetailTableRow);
 		        	   }catch(Exception e){} 
 		           break; 
 		            }
-		            }
-		        }
-		            
-		        return AirtimeDetailTableRowsMap;
-		            
+		          }
+		        }    
+		           return AirtimeDetailTableRowsMap;      
 			}
 	        public static LinkedHashMap<String,String> readADGeneralVariantCLinesXML(Document doc,String VarType) throws Exception{
 		        
 		        LinkedHashMap<String, String> AirtimeDetailTableRowsMap= new LinkedHashMap<>();
-		      
-
 		        XPath xpath = XPathFactory.newInstance().newXPath();
-
 		        XPathExpression exprAirtimeD = xpath.compile("//CustomerNodeList/CustomerNode/Product/ProductDetails/ServiceDetails/ServiceCharges/UsageCharges/UsageDetails");
 		        
 		        NodeList PerRows = (NodeList)exprAirtimeD.evaluate(doc, XPathConstants.NODESET);
@@ -1524,30 +1453,30 @@ public class DebugCollab {
 		            case "CallDateTime":   	
 		            try {
 		            String CallDateTimeAD = PerTransAD.getElementsByTagName("DateTime").item(0).getFirstChild().getTextContent();
-		          
-		            AirtimeDetailTableRowsMap.put("Line"+i+" ",CallDateTimeAD+" ");
+		            AirtimeDetailTableRowsMap.put("AD_CallDateTimeAD"+i+" ",CallDateTimeAD+" ");
 		            }catch(Exception e){}
 		            break;            
+		            
 		            case "MsgRefNo":         
 		            try {
 				           String[] MsgRefNo = PerTransAD.getElementsByTagName("MessageRefNo").item(0).getFirstChild().getTextContent().replace (",",""
 				          		 ).split(" "); 
 				           int desC =0;
 				           do {
-				        	   AirtimeDetailTableRowsMap.put(desC+"Line"+i,MsgRefNo[desC]);
-				      	
+				        	   AirtimeDetailTableRowsMap.put(desC+"AD_MsgRefNo"+i,MsgRefNo[desC]);
 				        	   desC++;
 				             }while (MsgRefNo[desC]!= "" ||MsgRefNo[desC]!= null);
 				           
 				      	 }catch(Exception e){}
 				      	 break;
+		           
 		            case "AddInfo":         
 			            try {
 					           String[] AddInfo = PerTransAD.getElementsByTagName("DestinationNumber").item(0).getFirstChild().getTextContent().replace (",",""
 					          		 ).split(""); 
 					           int desC =0;
 					           do {
-					        	   AirtimeDetailTableRowsMap.put(desC+"Line"+i,AddInfo[desC]);
+					        	   AirtimeDetailTableRowsMap.put(desC+"AD_DestinationNumber"+i,AddInfo[desC]);
 					      	
 					        	   desC++;
 					             }while (AddInfo[desC]!= "" ||AddInfo[desC]!= null);
@@ -1557,12 +1486,10 @@ public class DebugCollab {
 		           default:
 		        	   try {
 		        	String UnitsAD ;
-		        	//String MessageType = PerTransAD.getElementsByTagName("MessageType").item(0).getFirstChild().getTextContent();
-		            //String CalledNumberAD = PerTransAD.getElementsByTagName("DestinationNumber").item(0).getFirstChild().getTextContent();
 		            String CallDirection = PerTransAD.getElementsByTagName("DIR").item(0).getFirstChild().getTextContent();
-		           // String AllowanceAD = PerTransAD.getElementsByTagName("Allowance").item(0).getFirstChild().getTextContent();
 		            String Volume =PerTransAD.getElementsByTagName("Volume").item(0).getFirstChild().getTextContent();
 		            String Duration =PerTransAD.getElementsByTagName("Duration").item(0).getFirstChild().getTextContent();
+		            
 		            if (Volume.equals("-")) {
 		            UnitsAD = Duration;
 		            }
@@ -1572,16 +1499,14 @@ public class DebugCollab {
 		            String TotalChargeAD = PerTransAD.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
 		            
 		            String  AirtimeDetailTableRow = " "+CallDirection+" "+UnitsAD+" "+UoMAD+" "+RateAD+" "+TotalChargeAD;
-		            AirtimeDetailTableRowsMap.put("Line"+i,AirtimeDetailTableRow);
+		            AirtimeDetailTableRowsMap.put("AD_Line"+i,AirtimeDetailTableRow);
 		        	   }catch(Exception e){} 
 		           break; 
 		            }
-		        }
-		            
-		        return AirtimeDetailTableRowsMap;
-		            
+		        }   
+		        return AirtimeDetailTableRowsMap;       
 			}
-		    public static LinkedHashMap<String,String> readADGeneralVariantTotalsXML(Document doc,String VarTotal) throws Exception{
+		  public static LinkedHashMap<String,String> readADGeneralVariantTotalsXML(Document doc,String VarTotal) throws Exception{
 		        
 		        LinkedHashMap<String, String> AirtimeDetailTableRowsMap= new LinkedHashMap<>();
 		        
@@ -1622,6 +1547,8 @@ public class DebugCollab {
 		            	
 		            	AirtimeDetailTableRowsMap.put("GrandTotalAD","Total for Airtime Detail "+doc.getElementsByTagName("TotalUsagesConsolidated").item(0).getFirstChild().getTextContent());
 		            	}catch (Exception e) {}
+		            	
+		            	break;
 		        }
 		            
 		        return AirtimeDetailTableRowsMap;
@@ -1646,7 +1573,7 @@ public class DebugCollab {
 				              String Prodgroup = GroupProductDetails.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();
 				              
 				              String  FeeSummaryTableRow = ("SERVICE GROUP: "+Prodgroup);
-				              FeeSummaryTableGCRowsMap.put("Set"+i,FeeSummaryTableRow);
+				              FeeSummaryTableGCRowsMap.put("ServiceGroup"+i,FeeSummaryTableRow);
 				              
 				          }  catch(Exception e){}  
 				          
@@ -1717,8 +1644,8 @@ public class DebugCollab {
 		                
 		                String ProductGroupSumTotal = PerProductGroup.getElementsByTagName("SumTotal").item(0).getFirstChild().getTextContent();
 		                String ChargeType = PerProductGroup.getElementsByTagName("TypeOfCharge").item(0).getFirstChild().getTextContent();
-		                String  FeeSummaryTableTotalRow = ("Total "+ChargeType+" "+ProductGroupSumTotal);
-		                FeeSummaryTableTotalsMap.put("Set"+i,FeeSummaryTableTotalRow);
+		                
+		                FeeSummaryTableTotalsMap.put("FeeSummaryTotals"+i,"Total "+ChargeType+" "+ProductGroupSumTotal);
 		                
 		            }  catch(Exception e){}   
 		        }       
@@ -1738,10 +1665,9 @@ public class DebugCollab {
 		            
 		            try {
 		                
-		                
 		                String ProductType = PerProductGroup.getElementsByTagName("ProductType").item(0).getFirstChild().getTextContent();
 		                
-		                FeeSummaryTableProductsMap.put("Set"+i,ProductType);
+		                FeeSummaryTableProductsMap.put("FS_ProductType"+i,ProductType);
 		                
 		            }  catch(Exception e){}  
 		            
@@ -1754,18 +1680,15 @@ public class DebugCollab {
 		        LinkedHashMap<String, String> FeeSummaryTableTotal= new LinkedHashMap<>();
 		        
 		        try {
-
 		                String SummaryTotal = doc.getElementsByTagName("FeeSumTotal").item(0).getTextContent();
-		                
-		                String  FeeSummaryTableRow = ("Total Fee Summary "+SummaryTotal);
-		                FeeSummaryTableTotal.put("TFSTotal",FeeSummaryTableRow);
+		             
+		                FeeSummaryTableTotal.put("TotalFeeSummary","Total Fee Summary "+SummaryTotal);
 		        }catch (Exception e) {}
-		        
 		        
 		                return FeeSummaryTableTotal;
 		    }
 		/********************************AIRTIME SUMMARY WHOLESALE CUSTOMER*******************************************/  
-		public static LinkedHashMap<String,String> readASGroupChargeXML(Document doc) throws Exception {
+		  public static LinkedHashMap<String,String> readASGroupChargeXML(Document doc) throws Exception {
 			      
 			      LinkedHashMap<String, String> AirtimeSummaryTableGCRowsMap= new LinkedHashMap<>();
 			      
@@ -1823,13 +1746,36 @@ public class DebugCollab {
 		               	 }catch(Exception e){}
 		               	 break;
 		               	 
-		               	 default:
+		               	 
+		         	case "ASfields":
+		         		
+		         		String IPGroup = PerTransaction.getElementsByTagName("IPGroup").item(0).getFirstChild().getTextContent();
+			            String[] BitRate = PerTransaction.getElementsByTagName("BitRate").item(0).getFirstChild().getTextContent().split(" ");
+			            String  AirtimeSummaryTableRow = " "+IPGroup+" "+BitRate[0]+" ";
+			            
+			            AirtimeSummaryTableRowsMap.put("Line"+i+" ",AirtimeSummaryTableRow );
+			            
+			            break;
+                  
+		         	case "CallDestination":
+		         		
+		         		try {
+		                    String[] CallDest = PerTransaction.getElementsByTagName("CallDestination").item(0).getFirstChild().getTextContent().replace (","," "
+		                   		 ).split(""); 
+		                    int ln =0;
+		                    do {
+		                    	AirtimeSummaryTableRowsMap.put(ln+"Line_CallDest"+i,CallDest[ln]);
+		               	
+		                 	  ln++;
+		                      }while (CallDest[ln]!= "" ||CallDest[ln]!= null);
+		                    
+		               	 }catch(Exception e){}
+		               	 break;   
+		            default:
 		            
 		            try {
 		            //String TrafficType = PerTransaction.getElementsByTagName("TrafficType").item(0).getFirstChild().getTextContent();
-		            String IPGroup = PerTransaction.getElementsByTagName("IPGroup").item(0).getFirstChild().getTextContent();
-		            String[] BitRate = PerTransaction.getElementsByTagName("BitRate").item(0).getFirstChild().getTextContent().split(" ");
-		            String CallDestination = PerTransaction.getElementsByTagName("CallDestination").item(0).getFirstChild().getTextContent();
+		            
 		            String CallDir = PerTransaction.getElementsByTagName("CallDir").item(0).getFirstChild().getTextContent();
 		            String Allow = PerTransaction.getElementsByTagName("Allow").item(0).getFirstChild().getTextContent();
 		            String Events = PerTransaction.getElementsByTagName("Events").item(0).getFirstChild().getTextContent();
@@ -1837,17 +1783,14 @@ public class DebugCollab {
 		            String UoM = PerTransaction.getElementsByTagName("UoM").item(0).getFirstChild().getTextContent();
 		            String TotalCharge = PerTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
 		            //" "+TrafficType+
-		            String  AirtimeSummaryTableRow = " "+IPGroup+" "+BitRate[0]+" "+CallDestination
-		            		+" "+CallDir+" "+Allow+" "+Events+" "+Units+" "+UoM+" "+TotalCharge;
-		            AirtimeSummaryTableRowsMap.put("Line"+i+" ",AirtimeSummaryTableRow );
-		            }catch(Exception e){
-						
-					}
-		        }
-		        }
 		            
-		        return AirtimeSummaryTableRowsMap;
+		            AirtimeSummaryTableRowsMap.put("Line"+i+" "," "+CallDir+" "+Allow+" "+Events+" "+Units+" "+UoM+" "+TotalCharge );
+		            break;
+		            }catch(Exception e){}
+		        }
+		       }
 		            
+		        return AirtimeSummaryTableRowsMap;      
 			}
 		  public static LinkedHashMap<String,String> readAStotalXML(Document doc) throws Exception {
 		      
@@ -1856,20 +1799,18 @@ public class DebugCollab {
 		              try {
 		              String SummaryTotal = doc.getElementsByTagName("AirtimeOverAllTotal").item(0).getTextContent();
 		              if (!(SummaryTotal.equals("0.00"))){
-		            	  String  FeeSummaryTableRow = ("Total Airtime Summary "+SummaryTotal);
-		            	  AirtimeSummaryTableTotal.put("TASTotal",FeeSummaryTableRow);}
+		            	  
+		            	  AirtimeSummaryTableTotal.put("TotalAirtimeSummary","Total Airtime Summary "+SummaryTotal);}
 		              
 		              }catch(Exception e){}
 		              return AirtimeSummaryTableTotal;
 		  }		    
- /************************************ADJUSTMENTS SECTION********************************************/
-		 public static LinkedHashMap<String,String> readAdjustmentLinesXML(Document doc1, String VarType) throws Exception{
+       /************************************ADJUSTMENTS SECTION********************************************/
+		  public static LinkedHashMap<String,String> readAdjustmentLinesXML(Document doc1, String VarType) throws Exception{
 		       
 		       LinkedHashMap<String, String> AdjustmentTableRowsMap= new LinkedHashMap<>();
-		       String Discount;
+	
 		       XPath xpath = XPathFactory.newInstance().newXPath();
-
-		       
 		           
 		           switch (VarType) {         
 		           
@@ -1883,7 +1824,7 @@ public class DebugCollab {
 		                              
 		                   Element PerAdjTransaction = (Element)PerAdjRows.item(j);
 		        	   String ServiceDetails = PerAdjTransaction.getElementsByTagName("ProductGroup").item(0).getFirstChild().getTextContent();   
-		        		AdjustmentTableRowsMap.put("Line"+j+" ",ServiceDetails);
+		        		AdjustmentTableRowsMap.put("Adjustment_ProdGroup"+j+" ",ServiceDetails);
 		               }
 		               break;
 		               
@@ -1897,14 +1838,14 @@ public class DebugCollab {
 		                              
 		                   Element PerAdj3Transaction = (Element)PerAdj3Rows.item(j);
 		        	   String TotalsAdj = PerAdj3Transaction.getElementsByTagName("TotalChargePerProdGrp").item(0).getFirstChild().getTextContent();   
-		        		AdjustmentTableRowsMap.put("Line"+j+" ","Total "+TotalsAdj);
+		        		AdjustmentTableRowsMap.put("Adjustment_LineTotal"+j+" ","Total "+TotalsAdj);
 		               }
 		               break;
 		               
 		         case "GrandTotal":
-            try {
+                   try {
 		      	   String GrandTotalAdj = doc1.getElementsByTagName("TotalChargePerProdGrp").item(0).getFirstChild().getTextContent();   
-		      		AdjustmentTableRowsMap.put("GrandTotalAdj","Total Adjustments "+GrandTotalAdj);
+		      		AdjustmentTableRowsMap.put("GrandTotalAdjustment","Total Adjustments "+GrandTotalAdj);
 		           }  catch(Exception e){} 
 		             break;
 		               
@@ -1921,20 +1862,16 @@ public class DebugCollab {
 		                
 		                String AdditionalInfo = PerAdjTransaction.getElementsByTagName("AdditionalInfo").item(0).getFirstChild().getTextContent();
 		                String AdjustmentAmount = PerAdjTransaction.getElementsByTagName("AdjustmentAmount").item(0).getFirstChild().getTextContent();             
-		                AdjustmentTableRowsMap.put("Line"+j+" ",AdditionalInfo+" "+AdjustmentAmount);
+		                AdjustmentTableRowsMap.put("Adjustment_Line"+j+" ",AdditionalInfo+" "+AdjustmentAmount);
 		             }
 		             
 		       		break;
-		                
-		        
 					}
-		       
-
 		   
 		       return AdjustmentTableRowsMap;
 			}
-	/************************************PREPAID AIRTIME SECTION****************************************/		
-		 public static LinkedHashMap<String,String> readPALinesXML(Document doc,String VarType) throws Exception{
+	   /************************************PREPAID AIRTIME SECTION****************************************/		
+		  public static LinkedHashMap<String,String> readPALinesXML(Document doc,String VarType) throws Exception{
 		        
 		        LinkedHashMap<String, String> PAirtimeTableRowsMap= new LinkedHashMap<>();
 		       
@@ -1959,13 +1896,8 @@ public class DebugCollab {
 		            String UoM = PerPTransaction.getElementsByTagName("UOM").item(0).getFirstChild().getTextContent();
 		            String Rate = PerPTransaction.getElementsByTagName("Rate").item(0).getFirstChild().getTextContent();
 		            String TotalCharge = PerPTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
-		            //ProductID+" "+ProduDes+
-		             
 
-		            //String  PrepaidAirtimeTableRow = " "+SiteName+" "+SiteRef+" "+Units+" "
-		            		//+UoM+" "+Rate+" "+TotalCharge;
-		            		
-		            PAirtimeTableRowsMap.put("Line"+j+" ",SiteName+" "+SiteRef+" "+Units+
+		            PAirtimeTableRowsMap.put("PrepaidAirtime_Line"+j+" ",SiteName+" "+SiteRef+" "+Units+
 		            		" "+UoM+" "+Rate+" "+TotalCharge);
 		            break;
 		            }catch(Exception e){
@@ -1975,23 +1907,29 @@ public class DebugCollab {
 		        	 
 		        	 String ProductID = PerPTransaction.getElementsByTagName("ProductId").item(0).getFirstChild().getTextContent();	
 		             // String ProduDes = PerPTransaction.getElementsByTagName("Description").item(0).getFirstChild().getTextContent(); 
-		        	 PAirtimeTableRowsMap.put("Line"+j+" ",ProductID);
+		        	 PAirtimeTableRowsMap.put("PrepaidAirtime_Line_ProdID"+j+" ",ProductID);
 		        	 break;
 		        
 		          case "AdditionalInfo1": 
 		        	 
 		        	 String TransID = PerPTransaction.getElementsByTagName("TransID").item(0).getFirstChild().getTextContent();	
 		             // String ProduDes = PerPTransaction.getElementsByTagName("Description").item(0).getFirstChild().getTextContent(); 
-		        	 PAirtimeTableRowsMap.put("Line"+j+" ","Trans ID: "+TransID+". Date:");
+		        	 PAirtimeTableRowsMap.put("PrepaidAirtime_Line_Info1"+j+" ","Trans ID: "+TransID+". Date:");
 		        	 break;	 
 		          
 		          case "AdditionalInfo2": 
 		         	 
 		         	 String Date = PerPTransaction.getElementsByTagName("Date").item(0).getFirstChild().getTextContent();	
-		             String UserRef = PerPTransaction.getElementsByTagName("UserReference").item(0).getFirstChild().getTextContent(); 
-		         	 PAirtimeTableRowsMap.put("Line"+j+" ",Date+". User Ref: "+UserRef);
+		             //String UserRef = PerPTransaction.getElementsByTagName("UserReference").item(0).getFirstChild().getTextContent(); 
+		         	 PAirtimeTableRowsMap.put("PrepaidAirtime_Line_Info2"+j+" ",Date+". User Ref:");
 		         	 break;
-		        	 
+		        	
+		          case "UserRef": 
+			         	 
+			         	 //String Date = PerPTransaction.getElementsByTagName("Date").item(0).getFirstChild().getTextContent();	
+			             String UserRef = PerPTransaction.getElementsByTagName("UserReference").item(0).getFirstChild().getTextContent(); 
+			         	 PAirtimeTableRowsMap.put("PrepaidAirtime_UserRefVal"+j+" ",UserRef);
+			         	 break;
 		          
 		          case "ProdDesc":
 		        	 
@@ -2000,7 +1938,7 @@ public class DebugCollab {
 		            		 ).split(" "); 
 		             int i =0;
 		             do {
-		        	 PAirtimeTableRowsMap.put(j+"Line"+i,ProduDes[i]);
+		        	 PAirtimeTableRowsMap.put(j+"PrepaidAirtime_Line_ProdDesc"+i,ProduDes[i]);
 		        	 //System.out.println("**********************Debug"+ProduDes[i]);
 		        	 i++;
 		               }while (ProduDes[i]!= "" ||ProduDes[i]!= null);
@@ -2008,10 +1946,9 @@ public class DebugCollab {
 		        	 }catch(Exception e){}
 		        	 break;
 		         }
-					}
+		      }
 		        return PAirtimeTableRowsMap;
-
-		    }
+           }
 	/************************************CARRIER AIRTIME SECTION****************************************/		
 		 public static LinkedHashMap<String,String> readCarrierAirtimeLinesXML(Document doc) throws Exception{
 		        
@@ -2071,7 +2008,7 @@ public class DebugCollab {
 	           }
 	           return CAPageMap;
 	    }
-      public static LinkedHashMap<String,String> readCAGrandTotalXML(Document doc) throws Exception {
+         public static LinkedHashMap<String,String> readCAGrandTotalXML(Document doc) throws Exception {
 	        
 	        LinkedHashMap<String, String> CAPageMap= new LinkedHashMap<>();
 	        
@@ -2243,15 +2180,11 @@ public class DebugCollab {
 	          	case "CDtotal":
 	                 try {
 	             String SummaryTotal = PerTransaction.getElementsByTagName("TotalAmount").item(0).getFirstChild().getTextContent();
-	                 
-	                
-	                 CNTSecondPageMap.put("CDTotal",("Total Credits / Debits "+SummaryTotal));
-	                 } catch (Exception e) {}
+	             CNTSecondPageMap.put("Credit/DebitTotal",("Total Credits / Debits "+SummaryTotal));
+	                     } catch (Exception e) {}
 	                 break;  
-	          	  
 	            }
 	                 return CNTSecondPageMap;               
-
 	   	}
 }		
 

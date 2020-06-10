@@ -486,6 +486,14 @@ public class Collab {
 				 
 			case "YourRef2":  
 				FrontPageMap.put("YourRef2","Your additional info "+doc1.getElementsByTagName("YourReference2").item(0).getTextContent());
+           String YourRef2 = doc1.getElementsByTagName("YourReference").item(0).getTextContent().replace(",", "");
+				
+			   	if (YourRef2.isEmpty()) {
+			   		FrontPageMap.put("YourAdditionalInfo","Your additional info "+"-");
+			   	}
+			   	else {
+			   		FrontPageMap.put("YourAdditionalInfo","Your additional info "+YourRef2);
+			   		 }
 				 break;
 				 
 			case "BPED":  
