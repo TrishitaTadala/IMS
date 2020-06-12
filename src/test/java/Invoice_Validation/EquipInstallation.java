@@ -47,6 +47,13 @@ public class EquipInstallation {
         
         Document doc = dBuilder.parse(inputFile);
         doc.getDocumentElement().normalize();
+        
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Name"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Street1"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Street2"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"City"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"Country"));
+	       Compare(getSAPtextPDF(pdfpath,"FrontPage"),readShipAddressXML(doc,"PostalCode"));
 		
             System.out.println("*****************Page2 onwards Validation_XML ******************");
 			Compare(getSAPtextPDF(pdfpath,"Default"),readSingleNodeXML(doc,"SLEName"));
@@ -141,6 +148,56 @@ public class EquipInstallation {
     return PDFtext;
 }
 
+	public static LinkedHashMap<String,String> readShipAddressXML(Document doc1,String VarType) throws Exception {
+	       
+	       LinkedHashMap<String, String> FrontPageMap= new LinkedHashMap<>();
+	      
+	       XPath xpath = XPathFactory.newInstance().newXPath();
+	       XPathExpression exprCAAdd = xpath.compile("//ShipToAddress");
+	       
+	       NodeList PerSAPTransRows = (NodeList)exprCAAdd.evaluate(doc1, XPathConstants.NODESET);
+	       Element PerTransaction = (Element)PerSAPTransRows.item(0);  
+	          
+	          switch (VarType){
+	      			               
+	        	case "Name":
+	        		try {
+	        			FrontPageMap.put("ShipAddress_Name",(PerTransaction.getElementsByTagName("Name").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	        	
+	        	case "Street1":
+	        		try {
+	        			FrontPageMap.put("ShipAddress_Street1",(PerTransaction.getElementsByTagName("Street1").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "City":
+	        		try {
+	        			FrontPageMap.put("ShipAddress_City",(PerTransaction.getElementsByTagName("City").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "Street2":
+	        		try {
+	        			FrontPageMap.put("ShipAddress_State",(PerTransaction.getElementsByTagName("Street2").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "Country":
+	        		try {
+	        			FrontPageMap.put("ShipAddress_Country",(PerTransaction.getElementsByTagName("Country").item(0).getFirstChild().getTextContent()).replaceAll(",", ""));
+	        		}catch(Exception e){}
+	               break;
+	               
+	        	case "PostalCode":
+	        		try {
+	        			FrontPageMap.put("ShipAddress_PostalCode",(PerTransaction.getElementsByTagName("PostalCode").item(0).getFirstChild().getTextContent()));
+	        		}catch(Exception e){}
+	               break;
+	         }
+	               return FrontPageMap;
+	 	}
 	public static LinkedHashMap<String,String> readSingleNodeXML(Document doc1, String VarType) throws Exception{
 	        
 	        LinkedHashMap<String, String> CAFrontPageMap= new LinkedHashMap<>();              

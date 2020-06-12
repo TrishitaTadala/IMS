@@ -1,4 +1,4 @@
-//package billing;
+package billing;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -38,8 +38,9 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
 import core.BasicConfigurator;
 import utilities.ExcelReader;
+import core.ExtentManager;
 
-public class Collab_e2e {
+public class Collab{
 	
 	public static String PDFtext;
 	public static String  xmlrows;
@@ -48,7 +49,7 @@ public class Collab_e2e {
 	public static void collab (String testCaseName,ExtentTest test)throws Exception {
 //	public static void main(String[] args) throws Exception{
 /***********************************************************************************************************/		
-
+		
 	HashMap<String, HashMap<String, String>> data = ExcelReader.readExcel("BGAN Regression.xlsx",
 			"SV DataSheet");
 	String va = data.get("Single View").get("Invoice Id");
@@ -386,7 +387,7 @@ public class Collab_e2e {
 							
 			if (PDFtext.indexOf(xmlrows)!=-1? true: false){
 				test.log(Status.PASS, "Matched for parameter "+keyXML);
-				//System.out.println(xmlrows +" It's a Match!!!");
+				System.out.println(xmlrows +" It's a Match!!!");
 				 q = true;
 						
 			    }

@@ -140,9 +140,9 @@ public class OtherRevenue {
 		else{
 			System.out.println( xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~");
 				 q = false;	
-				 try {
-				 ExtentManager.test.log(LogStatus.FAIL," Expected: "+xmlrows+" Actual: "+ PDFtext);
-				 }catch(Exception e){}
+//				 try {
+//				 ExtentManager.test.log(LogStatus.FAIL," Expected: "+xmlrows+" Actual: "+ PDFtext);
+//				 }catch(Exception e){}
 				 OtherRevenueRemarks  += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 		     }
 		

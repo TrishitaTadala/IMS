@@ -380,7 +380,7 @@ public class DebugCollab {
 							
 			if (PDFtext.indexOf(xmlrows)!=-1? true: false){
 				
-				//System.out.println(keyXML+"-> "+xmlrows +" It's a Match!!!");
+				System.out.println(keyXML+"-> "+xmlrows +" It's a Match!!!");
 				 q = true;
 						
 			    }
