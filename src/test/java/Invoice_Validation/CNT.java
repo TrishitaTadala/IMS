@@ -42,12 +42,16 @@ public class CNT {
 		 LinkedHashMap<String,String> XMLHashMap  = new LinkedHashMap(); //XML Contents
 		 
 
-		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504942_1038204_202005.pdf";
+		String pdfpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001505414_114251_202006.pdf";
 				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\Invoice\\CNT_9000001504192_114251_202002.pdf";
-			
-		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10001503_1038204_1590891_20200507.xml";
-				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10000601_114251_1588607_20200220.xml";
+		//CNT_9000001505342_952119_202006;CNT_9000001504942_1038204_202005
+		//CNT_9000001505414_114251_202006
+		//CNT_9000001505342_952119_202006
 		
+		String xmlpath = "C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10002584_114251_1592620_20200625.xml";
+		//10002362_952119_1592283_20200617.xml
+				//"C:\\Users\\Trishita.Tadala\\Desktop\\IMS\\XMLs\\10000601_114251_1588607_20200220.xml";
+		//10002362_952119_1592283_20200617;10001503_1038204_1590891_20200507
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"SLEName"));
 		System.out.println("*****************CreditNote Billing Address_XML - FrontPage******************"); 
 		            Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"CustName"));	            
@@ -65,7 +69,6 @@ public class CNT {
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"BillToRef"));
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"SoldToRef"));
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"InvoiceDate"));
-			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"DueDate"));
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"Currency"));
 			        Compare(getCNTtextPDF(pdfpath,"Front"),readCNTSingleNodeXML(xmlpath,"CDSummary"));
 			        
@@ -97,7 +100,8 @@ public class CNT {
 			      	Compare(getCNTtextPDF(pdfpath,"Default"),readCDtotalXML(xmlpath,"CDtotal"));
 		    //System.out.println("*****************LastPage_Static Text******************");
 		            //Compare(getCNTtextPDF(pdfpath,"Last"),readLastPageStaticText());  
-			      	
+			    System.out.println("*****************Footer Section_XML******************");
+			      	Compare(getCNTtextPDF(pdfpath,"Footer"),readCNTSingleNodeXML(xmlpath,"footer"));
 			      	//return CntRemarks;
 		}
 		
@@ -111,12 +115,16 @@ public class CNT {
     
 	   case "Front":
 	      PDFHashMap.put("FrontPage", getCNTfrontpage(reader));
-	     break;
+	   break;
 	     
 	   case "Last":
 		   PDFHashMap.put("LastPage", getCNTfrontpage(reader));
-		     break;
-		     
+	   break;
+	   
+	   case "Footer":
+		   PDFHashMap.put("Footer", getFooter(reader));
+	   break;     
+	  
 	   default:
 			 PDFHashMap.put("middlepages", getCNTtext(reader));
 			 break;
@@ -149,12 +157,12 @@ public class CNT {
 		
 		if (PDFtext.indexOf(xmlrows)!=-1? true: false){
 			
-			System.out.println(xmlrows +" It's a Match!!!");
+			System.out.println(keyXML+"@ "+xmlrows +" It's a Match!!!");
 			 q = true;
 					
 		    }
 		else{
-			System.out.println( xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~");
+			System.out.println(keyXML+"@ "+xmlrows+" ~~~~~~ Mismatch It is ~~~~~~~");
 				 q = false;	
 				 CntRemarks += "\n"+xmlrows +" ~~~~~~ Mismatch It is ~~~~~~~";
 		     }
@@ -178,6 +186,19 @@ public class CNT {
 	    return PDFtext;
 	   
 	}
+	public static String getFooter(PdfReader reader) throws Exception {	
+		String FooterText = "";
+		   Rectangle billingAddressSection = new Rectangle(0, 10, 450,20);
+		   RenderFilter filter = new RegionTextRenderFilter(billingAddressSection);
+		   TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
+		   //System.out.println(PdfTextExtractor.getTextFromPage(reader, 1, strategy));
+		   //for (int i = 1; i <= (reader.getNumberOfPages()); i++) {
+			   
+		   FooterText= PdfTextExtractor.getTextFromPage(reader, 1, strategy);
+		  // System.out.println(FooterText);
+		  // }
+		 return FooterText;   
+		}
 
 	public static LinkedHashMap<String,String> readBillAddressXML(String xmlfilepath,String VarType) throws Exception {
 	        
@@ -293,7 +314,17 @@ public class CNT {
          switch (VarType){
     	
     	case "SLEName":  
-	         CNTFrontPageMap.put("sleLine",doc1.getElementsByTagName("SLEName").item(0).getTextContent());
+	         //CNTFrontPageMap.put("sleLine",doc1.getElementsByTagName("SLEName").item(0).getTextContent());
+	         try {
+                 String sleLine[] = doc1.getElementsByTagName("SLEName").item(0).getTextContent().replace (",",""
+                		 ).split(" "); 
+                 int sle =0;
+                 do {
+                	 CNTFrontPageMap.put(sle+"SLEName_CNT",sleLine[sle]);
+            	
+                	 sle++;
+                   }while (sleLine[sle]!= "" ||sleLine[sle]!= null);
+            	 }catch(Exception e){}
 	         break;
 	    		
     	case "BillToRef":   
@@ -323,15 +354,17 @@ public class CNT {
         case "AccountNo":
      		try {
      			String AccNo = (doc1.getElementsByTagName("ARAccountNumber").item(0).getTextContent());
-     			if (AccNo!= null ||AccNo!= ""||AccNo!= " " ) {
-     			CNTFrontPageMap.put("AccountNo","Account Number "+AccNo+".");
+     			//if (AccNo!= null ||AccNo!= ""||AccNo!= " " ) {
+     			if(AccNo.isBlank()) {}
+     			else {
+     			CNTFrontPageMap.put("AccountNo","Account Number: "+AccNo+".");
      		}
      		}catch(Exception e){}
             break; 
             
         case "BillingProfile":
      		try {
-     			CNTFrontPageMap.put("BillingProfile","Billing Profile : "+doc1.getElementsByTagName("BillingProfileId").item(0).getTextContent()+".");
+     			CNTFrontPageMap.put("BillingProfile","Billing Profile: "+doc1.getElementsByTagName("BillingProfileCode").item(0).getTextContent()+".");
      		}catch(Exception e){}
             break; 
             
@@ -345,7 +378,8 @@ public class CNT {
      		try {
      			String shipacc = doc1.getElementsByTagName("GWShipAccntId").item(0).getTextContent();
      			
-     			if (shipacc!= null||shipacc!= ""||shipacc!= " ") {
+     			if (shipacc.isBlank()) {}
+     			else {
      			CNTFrontPageMap.put("ShipAccId","Ship Acct ID: "+shipacc+".");
      			}
      			
@@ -361,7 +395,9 @@ public class CNT {
         case "MIPS":
      		try {
      			String mips = doc1.getElementsByTagName("MIPSMasterAccountId").item(0).getTextContent();    		
-     			if (mips!= null||mips!= ""||mips!= " ") {
+     			//if (mips!= null||mips!= ""||mips!= "") {
+     			if (mips.isBlank()) {}
+     			else {
      			CNTFrontPageMap.put("MIPS","MIPS Master Acc ID: "+mips+".");
      			}
      		}catch(Exception e){}
@@ -376,6 +412,26 @@ public class CNT {
      			}
      		}catch(Exception e){}
             break;
+            
+        case "footer":
+			   
+			 String footer  ="Sold by: "+doc1.getElementsByTagName("SLEName").item(0).getTextContent()
+				+" "+doc1.getElementsByTagName("SLEAddress").item(0).getTextContent()
+				+" | "+" "+doc1.getElementsByTagName("TaxRegNoDescription").item(0).getTextContent()
+				+" "+doc1.getElementsByTagName("TaxRegistrationNumber").item(0).getTextContent()
+				+" |"+" "+"www.inmarsat.com";
+			 
+			 try {
+		           String[] Footer = footer.split(" "); 
+		           int ft =0;
+		           do {
+		        	   CNTFrontPageMap.put(ft+"footer",Footer[ft]);
+		      	
+		           	ft++;
+		             }while (Footer[ft]!= "" ||Footer[ft]!= null);
+		           
+		      	 }catch(Exception e){}
+		      	 break;
       		 
       	    }       
 	        return CNTFrontPageMap;
@@ -435,8 +491,8 @@ public class CNT {
     		break;	
     	
     	case "Description":
-    		String Description = PerCNTTransaction.getElementsByTagName("Description").item(0).getFirstChild().getTextContent(); 
-    		String NetAmt = PerCNTTransaction.getElementsByTagName("NetAmount").item(0).getFirstChild().getTextContent();
+    		String Description = PerCNTTransaction.getElementsByTagName("Description").item(0).getFirstChild().getTextContent().replace(",", ""); 
+    		String NetAmt = PerCNTTransaction.getElementsByTagName("NetAmount").item(0).getFirstChild().getTextContent().replace(",", "");
     		CNTFrontPageMap.put("Line"+i+" ","Description: "+ Description+" "+NetAmt);
     		break;	
     		

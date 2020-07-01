@@ -61,15 +61,15 @@ public class DebugCollab {
 				  
 				for (String fileNa : files) {
 										
-					if (fileNa.contains("INVOICE_" +va+"_")) {
-													
+					//if (fileNa.contains("INVOICE_" +va+"_")) {
+					if (fileNa.contains("_" +va+"_")) {							
 						System.out.println("PDF file:  " + fileNa);
 							filepdf=fileNa;
 							break;
 						}	
 					}
 				i++;
-				System.out.println("while loop exit pdf"+i);
+				System.out.println("while loop exit pdf"+i+"th time");
 				}while ((i<=10 & filepdf== null));
 				
 	  String pdfpath = filename+filepdf;//PDF
@@ -94,7 +94,7 @@ public class DebugCollab {
 			}
 		}
 		j++;
-		System.out.println("while loop exit xml"+j);
+		System.out.println("while loop exit xml"+j+"th time");
 		}while ((j<=10 & xmlFile== null));
 			 
      String xmlpath = afilename+xmlFile; //XML
@@ -264,11 +264,6 @@ public class DebugCollab {
 			        Compare(gettextPDF(pdfpath,"Default"),readCAtotalsXML(doc1));
 			        Compare(gettextPDF(pdfpath,"Default"),readCAGrandTotalXML(doc1));
 			        
-			     System.out.println("****************Other Revenue Section_XML*************\n");
-			        Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"LineItems"));
-					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"ServiceDetails"));
-					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"PONumber"));
-					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"GrandTotal"));
 				   }
 				  
 				   else {
@@ -282,6 +277,12 @@ public class DebugCollab {
 			      	Compare(gettextPDF(pdfpath,"Default"),readCNTLinesXML(doc1,"ChargeType"));
 			      	Compare(gettextPDF(pdfpath,"Default"),readCDtotalXML(doc1,"CDtotal"));	 
 				   }
+				   
+				   System.out.println("****************Other Revenue Section_XML*************\n");
+			        Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"LineItems"));
+					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"ServiceDetails"));
+					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"PONumber"));
+					Compare(gettextPDF(pdfpath,"Default"),readOtherRevenueLinesXML(doc1,"GrandTotal"));
 			      	System.out.println("*****************Footer Section_XML******************");
 			      	Compare(gettextPDF(pdfpath,"Footer"),readSingleNodeXML(doc1,"footer"));
 			      	
@@ -636,7 +637,7 @@ public class DebugCollab {
 				try {
 					String vat = doc1.getElementsByTagName("VATRegistrationNumber").item(0).getTextContent();
 					
-					if (!(vat.isBlank())) {
+					if (!(vat=="")) {
 						FrontPageMap.put("vat","VAT Reg. Number: "+vat);
 					}
 				}catch(Exception e){}
@@ -646,7 +647,7 @@ public class DebugCollab {
 				try {
 					String Fees = doc1.getElementsByTagName("TotalFees").item(0).getTextContent();
 					
-					if (!(Fees.isBlank())) {
+					if (!(Fees=="")) {
 						FrontPageMap.put("Fees","Fees "+Fees);
 					}
 				}catch(Exception e){}
@@ -656,7 +657,7 @@ public class DebugCollab {
 				try {
 					String Airtime = doc1.getElementsByTagName("TotalAirtimeCharges").item(0).getTextContent();
 					
-					if (!(Airtime.isBlank())) {
+					if (!(Airtime=="")) {
 						FrontPageMap.put("airtime","Airtime "+Airtime);
 					}
 				}catch(Exception e){}
@@ -666,7 +667,7 @@ public class DebugCollab {
 				try {
 					String lpi = doc1.getElementsByTagName("TotalLPIAmount").item(0).getTextContent();
 					
-					if (!(lpi.isBlank())) {
+					if (!(lpi=="")) {
 						FrontPageMap.put("lpi","Late Payment Interest "+lpi);
 					}
 				}catch(Exception e){}
@@ -676,7 +677,7 @@ public class DebugCollab {
 				try {
 					String Adj = doc1.getElementsByTagName("TotalAdjustment").item(0).getTextContent();
 					
-					if (!(Adj.isBlank())) {
+					if (!(Adj=="")) {
 						FrontPageMap.put("adjustment","Adjustments "+Adj);
 					}
 				}catch(Exception e){}
@@ -686,7 +687,7 @@ public class DebugCollab {
 				try {
 					String ORsum = doc1.getElementsByTagName("TotalOtherRevenue").item(0).getTextContent();
 					
-					if (!(ORsum.isBlank())) {
+					if (!(ORsum=="")) {
 						FrontPageMap.put("otherrevenue","Other Revenue "+ORsum);
 					}
 				}catch(Exception e){}
@@ -696,7 +697,7 @@ public class DebugCollab {
 				try {
 					String CarrierAirtime = doc1.getElementsByTagName("TotalInUSD").item(0).getTextContent();
 					
-					if (!(CarrierAirtime.isBlank())) {
+					if (!(CarrierAirtime=="")) {
 						FrontPageMap.put("carrierairtime","Carrier Airtime "+CarrierAirtime);
 					}
 				}catch(Exception e){}
@@ -706,7 +707,7 @@ public class DebugCollab {
 				try {
 					String TotalAmtExcl = doc1.getElementsByTagName("NetAmount").item(0).getTextContent();
 					
-					if (!(TotalAmtExcl.isBlank())) {
+					if (!(TotalAmtExcl=="")) {
 						FrontPageMap.put("TotalAmtExcl","Total excl Taxes "+TotalAmtExcl);
 					}
 				}catch(Exception e){}
@@ -769,7 +770,7 @@ public class DebugCollab {
 				try {
 					String TotalAmtIncl = doc1.getElementsByTagName("TotalAmountDue").item(0).getTextContent();
 					
-					if (!(TotalAmtIncl.isBlank())) {
+					if (!(TotalAmtIncl=="")) {
 						FrontPageMap.put("TotalAmtIncl","Total incl Taxes "+TotalAmtIncl);
 					}
 				}catch(Exception e){}
@@ -2050,11 +2051,12 @@ public class DebugCollab {
 	               for (int i = 0; i < PerOR1Rows.getLength(); i++) {
 	                              
 	                   Element PerOR1Transaction = (Element)PerOR1Rows.item(i);
+	                   try {
 	        	   String ServiceStartDate = PerOR1Transaction.getElementsByTagName("PeriodStartDate").item(0).getFirstChild().getTextContent(); 
-	        	   String ServiceEndDate = PerOR1Transaction.getElementsByTagName("PeriodEndDate").item(0).getFirstChild().getTextContent();   
-	        	   
+	        	   String ServiceEndDate = PerOR1Transaction.getElementsByTagName("PeriodEndDate").item(0).getFirstChild().getTextContent();
 	        	   
 	        	   ORTableRowsMap.put("Line"+i+" ","Service Start:"+ServiceStartDate+" "+"Service End:"+ServiceEndDate);
+	                   }catch(Exception e){}
 	               }
 	               break;
 	               
@@ -2067,9 +2069,11 @@ public class DebugCollab {
 	           for (int i = 0; i < PerOR2Rows.getLength(); i++) {
 	                          
 	               Element PerOR2Transaction = (Element)PerOR2Rows.item(i);
+	               try {   
 	    	   String PONumber = PerOR2Transaction.getElementsByTagName("PONumber").item(0).getFirstChild().getTextContent();    	   
-	    	   
+	          
 	    	   ORTableRowsMap.put("Line"+i+" ","PO Number: "+PONumber);
+	               }catch(Exception e){}
 	           }
 	           break;
 	         
@@ -2100,7 +2104,7 @@ public class DebugCollab {
 	                String Rate = PerORTransaction.getElementsByTagName("Rate").item(0).getFirstChild().getTextContent();
 	                String TotalCharge = PerORTransaction.getElementsByTagName("TotalCharge").item(0).getFirstChild().getTextContent();
 	                //ProductID+" "+Desc+
-	                ORTableRowsMap.put("Line"+j+" ",ProductID+" "+Desc+" "+Units+" "+UoM+" "+Rate+" "+TotalCharge);
+	                ORTableRowsMap.put("Line"+j+" ",(ProductID+" "+Desc+" "+Units+" "+UoM+" "+Rate+" "+TotalCharge).replace(",",""));
 	             }
 	             
 	       		break;
